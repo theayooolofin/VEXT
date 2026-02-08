@@ -526,27 +526,8 @@ if (!hasGsap) {
         document.body.classList.remove("custom-cursor-active");
         if (!cursor || !hasFinePointer) return;
 
-        document.body.classList.add("custom-cursor-active");
-        gsap.set(cursor, { opacity: 1, x: window.innerWidth / 2, y: window.innerHeight / 2 });
-
-        const setX = gsap.quickTo(cursor, "x", { duration: 0.6, ease: "power3.out" });
-        const setY = gsap.quickTo(cursor, "y", { duration: 0.6, ease: "power3.out" });
-        let lastX = window.innerWidth / 2;
-        let lastY = window.innerHeight / 2;
-
-        const handleMove = (event) => {
-            lastX = event.clientX;
-            lastY = event.clientY;
-            setX(lastX);
-            setY(lastY);
-        };
-
-        window.addEventListener("pointermove", handleMove, { passive: true });
-        window.addEventListener("mousemove", handleMove, { passive: true });
-        window.addEventListener("scroll", () => {
-            setX(lastX);
-            setY(lastY);
-        }, { passive: true });
+        // Keep native pointer for reliable desktop interactions.
+        gsap.set(cursor, { opacity: 0 });
     };
 
     const initFooterPulse = () => {
