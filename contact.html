@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | VEXT Global</title>
+    <meta name="description" content="Contact VEXT Global for partnerships, project inquiries, and general questions.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="site-layout.css?v=20260208-6">
+    <link rel="stylesheet" href="lead-pages.css?v=20260208-6">
+    <script src="site-layout.js?v=20260208-1" defer></script>
+    <script src="lead-pages.js?v=20260208-1" defer></script>
+</head>
+<body data-page="contact">
+    <div data-site-header></div>
+
+    <main class="page-main">
+        <section class="page-hero">
+            <p class="page-kicker">VEXT GLOBAL / CONTACT</p>
+            <h1 class="page-title">Contact The Team.</h1>
+            <p class="page-subtitle">
+                For partnerships, active project discussions, or general questions, send your details below.
+                We will route your request to the right team and respond as quickly as possible.
+            </p>
+        </section>
+
+        <section class="page-grid">
+            <article class="info-panel">
+                <h2 class="panel-title">Direct Channels</h2>
+                <p class="panel-copy">If your request is urgent, contact us directly and include your project context.</p>
+
+                <ul class="info-list">
+                    <li><strong>Email:</strong> <a class="inline-link" href="mailto:partners@vextglobal.com">partners@vextglobal.com</a></li>
+                    <li><strong>Coverage:</strong> USA, Canada, and Global markets.</li>
+                    <li><strong>Response window:</strong> Usually within one business day.</li>
+                </ul>
+
+                <h2 class="panel-title" style="margin-top: 1rem;">Need A Paid Strategy Call?</h2>
+                <p class="panel-copy">For scope, budget, and timeline discussions, use the paid consultation session.</p>
+
+                <div class="quick-links">
+                    <a class="quick-link" href="book-consultation.html">Book Paid Consultation ($195)</a>
+                    <a class="quick-link" href="services.html">View Services</a>
+                    <a class="quick-link" href="process.html">View Process</a>
+                </div>
+            </article>
+
+            <article class="form-panel">
+                <h2 class="panel-title">Send A Message</h2>
+                <p class="panel-copy">Submit your message and your email client will open with all details prefilled.</p>
+
+                <form class="lead-form" novalidate data-mailto-form data-recipient="partners@vextglobal.com" data-subject="Contact Request - VEXT Global">
+                    <label for="contact-name">Name</label>
+                    <input id="contact-name" name="name" data-label="Name" type="text" required>
+
+                    <label for="contact-email">Work Email</label>
+                    <input id="contact-email" name="email" data-label="Work Email" type="email" required>
+
+                    <label for="contact-company">Company</label>
+                    <input id="contact-company" name="company" data-label="Company" type="text">
+
+                    <label for="contact-subject">Subject</label>
+                    <select id="contact-subject" name="subject" data-label="Subject" required>
+                        <option value="">Select one</option>
+                        <option value="Partnership">Partnership</option>
+                        <option value="Project Inquiry">Project Inquiry</option>
+                        <option value="General Question">General Question</option>
+                    </select>
+
+                    <label for="contact-message">Message</label>
+                    <textarea id="contact-message" name="message" data-label="Message" required></textarea>
+
+                    <label class="consent-row" for="contact-consent">
+                        <input id="contact-consent" name="consent" data-label="Consent" type="checkbox" required>
+                        <span>I agree to the <a class="inline-link" href="privacy.html">Privacy Policy</a> and <a class="inline-link" href="terms.html">Terms</a>.</span>
+                    </label>
+
+                    <p class="form-note">Your message is handled confidentially.</p>
+                    <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+                    <button type="submit" class="submit-button">Open Email To Send Message</button>
+                </form>
+            </article>
+        </section>
+    </main>
+
+    <div data-site-footer></div>
+</body>
+</html>
