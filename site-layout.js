@@ -10,6 +10,7 @@
     const footerHost = document.querySelector("[data-site-footer]");
     const page = document.body && document.body.dataset ? (document.body.dataset.page || "") : "";
     const isHome = page === "home";
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const navLinks = [
         { label: "HOME", href: "index.html", key: "home" },
@@ -152,5 +153,191 @@
         });
     };
 
+    const optimizeUnsplashUrl = (rawUrl, width, quality) => {
+        try {
+            const url = new URL(rawUrl, window.location.href);
+            if (!/images\.unsplash\.com$/i.test(url.hostname)) return rawUrl;
+
+            if (Number.isFinite(width) && width > 0) {
+                url.searchParams.set("w", String(Math.round(width)));
+            }
+
+            if (Number.isFinite(quality) && quality > 0) {
+                url.searchParams.set("q", String(Math.round(quality)));
+            }
+
+            if (!url.searchParams.has("auto")) {
+                url.searchParams.set("auto", "format");
+            }
+
+            if (!url.searchParams.has("fit")) {
+                url.searchParams.set("fit", "crop");
+            }
+
+            return url.toString();
+        } catch {
+            return rawUrl;
+        }
+    };
+
+    const optimizeUnsplashSrcset = (srcset, maxWidth, quality) => {
+        const entries = srcset
+            .split(",")
+            .map((entry) => entry.trim())
+            .filter(Boolean);
+
+        if (!entries.length) return srcset;
+
+        const optimized = entries
+            .map((entry) => {
+                const widthMatch = entry.match(/\s+(\d+)w$/i);
+                if (!widthMatch) return null;
+                const width = Number.parseInt(widthMatch[1], 10);
+                if (!Number.isFinite(width) || width <= 0 || width > maxWidth) return null;
+
+                const source = entry.slice(0, widthMatch.index).trim();
+                return `${optimizeUnsplashUrl(source, width, quality)} ${width}w`;
+            })
+            .filter(Boolean);
+
+        if (optimized.length) return optimized.join(", ");
+
+        const fallback = entries
+            .map((entry) => {
+                const widthMatch = entry.match(/\s+(\d+)w$/i);
+                if (!widthMatch) return null;
+                return {
+                    source: entry.slice(0, widthMatch.index).trim(),
+                    width: Number.parseInt(widthMatch[1], 10)
+                };
+            })
+            .filter((entry) => entry && Number.isFinite(entry.width))
+            .sort((a, b) => a.width - b.width)[0];
+
+        if (!fallback) return srcset;
+        const fallbackWidth = Math.min(fallback.width, maxWidth);
+        return `${optimizeUnsplashUrl(fallback.source, fallbackWidth, quality)} ${fallbackWidth}w`;
+    };
+
+    const initAdaptiveImageDelivery = () => {
+        const images = document.querySelectorAll('main img[src*="images.unsplash.com"], main img[srcset*="images.unsplash.com"]');
+        if (!images.length) return;
+
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        const constrainedNetwork = Boolean(
+            connection && (connection.saveData || /(^|[^a-z])(2g|3g)([^a-z]|$)/i.test(connection.effectiveType || ""))
+        );
+        const compactViewport = window.matchMedia("(max-width: 980px)").matches;
+        const maxWidth = constrainedNetwork ? 900 : (compactViewport ? 1200 : 1600);
+        const quality = constrainedNetwork ? 52 : (compactViewport ? 62 : 70);
+
+        images.forEach((image) => {
+            if (!(image instanceof HTMLImageElement)) return;
+            if (image.dataset.optimizedImage === "true") return;
+
+            const srcset = image.getAttribute("srcset");
+            if (srcset) {
+                image.setAttribute("srcset", optimizeUnsplashSrcset(srcset, maxWidth, quality));
+            }
+
+            const source = image.getAttribute("src");
+            if (source) {
+                const intrinsicWidth = Number.parseInt(image.getAttribute("width") || "", 10);
+                const targetWidth = Number.isFinite(intrinsicWidth) && intrinsicWidth > 0
+                    ? Math.min(intrinsicWidth, maxWidth)
+                    : maxWidth;
+                image.setAttribute("src", optimizeUnsplashUrl(source, targetWidth, quality));
+            }
+
+            if (!image.hasAttribute("decoding")) {
+                image.setAttribute("decoding", "async");
+            }
+
+            if (!image.hasAttribute("sizes")) {
+                const isDenseCardMedia = Boolean(image.closest(".service-media, .package-media, .luxury-card, .process-visual, .feature-image, .article-image"));
+                image.setAttribute("sizes", compactViewport ? "100vw" : (isDenseCardMedia ? "52vw" : "72vw"));
+            }
+
+            const highPriority = image.getAttribute("fetchpriority") === "high";
+            if (!highPriority && !image.hasAttribute("loading")) {
+                image.setAttribute("loading", "lazy");
+            }
+
+            if (constrainedNetwork && highPriority) {
+                image.setAttribute("fetchpriority", "auto");
+            }
+
+            image.dataset.optimizedImage = "true";
+        });
+    };
+
+    const initContentReveal = () => {
+        if (isHome) return;
+
+        const selector = [
+            "main h1",
+            "main h2",
+            "main h3",
+            "main h4",
+            "main p",
+            "main li",
+            "main label",
+            "main a",
+            "main button",
+            "main summary"
+        ].join(", ");
+
+        const nodes = Array.from(document.querySelectorAll(selector)).filter((node) => {
+            if (!(node instanceof HTMLElement)) return false;
+            if (node.matches("[data-reveal], .content-reveal")) return false;
+            if (node.closest("[data-reveal]")) return false;
+            if (node.closest(".mobile-nav")) return false;
+            if (node.getAttribute("aria-hidden") === "true") return false;
+            return true;
+        });
+
+        if (!nodes.length) return;
+
+        const groupStep = new Map();
+        nodes.forEach((node) => {
+            const group = node.closest("section, article, .panel, .tier-card, .note-card, .info-panel, .form-panel, .service-card, .package-card, .faq-item, .process-item") || node.parentElement;
+            const order = groupStep.get(group) || 0;
+            node.classList.add("content-reveal");
+            node.style.setProperty("--content-reveal-delay", `${Math.min(order * 55, 330)}ms`);
+            groupStep.set(group, order + 1);
+        });
+
+        if (prefersReducedMotion.matches || typeof IntersectionObserver === "undefined") {
+            nodes.forEach((node) => node.classList.add("is-visible"));
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("is-visible");
+                obs.unobserve(entry.target);
+            });
+        }, {
+            rootMargin: "0px 0px -8% 0px",
+            threshold: 0.12
+        });
+
+        nodes.forEach((node) => observer.observe(node));
+    };
+
     initMobileNav();
+    initAdaptiveImageDelivery();
+    initContentReveal();
+
+    let imageResizeTimer;
+    window.addEventListener("resize", () => {
+        window.clearTimeout(imageResizeTimer);
+        imageResizeTimer = window.setTimeout(() => {
+            document.querySelectorAll('main img[data-optimized-image="true"]').forEach((image) => {
+                image.removeAttribute("data-optimized-image");
+            });
+            initAdaptiveImageDelivery();
+        }, 180);
+    }, { passive: true });
 })();

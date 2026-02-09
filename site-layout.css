@@ -4,6 +4,9 @@
     --layout-soft: rgba(232, 230, 226, 0.74);
     --layout-muted: rgba(232, 230, 226, 0.58);
     --layout-border: rgba(255, 255, 255, 0.08);
+    --layout-emerald: #00382b;
+    --layout-emerald-text: #22b07f;
+    --layout-emerald-highlight: #35c996;
 }
 
 html,
@@ -107,7 +110,7 @@ body.mobile-nav-open {
 .header-nav a:hover,
 .header-nav a:focus-visible,
 .header-nav a[aria-current="page"] {
-    color: #00382b;
+    color: var(--layout-emerald-highlight);
 }
 
 .site-header::before {
@@ -140,7 +143,7 @@ body.mobile-nav-open {
 .header-cta:focus-visible,
 .mobile-nav-toggle:hover,
 .mobile-nav-toggle:focus-visible {
-    border-color: #00382b;
+    border-color: var(--layout-emerald-highlight);
     box-shadow: 0 0 18px rgba(0, 56, 43, 0.46);
 }
 
@@ -249,7 +252,7 @@ body.mobile-nav-open {
 
 .footer-text a:hover,
 .footer-text a:focus-visible {
-    color: #00382b;
+    color: var(--layout-emerald-highlight);
 }
 
 .footer-line {
@@ -259,6 +262,24 @@ body.mobile-nav-open {
     background: linear-gradient(90deg, transparent 0%, rgba(0, 56, 43, 0.62) 50%, transparent 100%);
     opacity: 0.3;
     animation: luxuryLinePulse 10s ease-in-out infinite;
+}
+
+[data-page]:not([data-page="home"]) .content-reveal {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0) scale(0.996);
+    filter: blur(4px);
+    transition:
+        opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.95s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--content-reveal-delay, 0ms);
+    will-change: opacity, transform, filter;
+}
+
+[data-page]:not([data-page="home"]) .content-reveal.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
 }
 
 .luxury-float-soft {
@@ -520,6 +541,15 @@ body[data-page="terms"] .legal-shell {
     body[data-page="privacy"] .legal-shell,
     body[data-page="terms"] .legal-shell {
         margin-top: calc(68px + 1.35rem);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-page]:not([data-page="home"]) .content-reveal {
+        opacity: 1;
+        transform: none;
+        filter: none;
+        transition: none;
     }
 }
 

@@ -6,6 +6,8 @@
     --lead-soft: rgba(232, 230, 226, 0.74);
     --lead-muted: rgba(232, 230, 226, 0.6);
     --lead-emerald: #00382b;
+    --lead-emerald-text: #22b07f;
+    --lead-emerald-highlight: #35c996;
     --lead-emerald-soft: rgba(0, 56, 43, 0.22);
 }
 
@@ -53,7 +55,7 @@ a {
     font-size: clamp(1.9rem, 4.6vw, 3.2rem);
     letter-spacing: -0.02em;
     text-transform: uppercase;
-    color: #00382b;
+    color: var(--lead-emerald-text);
 }
 
 .page-subtitle {
@@ -82,7 +84,7 @@ a {
     font-size: clamp(1.35rem, 3vw, 2rem);
     letter-spacing: -0.01em;
     text-transform: uppercase;
-    color: #00382b;
+    color: var(--lead-emerald-text);
 }
 
 .panel-copy {
@@ -101,7 +103,7 @@ a {
 }
 
 .fee-highlight strong {
-    color: #00382b;
+    color: var(--lead-emerald-text);
     letter-spacing: 0.04em;
     text-transform: uppercase;
     font-size: 12px;
@@ -126,11 +128,11 @@ a {
 }
 
 .info-list strong {
-    color: #00382b;
+    color: var(--lead-emerald-text);
 }
 
 .inline-link {
-    color: #00382b;
+    color: var(--lead-emerald-text);
     text-decoration: underline;
 }
 
@@ -167,7 +169,7 @@ a {
 .lead-form input:focus,
 .lead-form select:focus,
 .lead-form textarea:focus {
-    border-bottom-color: var(--lead-emerald);
+    border-bottom-color: var(--lead-emerald-highlight);
 }
 
 .lead-form option {
@@ -196,7 +198,7 @@ a {
     width: 16px;
     height: 16px;
     margin-top: 0.15rem;
-    accent-color: var(--lead-emerald);
+    accent-color: var(--lead-emerald-highlight);
 }
 
 .form-status {
@@ -209,7 +211,7 @@ a {
 }
 
 .form-status[data-state="success"] {
-    color: #00382b;
+    color: var(--lead-emerald-highlight);
 }
 
 .form-status[data-state="error"] {
@@ -232,7 +234,7 @@ a {
 
 .submit-button:hover,
 .submit-button:focus-visible {
-    border-color: #00382b;
+    border-color: var(--lead-emerald-highlight);
     box-shadow: 0 0 18px rgba(0, 56, 43, 0.46);
 }
 
@@ -253,7 +255,7 @@ a {
     font-size: clamp(1.05rem, 2.2vw, 1.3rem);
     letter-spacing: 0.01em;
     text-transform: uppercase;
-    color: #00382b;
+    color: var(--lead-emerald-text);
 }
 
 .price-faq-list {
@@ -272,7 +274,7 @@ a {
 }
 
 .price-faq-list strong {
-    color: #00382b;
+    color: var(--lead-emerald-text);
 }
 .quick-links {
     display: flex;
@@ -291,7 +293,7 @@ a {
 
 .quick-link:hover,
 .quick-link:focus-visible {
-    border-color: #00382b;
+    border-color: var(--lead-emerald-highlight);
 }
 
 @media (max-width: 980px) {
