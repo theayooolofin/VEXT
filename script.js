@@ -222,22 +222,6 @@ if (!hasGsap) {
     };
 
     const initLenis = () => {
-        if (prefersReducedMotion || typeof Lenis === "undefined" || isCompactViewport()) return;
-
-        const lenis = new Lenis({
-            lerp: 0.048,
-            smoothWheel: true,
-            wheelMultiplier: 0.58
-        });
-
-        lenis.on("scroll", ScrollTrigger.update);
-
-        gsap.ticker.add((time) => {
-            lenis.raf(time * 1000);
-        });
-
-        gsap.ticker.lagSmoothing(0);
-
         document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
             anchor.addEventListener("click", (event) => {
                 const href = anchor.getAttribute("href");
@@ -247,11 +231,12 @@ if (!hasGsap) {
                 if (!target) return;
 
                 event.preventDefault();
-                const headerOffset = header ? -(header.offsetHeight || 80) : -80;
-                lenis.scrollTo(target, {
-                    offset: headerOffset,
-                    duration: 1.65,
-                    easing: (t) => 1 - Math.pow(1 - t, 3)
+                const headerOffset = header ? (header.offsetHeight || 80) : 80;
+                const targetTop = window.scrollY + target.getBoundingClientRect().top - headerOffset;
+
+                window.scrollTo({
+                    top: Math.max(0, targetTop),
+                    behavior: prefersReducedMotion ? "auto" : "smooth"
                 });
             });
         });
