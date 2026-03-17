@@ -13,14 +13,13 @@
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const navLinks = [
-        { label: "HOME", href: "index.html", key: "home" },
-        { label: "SERVICES", href: "services.html", key: "services" },
-        { label: "PROCESS", href: "process.html", key: "process" },
-        { label: "INDUSTRIES", href: "industries.html", key: "industries" },
-        { label: "RESULTS", href: isHome ? "#case-studies" : "index.html#case-studies", key: "results" },
-        { label: "CONTACT", href: "contact.html", key: "contact" },
-        { label: "BLOG", href: "blog.html", key: "blog" },
-        { label: "INVESTMENT", href: "investment.html", key: "investment" }
+        { label: "HOME", href: isHome ? "#top" : "/", key: "home" },
+        { label: "SERVICES", href: "/services", key: "services" },
+        { label: "PROCESS", href: "/process", key: "process" },
+        { label: "CASE STUDIES", href: "/case-studies", key: "case-studies" },
+        { label: "ABOUT", href: "/about", key: "about" },
+        { label: "LOCATIONS", href: "/locations", key: "locations" },
+        { label: "CONTACT", href: "/contact", key: "contact" }
     ];
 
     const renderNavLinks = () =>
@@ -34,13 +33,13 @@
     if (headerHost) {
         headerHost.innerHTML = `
             <header class="site-header" id="top">
-                <a href="${isHome ? "#top" : "index.html"}" class="logo-link" aria-label="VEXT Global home">
-                    <img src="vext-logo.svg" alt="VEXT logo" class="logo-svg">
+                <a href="${isHome ? "#top" : "/"}" class="logo-link" aria-label="VEXT Global home">
+                    <img src="/vext-logo.svg?v=20260212-1" alt="VEXT logo" class="logo-svg">
                 </a>
                 <nav class="header-nav" aria-label="Primary">
                     ${renderNavLinks()}
                 </nav>
-                <a class="header-cta" href="book-consultation.html">BOOK CONSULTATION</a>
+                <a class="header-cta" href="/book-discovery">BOOK FREE CALL</a>
                 <button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Toggle menu">
                     <span class="mobile-nav-toggle-icon" aria-hidden="true">
                         <span class="mobile-nav-toggle-line"></span>
@@ -51,7 +50,8 @@
             </header>
             <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
                 ${renderNavLinks()}
-                <a href="book-consultation.html">BOOK CONSULTATION</a>
+                <a href="/book-discovery">BOOK FREE CALL</a>
+                <a href="/book-consultation">BOOK PAID STRATEGY SESSION</a>
             </nav>
         `;
     }
@@ -67,7 +67,7 @@
                     <div class="footer-col">
                         <p class="footer-label">DIRECT LINE</p>
                         <p class="footer-text">partners@vextglobal.com</p>
-                        <p class="footer-text"><a href="services.html">SERVICES</a> / <a href="process.html">PROCESS</a> / <a href="industries.html">INDUSTRIES</a> / <a href="blog.html">BLOG</a> / <a href="investment.html">INVESTMENT</a> / <a href="book-consultation.html">CONSULTATION</a> / <a href="contact.html">CONTACT</a> / <a href="privacy.html">PRIVACY POLICY</a> / <a href="terms.html">TERMS</a></p>
+                        <p class="footer-text"><a href="/services">SERVICES</a> / <a href="/process">PROCESS</a> / <a href="/case-studies">CASE STUDIES</a> / <a href="/about">ABOUT</a> / <a href="/reviews">REVIEWS</a> / <a href="/locations">LOCATIONS</a> / <a href="/industries">INDUSTRIES</a> / <a href="/blog">BLOG</a> / <a href="/investment">INVESTMENT</a> / <a href="/book-discovery">FREE CALL</a> / <a href="/book-consultation">PAID STRATEGY</a> / <a href="/contact">CONTACT</a> / <a href="/privacy">PRIVACY POLICY</a> / <a href="/terms">TERMS</a></p>
                     </div>
                     <div class="footer-col">
                         <p class="footer-text">&copy; ${new Date().getFullYear()} VEXT GLOBAL.</p>
@@ -303,7 +303,7 @@
             const group = node.closest("section, article, .panel, .tier-card, .note-card, .info-panel, .form-panel, .service-card, .package-card, .faq-item, .process-item") || node.parentElement;
             const order = groupStep.get(group) || 0;
             node.classList.add("content-reveal");
-            node.style.setProperty("--content-reveal-delay", `${Math.min(order * 55, 330)}ms`);
+            node.style.setProperty("--content-reveal-delay", `${Math.min(order * 32, 192)}ms`);
             groupStep.set(group, order + 1);
         });
 

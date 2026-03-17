@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,16 +8,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Michroma&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="site-layout.css?v=20260208-6">
-    <script src="site-layout.js?v=20260208-1" defer></script>
+    <link rel="stylesheet" href="site-layout.css?v=20260212-15">
+    <script src="site-layout.js?v=20260212-5" defer></script>
     <style>
         :root {
-            --bg: #050505;
-            --panel: #0d0d0d;
-            --border: rgba(255, 255, 255, 0.09);
-            --text: #e5e5e5;
-            --muted: rgba(229, 229, 229, 0.72);
-            --emerald: #0f6a53;
+            --bg: #f6fbf8;
+            --panel: #ffffff;
+            --border: rgba(0, 56, 43, 0.14);
+            --text: #14362a;
+            --muted: rgba(20, 54, 42, 0.8);
+            --emerald: #00382b;
         }
 
         * {
@@ -29,15 +29,19 @@
             background: var(--bg);
             color: var(--text);
             font-family: "Inter", sans-serif;
-            line-height: 1.7;
+            line-height: 1.78;
         }
 
         .legal-shell {
-            width: min(920px, calc(100% - 2rem));
-            margin: 2rem auto 3rem;
+            width: min(980px, calc(100% - 2.6rem));
+            margin: 2.8rem auto 4.5rem;
             border: 1px solid var(--border);
-            background: var(--panel);
-            padding: clamp(1.2rem, 3vw, 2rem);
+            border-radius: 18px;
+            background: linear-gradient(150deg, rgba(255, 255, 255, 0.95) 0%, rgba(247, 252, 249, 0.9) 100%);
+            padding: clamp(1.75rem, 4vw, 3rem);
+            box-shadow:
+                0 16px 30px rgba(8, 58, 43, 0.1),
+                0 1px 0 rgba(255, 255, 255, 0.92) inset;
         }
 
         .eyebrow {
@@ -56,17 +60,17 @@
         }
 
         h1 {
-            margin: 0.9rem 0 1.2rem;
+            margin: 1rem 0 1.5rem;
             font-size: clamp(1.2rem, 3vw, 2rem);
         }
 
         h2 {
-            margin: 1.8rem 0 0.5rem;
+            margin: 2.1rem 0 0.7rem;
             font-size: clamp(0.95rem, 2vw, 1.2rem);
         }
 
         p {
-            margin: 0.5rem 0;
+            margin: 0.65rem 0;
             color: var(--muted);
         }
 
@@ -76,8 +80,8 @@
 
         @media (max-width: 640px) {
             .legal-shell {
-                width: calc(100% - 1.5rem);
-                padding: 1rem;
+                width: calc(100% - 1.8rem);
+                padding: 1.2rem;
             }
 
             h1 {
@@ -98,8 +102,8 @@
 
         @media (max-width: 480px) {
             .legal-shell {
-                width: calc(100% - 1.2rem);
-                padding: 0.85rem;
+                width: calc(100% - 1.35rem);
+                padding: 1rem;
             }
 
             h1 {
@@ -117,7 +121,7 @@
         }
     </style>
 </head>
-<body data-page="terms">
+<body data-page="terms" class="theme-light">
     <div data-site-header></div>
 
     <main class="legal-shell">
@@ -143,9 +147,19 @@
 
         <h2>Contact</h2>
         <p>Questions about these terms can be sent to <a href="mailto:partners@vextglobal.com">partners@vextglobal.com</a>.</p>
-        <p><a href="index.html">Return to homepage</a></p>
+        <p><a href="/">Return to homepage</a></p>
     </main>
 
     <div data-site-footer></div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
