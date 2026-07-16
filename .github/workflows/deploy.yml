@@ -1,0 +1,77 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vext-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Publish production site
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: production
+
+    steps:
+      - name: Check out the release
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+
+      - name: Configure Hostinger SSH access
+        env:
+          SSH_HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          SSH_USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+        run: |
+          set -euo pipefail
+
+          for value in SSH_HOST SSH_USER SSH_PRIVATE_KEY; do
+            if [ -z "${!value}" ]; then
+              echo "::error::Missing required GitHub secret: HOSTINGER_${value}"
+              exit 1
+            fi
+          done
+
+          install -d -m 700 "$HOME/.ssh"
+          printf '%s\n' "$SSH_PRIVATE_KEY" > "$HOME/.ssh/hostinger_deploy"
+          chmod 600 "$HOME/.ssh/hostinger_deploy"
+          ssh-keyscan -p 65002 "$SSH_HOST" >> "$HOME/.ssh/known_hosts"
+
+      - name: Package website
+        run: |
+          tar \
+            --exclude='./.git' \
+            --exclude='./.github' \
+            --exclude='./link-audit-report.txt' \
+            -czf "$RUNNER_TEMP/vext-site.tar.gz" .
+
+      - name: Upload and activate release
+        env:
+          SSH_HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          SSH_USER: ${{ secrets.HOSTINGER_SSH_USER }}
+        run: |
+          set -euo pipefail
+
+          ssh_options=(
+            -i "$HOME/.ssh/hostinger_deploy"
+            -p 65002
+            -o BatchMode=yes
+            -o StrictHostKeyChecking=yes
+          )
+
+          scp \
+            -i "$HOME/.ssh/hostinger_deploy" \
+            -P 65002 \
+            -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes \
+            "$RUNNER_TEMP/vext-site.tar.gz" \
+            "$SSH_USER@$SSH_HOST:vext-site.tar.gz"
+
+          ssh "${ssh_options[@]}" "$SSH_USER@$SSH_HOST" \
+            'set -eu; target="$HOME/domains/vextglobal.com/public_html"; test -d "$target"; tar -xzf "$HOME/vext-site.tar.gz" -C "$target"; rm "$HOME/vext-site.tar.gz"'
