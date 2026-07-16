@@ -7,8 +7,14 @@ RewriteRule ^index\.html$ / [R=301,L]
 
 # Helpful legacy aliases
 RewriteRule ^home(?:\.html)?/?$ / [R=301,L,NC]
-RewriteRule ^service(?:\.html)?/?$ /services.html [R=301,L,NC]
-RewriteRule ^case-study(?:\.html)?/?$ /case-studies.html [R=301,L,NC]
+RewriteRule ^service(?:\.html)?/?$ /services [R=301,L,NC]
+RewriteRule ^case-study(?:\.html)?/?$ /case-studies [R=301,L,NC]
+
+# Redirect every public .html URL to its extensionless canonical URL.
+# THE_REQUEST ensures this only runs for browser requests, not the internal
+# rewrite at the bottom of this file.
+RewriteCond %{THE_REQUEST} \s/+[^?\s]+\.html(?:[?\s]|$) [NC]
+RewriteRule ^(.+)\.html$ /$1 [R=301,L,NE]
 
 # Remove trailing slash on non-directories
 RewriteCond %{REQUEST_FILENAME} !-d
