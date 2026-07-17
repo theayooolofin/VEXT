@@ -10,6 +10,7 @@ const scrollProgress = document.querySelector(".scroll-progress");
 const parallaxNodes = document.querySelectorAll("[data-parallax-speed]");
 const counterNodes = document.querySelectorAll("[data-counter]");
 const tiltNodes = document.querySelectorAll("[data-tilt]");
+const techToyCanvas = document.querySelector("[data-tech-toy-canvas]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const hasFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
@@ -160,16 +161,6 @@ const initParallax = () => {
     let rafId = null;
 
     const render = () => {
-        const disableForSmallScreens = window.matchMedia("(max-width: 980px)").matches;
-        if (disableForSmallScreens) {
-            parallaxNodes.forEach((node) => {
-                node.style.transform = "";
-            });
-            currentY = targetY;
-            rafId = null;
-            return;
-        }
-
         currentY += (targetY - currentY) * 0.08;
         parallaxNodes.forEach((node) => {
             const speed = Number.parseFloat(node.dataset.parallaxSpeed || "0");
@@ -268,6 +259,199 @@ const initTilt = () => {
     });
 };
 
+const initTechToy = () => {
+    if (!techToyCanvas) return;
+
+    const ctx = techToyCanvas.getContext("2d");
+    const shell = techToyCanvas.closest(".tech-toy-shell");
+    if (!ctx || !shell) return;
+
+    let width = 0;
+    let height = 0;
+    let phase = 0;
+    let rafId = 0;
+    let running = false;
+    let particles = [];
+
+    const createParticles = () => {
+        const count = width < 560 ? 20 : 32;
+        particles = Array.from({ length: count }, () => ({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5,
+            radius: 1 + Math.random() * 1.8
+        }));
+    };
+
+    const resizeCanvas = () => {
+        const rect = shell.getBoundingClientRect();
+        width = Math.max(1, Math.floor(rect.width));
+        height = Math.max(1, Math.floor(rect.height));
+
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        techToyCanvas.width = Math.floor(width * dpr);
+        techToyCanvas.height = Math.floor(height * dpr);
+        techToyCanvas.style.width = `${width}px`;
+        techToyCanvas.style.height = `${height}px`;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        createParticles();
+    };
+
+    const drawCore = (advanceMotion) => {
+        if (!width || !height) return;
+
+        if (advanceMotion) phase += 0.016;
+
+        ctx.clearRect(0, 0, width, height);
+
+        const background = ctx.createLinearGradient(0, 0, 0, height);
+        background.addColorStop(0, "rgba(2, 13, 11, 0.9)");
+        background.addColorStop(1, "rgba(1, 6, 6, 0.9)");
+        ctx.fillStyle = background;
+        ctx.fillRect(0, 0, width, height);
+
+        const pulse = (Math.sin(phase * 1.9) + 1) * 0.5;
+        const sweepY = ((phase * 160) % (height + 80)) - 40;
+
+        const sweep = ctx.createLinearGradient(0, sweepY - 20, 0, sweepY + 20);
+        sweep.addColorStop(0, "rgba(53, 201, 150, 0)");
+        sweep.addColorStop(0.5, `rgba(53, 201, 150, ${0.16 + pulse * 0.15})`);
+        sweep.addColorStop(1, "rgba(53, 201, 150, 0)");
+        ctx.fillStyle = sweep;
+        ctx.fillRect(0, sweepY - 20, width, 40);
+
+        const cx = width * 0.5;
+        const cy = height * 0.52;
+        const ringRadius = Math.min(width, height) * 0.2 + pulse * 8;
+
+        ctx.strokeStyle = `rgba(53, 201, 150, ${0.2 + pulse * 0.3})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(cx, cy, ringRadius, 0, Math.PI * 2);
+        ctx.stroke();
+
+        for (let i = 0; i < particles.length; i += 1) {
+            const particle = particles[i];
+
+            if (advanceMotion) {
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+
+                if (particle.x < 0 || particle.x > width) particle.vx *= -1;
+                if (particle.y < 0 || particle.y > height) particle.vy *= -1;
+            }
+
+            for (let j = i + 1; j < particles.length; j += 1) {
+                const other = particles[j];
+                const dx = particle.x - other.x;
+                const dy = particle.y - other.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance > 122) continue;
+
+                const alpha = (1 - (distance / 122)) * 0.34;
+                ctx.strokeStyle = `rgba(53, 201, 150, ${alpha})`;
+                ctx.beginPath();
+                ctx.moveTo(particle.x, particle.y);
+                ctx.lineTo(other.x, other.y);
+                ctx.stroke();
+            }
+        }
+
+        particles.forEach((particle) => {
+            const glow = ctx.createRadialGradient(
+                particle.x,
+                particle.y,
+                0,
+                particle.x,
+                particle.y,
+                particle.radius * 3.5
+            );
+            glow.addColorStop(0, "rgba(53, 201, 150, 0.88)");
+            glow.addColorStop(1, "rgba(53, 201, 150, 0)");
+
+            ctx.fillStyle = glow;
+            ctx.beginPath();
+            ctx.arc(particle.x, particle.y, particle.radius * 3.5, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = "rgba(173, 255, 231, 0.9)";
+            ctx.beginPath();
+            ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        const crossSize = 26 + pulse * 5;
+        ctx.strokeStyle = "rgba(53, 201, 150, 0.33)";
+        ctx.beginPath();
+        ctx.moveTo(cx - crossSize, cy);
+        ctx.lineTo(cx + crossSize, cy);
+        ctx.moveTo(cx, cy - crossSize);
+        ctx.lineTo(cx, cy + crossSize);
+        ctx.stroke();
+    };
+
+    const frame = () => {
+        if (!running) return;
+        drawCore(true);
+        rafId = window.requestAnimationFrame(frame);
+    };
+
+    const start = () => {
+        if (running || prefersReducedMotion) return;
+        running = true;
+        rafId = window.requestAnimationFrame(frame);
+    };
+
+    const stop = () => {
+        running = false;
+        if (rafId) {
+            window.cancelAnimationFrame(rafId);
+            rafId = 0;
+        }
+    };
+
+    resizeCanvas();
+
+    if (prefersReducedMotion) {
+        drawCore(false);
+        return;
+    }
+
+    if (typeof IntersectionObserver !== "undefined") {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    start();
+                } else {
+                    stop();
+                }
+            });
+        }, {
+            threshold: 0.12
+        });
+        observer.observe(shell);
+    } else {
+        start();
+    }
+
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            stop();
+            return;
+        }
+        if (shell.getBoundingClientRect().bottom > 0) {
+            start();
+        }
+    });
+
+    window.addEventListener("resize", () => {
+        resizeCanvas();
+        if (!running) drawCore(false);
+    }, { passive: true });
+};
+
 const initLuxurySurfaceMotion = () => {
     if (prefersReducedMotion) return;
 
@@ -293,4 +477,5 @@ initScrollProgress();
 initParallax();
 initCounters();
 initTilt();
+initTechToy();
 initLuxurySurfaceMotion();

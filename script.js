@@ -3,6 +3,44 @@ const leadFormStatus = leadForm ? leadForm.querySelector("[data-form-status]") :
 const leadFormButton = leadForm ? leadForm.querySelector('button[type="submit"]') : null;
 const mobileNavToggle = document.querySelector(".mobile-nav-toggle");
 const mobileNav = document.querySelector(".mobile-nav");
+const homePreloader = document.querySelector("[data-home-preloader]");
+const isHomePageRuntime = !!(document.body && document.body.dataset && document.body.dataset.page === "home");
+
+const initHomePreloader = () => {
+    if (!isHomePageRuntime || !homePreloader) return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const minimumVisibleMs = reduceMotion ? 420 : 1300;
+    const enteredAt = performance.now();
+    let closed = false;
+
+    document.body.classList.add("home-preloader-active");
+
+    const closePreloader = () => {
+        if (closed) return;
+        closed = true;
+
+        homePreloader.classList.add("is-exit");
+        window.setTimeout(() => {
+            homePreloader.remove();
+            document.body.classList.remove("home-preloader-active");
+        }, 560);
+    };
+
+    const resolvePreloader = () => {
+        const elapsed = performance.now() - enteredAt;
+        const remaining = Math.max(0, minimumVisibleMs - elapsed);
+        window.setTimeout(closePreloader, remaining);
+    };
+
+    if (document.readyState === "complete") {
+        resolvePreloader();
+    } else {
+        window.addEventListener("load", resolvePreloader, { once: true });
+    }
+
+    window.setTimeout(closePreloader, 4800);
+};
 
 const setLeadFormStatus = (message, state) => {
     if (!leadFormStatus) return;
@@ -26,6 +64,65 @@ const buildMailtoHref = (form, formData) => {
     return `mailto:${encodeURIComponent(recipient)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
 };
 
+const extractSubmissionError = async (response) => {
+    const fallback = `Request failed (${response.status}).`;
+
+    try {
+        const contentType = response.headers.get("content-type") || "";
+
+        if (contentType.includes("application/json")) {
+            const payload = await response.json();
+            if (payload && typeof payload.detail === "string" && payload.detail.trim()) return payload.detail.trim();
+            if (payload && typeof payload.message === "string" && payload.message.trim()) return payload.message.trim();
+            if (payload && typeof payload.error === "string" && payload.error.trim()) return payload.error.trim();
+            return fallback;
+        }
+
+        const text = (await response.text() || "").trim();
+        if (!text) return fallback;
+        return text.slice(0, 180);
+    } catch {
+        return fallback;
+    }
+};
+
+const buildSerializablePayload = (formData) => {
+    const payload = {};
+
+    formData.forEach((value, key) => {
+        if (typeof value !== "string") return;
+
+        if (Object.prototype.hasOwnProperty.call(payload, key)) {
+            const current = payload[key];
+            if (Array.isArray(current)) {
+                current.push(value);
+            } else {
+                payload[key] = [current, value];
+            }
+            return;
+        }
+
+        payload[key] = value;
+    });
+
+    return payload;
+};
+
+const payloadToUrlEncoded = (payload) => {
+    const params = new URLSearchParams();
+
+    Object.entries(payload).forEach(([key, value]) => {
+        if (Array.isArray(value)) {
+            value.forEach((entry) => params.append(key, entry));
+            return;
+        }
+
+        params.append(key, value);
+    });
+
+    return params.toString();
+};
+
 const submitLeadForm = async (form, formData) => {
     const endpoint = (form.dataset.endpoint || "").trim();
 
@@ -34,19 +131,59 @@ const submitLeadForm = async (form, formData) => {
         return { mode: "mailto" };
     }
 
-    const response = await fetch(endpoint, {
-        method: "POST",
-        body: formData,
-        headers: {
-            Accept: "application/json"
+    const payload = buildSerializablePayload(formData);
+    const urlEncodedPayload = payloadToUrlEncoded(payload);
+    const attempts = [
+        {
+            name: "form-data",
+            init: {
+                method: "POST",
+                body: formData,
+                headers: { Accept: "application/json" }
+            }
+        },
+        {
+            name: "json",
+            init: {
+                method: "POST",
+                body: JSON.stringify(payload),
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            }
+        },
+        {
+            name: "url-encoded",
+            init: {
+                method: "POST",
+                body: urlEncodedPayload,
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+                }
+            }
         }
-    });
+    ];
 
-    if (!response.ok) {
-        throw new Error("Lead submission request failed.");
+    let lastError = "";
+
+    for (const attempt of attempts) {
+        try {
+            const response = await fetch(endpoint, attempt.init);
+            if (response.ok) {
+                return { mode: "api", transport: attempt.name };
+            }
+
+            lastError = await extractSubmissionError(response);
+        } catch (error) {
+            lastError = error instanceof Error && error.message
+                ? error.message
+                : `Request failed during ${attempt.name} submission.`;
+        }
     }
 
-    return { mode: "api" };
+    throw new Error(lastError || "Lead submission request failed.");
 };
 
 const initLeadForm = () => {
@@ -82,7 +219,17 @@ const initLeadForm = () => {
                 setLeadFormStatus("Opening your email client to complete submission.", "success");
             }
         } catch (error) {
-            setLeadFormStatus("Submission failed. Try again or email partners@vextglobal.com.", "error");
+            setLeadFormStatus("Direct submission failed. Opening your email client...", "loading");
+
+            try {
+                window.location.href = buildMailtoHref(leadForm, formData);
+                setLeadFormStatus("Opening your email client to complete submission.", "success");
+            } catch {
+                const message = error instanceof Error && error.message
+                    ? `Submission failed: ${error.message}`
+                    : "Submission failed. Try again or email partners@vextglobal.com.";
+                setLeadFormStatus(message, "error");
+            }
         } finally {
             if (leadFormButton) {
                 leadFormButton.disabled = false;
@@ -92,6 +239,7 @@ const initLeadForm = () => {
     });
 };
 
+initHomePreloader();
 initLeadForm();
 
 const setMobileNavState = (isOpen) => {
@@ -173,6 +321,10 @@ if (!hasGsap) {
 } else {
     document.body.classList.add("gsap-ready");
     gsap.registerPlugin(ScrollTrigger);
+    if (!prefersReducedMotionGlobal) {
+        // Global slowdown so all GSAP motion feels premium and deliberate.
+        gsap.globalTimeline.timeScale(0.85);
+    }
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const hasFinePointer = window.matchMedia("(any-hover: hover) and (any-pointer: fine)").matches
@@ -186,36 +338,49 @@ if (!hasGsap) {
     const heroSub = document.querySelector("[data-hero-sub]");
     const methodSection = document.querySelector(".methodology");
     const spotlight = document.querySelector(".spotlight");
+    const methodPointer = document.querySelector(".method-pointer");
     const intelCurtain = document.querySelector(".intel-curtain");
     const inquiryForm = document.querySelector(".inquiry-form");
     const magneticButton = document.querySelector("[data-magnetic]");
     const footerLine = document.querySelector(".footer-line");
     const cursor = document.querySelector(".liquid-cursor");
-    const isHomePage = !!(document.body && document.body.dataset && document.body.dataset.page === "home");
+    const isHomePage = isHomePageRuntime;
 
     const splitTextToChars = () => {
         const parts = gsap.utils.toArray("[data-split-line]");
         const chars = [];
 
         parts.forEach((part) => {
-            const text = part.textContent || "";
+            if (part.dataset.splitReady === "true") {
+                chars.push(...part.querySelectorAll(".split-char"));
+                return;
+            }
+
+            const text = (part.textContent || "").replace(/\s+/g, " ").trim();
+            if (!text) return;
             const fragment = document.createDocumentFragment();
 
-            [...text].forEach((char) => {
-                if (char === " ") {
-                    fragment.appendChild(document.createTextNode(" "));
-                    return;
-                }
+            text.split(" ").forEach((word, wordIndex, words) => {
+                const wordWrap = document.createElement("span");
+                wordWrap.className = "split-word";
 
-                const span = document.createElement("span");
-                span.className = "split-char";
-                span.textContent = char;
-                fragment.appendChild(span);
-                chars.push(span);
+                [...word].forEach((char) => {
+                    const span = document.createElement("span");
+                    span.className = "split-char";
+                    span.textContent = char;
+                    wordWrap.appendChild(span);
+                    chars.push(span);
+                });
+
+                fragment.appendChild(wordWrap);
+                if (wordIndex < words.length - 1) {
+                    fragment.appendChild(document.createTextNode(" "));
+                }
             });
 
             part.textContent = "";
             part.appendChild(fragment);
+            part.dataset.splitReady = "true";
         });
 
         return chars;
@@ -255,7 +420,7 @@ if (!hasGsap) {
             gsap.to(header, {
                 yPercent: 0,
                 opacity: 1,
-                duration: 1.85,
+                duration: 1.1,
                 ease: "expo.out"
             });
         }
@@ -266,64 +431,205 @@ if (!hasGsap) {
 
     const initHero = () => {
         const compactViewport = isCompactViewport();
-        const chars = compactViewport ? [] : splitTextToChars();
+        const chars = splitTextToChars();
         const heroLines = gsap.utils.toArray(".hero-title .hero-line");
         const heroCtas = gsap.utils.toArray(".hero-actions .strategic-cta");
+        const heroIntroTitle = document.querySelector(".hero-intro-title");
+        const heroSecondary = document.querySelector(".hero-secondary");
+        const heroSecondaryLabel = document.querySelector(".hero-secondary-label");
+        const heroSecondaryLines = gsap.utils.toArray(".hero-secondary-title span");
+        const heroSecondarySub = document.querySelector(".hero-secondary-sub");
+        const heroSecondaryCtas = gsap.utils.toArray(".hero-secondary-actions .strategic-cta");
+        const floatingHeroPanel = document.querySelector(".hero-secondary-shell, .hero-content");
 
         if (prefersReducedMotion) {
             if (chars.length) gsap.set(chars, { opacity: 1, y: 0 });
-            gsap.set([heroLabel, heroSub, ...heroLines, ...heroCtas], { opacity: 1, y: 0, filter: "blur(0px)" });
+            gsap.set(
+                [
+                    heroLabel,
+                    heroIntroTitle,
+                    heroSub,
+                    heroSecondaryLabel,
+                    heroSecondarySub,
+                    ...heroLines,
+                    ...heroCtas,
+                    ...heroSecondaryLines,
+                    ...heroSecondaryCtas
+                ],
+                { opacity: 1, y: 0, filter: "blur(0px)" }
+            );
         } else if (compactViewport) {
-            gsap.timeline({ defaults: { ease: "power2.out" } })
-                .fromTo(
+            const heroTimeline = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+            if (heroLabel) {
+                heroTimeline.fromTo(
                     heroLabel,
                     { opacity: 0, y: 12 },
-                    { opacity: 1, y: 0, duration: 0.85, delay: 0.2 }
-                )
-                .fromTo(
+                    { opacity: 1, y: 0, duration: 0.75, delay: 0.08 }
+                );
+            }
+
+            if (heroIntroTitle) {
+                if (chars.length) {
+                    heroTimeline.to(
+                        chars,
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 1,
+                            stagger: 0.038
+                        },
+                        "-=0.42"
+                    );
+                } else {
+                    heroTimeline.fromTo(
+                        heroIntroTitle,
+                        { opacity: 0, y: 14, filter: "blur(7px)" },
+                        { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.82 },
+                        "-=0.5"
+                    );
+                }
+            }
+
+            if (heroLines.length) {
+                heroTimeline.fromTo(
                     heroLines,
                     { opacity: 0, y: 14, filter: "blur(6px)" },
-                    { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.9, stagger: 0.12 },
+                    { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.84, stagger: 0.1 },
                     "-=0.45"
-                )
-                .fromTo(
+                );
+            }
+
+            if (heroSub) {
+                heroTimeline.fromTo(
                     heroSub,
                     { opacity: 0, y: 12 },
                     { opacity: 0.86, y: 0, duration: 0.8 },
                     "-=0.52"
-                )
-                .fromTo(
+                );
+            }
+
+            if (heroCtas.length) {
+                heroTimeline.fromTo(
                     heroCtas,
                     { opacity: 0, y: 10 },
-                    { opacity: 1, y: 0, duration: 0.72, stagger: 0.08 },
+                    { opacity: 1, y: 0, duration: 0.68, stagger: 0.09 },
                     "-=0.45"
                 );
+            }
         } else {
-            gsap.timeline({ defaults: { ease: "expo.out" } })
-                .fromTo(
+            const heroTimeline = gsap.timeline({ defaults: { ease: "expo.out" } });
+
+            if (heroLabel) {
+                heroTimeline.fromTo(
                     heroLabel,
                     { opacity: 0, y: 20 },
-                    { opacity: 1, y: 0, duration: 2.8, delay: 1.4 }
-                )
-                .to(
+                    { opacity: 1, y: 0, duration: 1.1, delay: 0.16 }
+                );
+            }
+
+            if (chars.length) {
+                heroTimeline.to(
                     chars,
                     {
                         opacity: 1,
                         y: 0,
-                        duration: 2.4,
-                        stagger: 0.075
+                        duration: 1.25,
+                        stagger: 0.038
                     },
-                    "-=1.7"
-                )
-                .fromTo(
+                    "-=0.6"
+                );
+            } else if (heroIntroTitle) {
+                heroTimeline.fromTo(
+                    heroIntroTitle,
+                    { opacity: 0, y: 24, filter: "blur(8px)" },
+                    { opacity: 1, y: 0, filter: "blur(0px)", duration: 1.2 },
+                    "-=0.52"
+                );
+            }
+
+            if (heroSub) {
+                heroTimeline.fromTo(
                     heroSub,
                     { opacity: 0, y: 18, filter: "blur(10px)" },
-                    { opacity: 0.82, y: 0, filter: "blur(0px)", duration: 2.3 },
-                    "-=1.65"
+                    { opacity: 0.86, y: 0, filter: "blur(0px)", duration: 1.05 },
+                    "-=0.85"
                 );
+            }
+
+            if (heroCtas.length) {
+                heroTimeline.fromTo(
+                    heroCtas,
+                    { opacity: 0, y: 10 },
+                    { opacity: 1, y: 0, duration: 0.92, stagger: 0.12 },
+                    "-=0.65"
+                );
+            }
         }
 
-        if (hero && heroImage && !prefersReducedMotion && !compactViewport) {
+        if (!prefersReducedMotion && heroSecondary) {
+            const secondaryTimeline = gsap.timeline({
+                defaults: { ease: compactViewport ? "power2.out" : "expo.out" },
+                scrollTrigger: {
+                    trigger: heroSecondary,
+                    start: compactViewport ? "top 90%" : "top 82%",
+                    once: true
+                }
+            });
+
+            if (heroSecondaryLabel) {
+                secondaryTimeline.fromTo(
+                    heroSecondaryLabel,
+                    { opacity: 0, y: compactViewport ? 10 : 14 },
+                    { opacity: 1, y: 0, duration: compactViewport ? 0.72 : 1.05 }
+                );
+            }
+
+            if (heroSecondaryLines.length) {
+                secondaryTimeline.fromTo(
+                    heroSecondaryLines,
+                    { opacity: 0, y: compactViewport ? 12 : 18, filter: "blur(6px)" },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        filter: "blur(0px)",
+                        duration: compactViewport ? 0.82 : 1.2,
+                        stagger: compactViewport ? 0.09 : 0.12
+                    },
+                    "-=0.45"
+                );
+            }
+
+            if (heroSecondarySub) {
+                secondaryTimeline.fromTo(
+                    heroSecondarySub,
+                    { opacity: 0, y: compactViewport ? 10 : 14, filter: "blur(8px)" },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        filter: "blur(0px)",
+                        duration: compactViewport ? 0.7 : 1.05
+                    },
+                    "-=0.48"
+                );
+            }
+
+            if (heroSecondaryCtas.length) {
+                secondaryTimeline.fromTo(
+                    heroSecondaryCtas,
+                    { opacity: 0, y: 10 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: compactViewport ? 0.58 : 0.95,
+                        stagger: compactViewport ? 0.07 : 0.1
+                    },
+                    "-=0.42"
+                );
+            }
+        }
+
+        if (hero && heroImage && !prefersReducedMotion) {
             gsap.to(heroImage, {
                 yPercent: 24,
                 ease: "none",
@@ -331,27 +637,29 @@ if (!hasGsap) {
                     trigger: hero,
                     start: "top top",
                     end: "bottom top",
-                    scrub: 5
+                    scrub: 2.8
                 }
             });
 
-            gsap.to(".hero-content", {
-                y: -12,
-                x: 4,
-                duration: 22,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut"
-            });
+            if (floatingHeroPanel) {
+                gsap.to(floatingHeroPanel, {
+                    y: -12,
+                    x: 4,
+                    duration: 24,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut"
+                });
+            }
 
             if (heroCtas.length) {
                 gsap.to(heroCtas, {
                     y: -3,
-                    duration: 4.8,
+                    duration: 5.8,
                     ease: "sine.inOut",
                     repeat: -1,
                     yoyo: true,
-                    stagger: 0.45
+                    stagger: 0.5
                 });
             }
         }
@@ -373,7 +681,7 @@ if (!hasGsap) {
 
             gsap.set(track, { clearProps: "transform" });
 
-            if (prefersReducedMotion || window.matchMedia("(max-width: 980px)").matches) return;
+            if (prefersReducedMotion || isCompactViewport()) return;
 
             const getDistance = () => Math.max(0, track.scrollWidth - window.innerWidth);
 
@@ -383,7 +691,7 @@ if (!hasGsap) {
                 scrollTrigger: {
                     trigger: section,
                     pin: true,
-                    scrub: 3.2,
+                    scrub: 3.4,
                     start: "top top",
                     end: () => `+=${getDistance()}`,
                     invalidateOnRefresh: true
@@ -393,6 +701,60 @@ if (!hasGsap) {
 
         mountHorizontalAnimation();
         window.addEventListener("resize", mountHorizontalAnimation, { passive: true });
+    };
+
+    const initMobileServiceSlideIn = () => {
+        if (!isHomePage) return;
+
+        const slides = Array.from(document.querySelectorAll(".horizontal-section .scale-slide"));
+        if (!slides.length) return;
+
+        let observer = null;
+        let resizeTimer;
+
+        const teardownObserver = () => {
+            if (!observer) return;
+            observer.disconnect();
+            observer = null;
+        };
+
+        const applyMobileSlides = () => {
+            const enable = isCompactViewport() && !prefersReducedMotion;
+
+            teardownObserver();
+            slides.forEach((slide) => {
+                slide.classList.remove("mobile-slide-enter", "is-mobile-visible");
+            });
+
+            if (!enable) return;
+
+            slides.forEach((slide) => slide.classList.add("mobile-slide-enter"));
+
+            if (typeof IntersectionObserver === "undefined") {
+                slides.forEach((slide) => slide.classList.add("is-mobile-visible"));
+                return;
+            }
+
+            observer = new IntersectionObserver((entries, activeObserver) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add("is-mobile-visible");
+                    activeObserver.unobserve(entry.target);
+                });
+            }, {
+                rootMargin: "0px 0px -10% 0px",
+                threshold: 0.2
+            });
+
+            slides.forEach((slide) => observer.observe(slide));
+        };
+
+        applyMobileSlides();
+
+        window.addEventListener("resize", () => {
+            window.clearTimeout(resizeTimer);
+            resizeTimer = window.setTimeout(applyMobileSlides, 120);
+        }, { passive: true });
     };
 
     const initImageFallbacks = () => {
@@ -412,18 +774,27 @@ if (!hasGsap) {
 
         const setSpot = (clientX, clientY) => {
             const rect = methodSection.getBoundingClientRect();
-            const x = ((clientX - rect.left) / rect.width) * 100;
-            const y = ((clientY - rect.top) / rect.height) * 100;
+            const rawX = clientX - rect.left;
+            const rawY = clientY - rect.top;
+            const localX = Math.min(Math.max(rawX, 0), rect.width);
+            const localY = Math.min(Math.max(rawY, 0), rect.height);
+            const x = (localX / rect.width) * 100;
+            const y = (localY / rect.height) * 100;
 
             methodSection.style.setProperty("--spot-x", `${x}%`);
             methodSection.style.setProperty("--spot-y", `${y}%`);
+            methodSection.style.setProperty("--pointer-x", `${localX}px`);
+            methodSection.style.setProperty("--pointer-y", `${localY}px`);
         };
 
-        if (prefersReducedMotion || !hasFinePointer || isCompactViewport()) {
+        if (prefersReducedMotion || !hasFinePointer) {
             methodSection.classList.add("method-static");
             methodSection.style.setProperty("--spot-x", "50%");
             methodSection.style.setProperty("--spot-y", "50%");
+            methodSection.style.setProperty("--pointer-x", "50%");
+            methodSection.style.setProperty("--pointer-y", "50%");
             if (spotlight) spotlight.style.opacity = "0";
+            if (methodPointer) methodPointer.style.opacity = "0";
             return;
         }
 
@@ -431,8 +802,16 @@ if (!hasGsap) {
             if (spotlight) {
                 gsap.to(spotlight, {
                     opacity: 1,
-                    duration: 1.6,
+                    duration: 0.45,
                     ease: "sine.out",
+                    overwrite: true
+                });
+            }
+            if (methodPointer) {
+                gsap.to(methodPointer, {
+                    opacity: 1,
+                    duration: 0.26,
+                    ease: "power2.out",
                     overwrite: true
                 });
             }
@@ -447,8 +826,16 @@ if (!hasGsap) {
             if (spotlight) {
                 gsap.to(spotlight, {
                     opacity: 0,
-                    duration: 1.9,
+                    duration: 0.32,
                     ease: "sine.out",
+                    overwrite: true
+                });
+            }
+            if (methodPointer) {
+                gsap.to(methodPointer, {
+                    opacity: 0,
+                    duration: 0.22,
+                    ease: "power2.out",
                     overwrite: true
                 });
             }
@@ -460,7 +847,7 @@ if (!hasGsap) {
 
         gsap.to(intelCurtain, {
             xPercent: 101,
-            duration: 2.8,
+            duration: 2.4,
             ease: "expo.out",
             scrollTrigger: {
                 trigger: ".sector-intel",
@@ -476,7 +863,7 @@ if (!hasGsap) {
             gsap.to(magneticButton, {
                 x: 0,
                 y: 0,
-                duration: 0.95,
+                duration: 0.9,
                 ease: "power3.out",
                 overwrite: true
             });
@@ -494,7 +881,7 @@ if (!hasGsap) {
                 gsap.to(magneticButton, {
                     x: dx * 0.32,
                     y: dy * 0.32,
-                    duration: 1.35,
+                    duration: 1.2,
                     ease: "elastic.out(1, 0.45)",
                     overwrite: true
                 });
@@ -520,15 +907,15 @@ if (!hasGsap) {
 
         gsap.set(footerLine, { opacity: 0.3 });
 
-        gsap.timeline({ repeat: -1, repeatDelay: 8.8 })
+        gsap.timeline({ repeat: -1, repeatDelay: 4.8 })
             .to(footerLine, {
                 opacity: 1,
-                duration: 1.7,
+                duration: 2,
                 ease: "sine.inOut"
             })
             .to(footerLine, {
                 opacity: 0.3,
-                duration: 1.7,
+                duration: 2,
                 ease: "sine.inOut"
             });
     };
@@ -537,7 +924,7 @@ if (!hasGsap) {
         if (!isHomePage) return;
 
         const compactViewport = isCompactViewport();
-        const motionScale = compactViewport ? 0.62 : 1;
+        const motionScale = compactViewport ? 0.72 : 1;
         const columnSelector = [
             ".proof-item",
             ".logo-grid span",
@@ -678,6 +1065,11 @@ if (!hasGsap) {
         columns.forEach((column, index) => {
             column.classList.add("luxury-column");
 
+            if (compactViewport && column.matches(".slide-content")) {
+                column.classList.add("is-column-visible");
+                return;
+            }
+
             const textNodes = Array.from(
                 column.querySelectorAll("h2, h3, h4, p, li, summary, label, a, code, strong, span")
             );
@@ -736,7 +1128,7 @@ if (!hasGsap) {
                 rotationZ: 0,
                 skewX: 0,
                 filter: "blur(0px)",
-                duration: compactViewport ? 1.45 : 2.2
+                duration: compactViewport ? 1.2 : 1.8
             });
 
             if (mediaNodes.length) {
@@ -746,7 +1138,7 @@ if (!hasGsap) {
                         opacity: 1,
                         scale: 1,
                         filter: "grayscale(0.28) brightness(0.88)",
-                        duration: compactViewport ? 1.35 : 2.1,
+                        duration: compactViewport ? 1.05 : 1.65,
                         stagger: compactViewport ? 0.08 : 0.12
                     },
                     "<0.22"
@@ -760,8 +1152,8 @@ if (!hasGsap) {
                         opacity: 1,
                         y: 0,
                         filter: "blur(0px)",
-                        duration: compactViewport ? 1.05 : 1.55,
-                        stagger: compactViewport ? 0.026 : 0.034
+                        duration: compactViewport ? 0.95 : 1.45,
+                        stagger: compactViewport ? 0.035 : 0.055
                     },
                     "<0.18"
                 );
@@ -772,7 +1164,7 @@ if (!hasGsap) {
                 { scale: 1 },
                 {
                     scale: profile.bumpScale,
-                    duration: compactViewport ? 0.95 : 1.35,
+                    duration: compactViewport ? 0.95 : 1.45,
                     yoyo: true,
                     repeat: 1,
                     ease: "sine.inOut"
@@ -780,18 +1172,28 @@ if (!hasGsap) {
                 "-=0.64"
             );
 
-            ScrollTrigger.create({
-                trigger: column,
-                start: profile.start,
-                end: compactViewport ? "bottom 36%" : "bottom 22%",
-                toggleActions: "play none none reverse",
-                onEnter: () => tl.play(),
-                onEnterBack: () => tl.play(),
-                onLeaveBack: () => tl.reverse()
-            });
+            if (compactViewport) {
+                ScrollTrigger.create({
+                    trigger: column,
+                    start: profile.start,
+                    end: "bottom 36%",
+                    once: true,
+                    onEnter: () => tl.play()
+                });
+            } else {
+                ScrollTrigger.create({
+                    trigger: column,
+                    start: profile.start,
+                    end: "bottom 22%",
+                    toggleActions: "play none none reverse",
+                    onEnter: () => tl.play(),
+                    onEnterBack: () => tl.play(),
+                    onLeaveBack: () => tl.reverse()
+                });
+            }
 
             const primaryImage = column.querySelector("img");
-            if (primaryImage && !compactViewport) {
+            if (primaryImage) {
                 gsap.to(primaryImage, {
                     yPercent: 12,
                     ease: "none",
@@ -799,7 +1201,7 @@ if (!hasGsap) {
                         trigger: column,
                         start: "top bottom",
                         end: "bottom top",
-                        scrub: 2.4
+                        scrub: 2.6
                     }
                 });
             }
@@ -807,7 +1209,7 @@ if (!hasGsap) {
     };
 
     const initLuxurySurfaceMotion = () => {
-        if (prefersReducedMotion || isCompactViewport()) return;
+        if (prefersReducedMotion) return;
 
         const floatTargets = gsap.utils.toArray(".proof-item, .case-card, .testimonial-card, .engagement-card, .logo-grid span");
         const glowTargets = gsap.utils.toArray(".slide-content, .inquiry-form, .intel-media");
@@ -819,8 +1221,8 @@ if (!hasGsap) {
                 once: true,
                 onEnter: () => {
                     element.classList.add("luxury-float-soft");
-                    element.style.animationDelay = `${(index % 9) * 0.9}s`;
-                    element.style.animationDuration = `${18 + (index % 5) * 2.6}s`;
+                    element.style.animationDelay = `${(index % 9) * 1.1}s`;
+                    element.style.animationDuration = `${18 + (index % 5) * 3.6}s`;
                 }
             });
         });
@@ -832,8 +1234,8 @@ if (!hasGsap) {
                 once: true,
                 onEnter: () => {
                     element.classList.add("luxury-glow-soft");
-                    element.style.animationDelay = `${(index % 6) * 1.2}s`;
-                    element.style.animationDuration = `${20 + (index % 4) * 3.1}s`;
+                    element.style.animationDelay = `${(index % 6) * 1.35}s`;
+                    element.style.animationDuration = `${21 + (index % 4) * 4.2}s`;
                 }
             });
         });
@@ -884,7 +1286,7 @@ if (!hasGsap) {
                         { value: 0 },
                         {
                             value: targetValue,
-                            duration,
+                            duration: duration * 1.25,
                             ease: "power2.out",
                             onUpdate: () => renderValue(counterState.value),
                             onComplete: () => {
@@ -897,7 +1299,7 @@ if (!hasGsap) {
                     gsap.fromTo(
                         element,
                         { scale: 0.94 },
-                        { scale: 1, duration: 0.9, ease: "back.out(2.4)" }
+                        { scale: 1, duration: 0.9, ease: "back.out(2.2)" }
                     );
                 }
             });
@@ -909,9 +1311,9 @@ if (!hasGsap) {
 
         const compactViewport = isCompactViewport();
         const start = compactViewport ? "top 94%" : "top 88%";
-        const duration = compactViewport ? 1.05 : 1.7;
+        const duration = compactViewport ? 1.1 : 1.7;
         const offsetY = compactViewport ? 18 : 28;
-        const blur = compactViewport ? "blur(5px)" : "blur(8px)";
+        const blur = compactViewport ? "blur(3px)" : "blur(5px)";
 
         gsap.utils.toArray("[data-reveal]").forEach((element) => {
             if (element.classList.contains("luxury-column") || element.closest(".luxury-column")) return;
@@ -937,6 +1339,7 @@ if (!hasGsap) {
     initHeader();
     initHero();
     initHorizontalScale();
+    initMobileServiceSlideIn();
     initImageFallbacks();
     initMethodSpotlight();
     initIntelReveal();

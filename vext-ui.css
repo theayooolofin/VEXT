@@ -1,0 +1,634 @@
+/* VEXT Global — shared UI/UX refinement layer */
+:root {
+    --vui-emerald-950: #00271e;
+    --vui-emerald-900: #00382b;
+    --vui-emerald-800: #075843;
+    --vui-ink: #111714;
+    --vui-copy: #31423b;
+    --vui-muted: #66756f;
+    --vui-canvas: #f4f6f1;
+    --vui-surface: #ffffff;
+    --vui-surface-soft: #f8faf6;
+    --vui-line: rgba(0, 56, 43, 0.18);
+    --vui-line-strong: rgba(0, 56, 43, 0.32);
+    --vui-focus: #0c765a;
+    --vui-radius-sm: 10px;
+    --vui-radius-md: 16px;
+    --vui-radius-lg: 24px;
+    --vui-shadow-sm: 0 8px 24px rgba(11, 42, 32, 0.07);
+    --vui-shadow-md: 0 18px 48px rgba(11, 42, 32, 0.11);
+    --vui-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --vui-container: 1220px;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+    text-size-adjust: 100%;
+}
+
+body {
+    min-width: 320px;
+    color: var(--vui-ink);
+    background-color: var(--vui-canvas);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+    font-family: "Source Sans 3", Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+::selection {
+    color: #ffffff;
+    background: var(--vui-emerald-900);
+}
+
+.skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 1000;
+    min-height: 44px;
+    padding: 0.72rem 1rem;
+    display: inline-flex;
+    align-items: center;
+    border: 2px solid #ffffff;
+    border-radius: var(--vui-radius-sm);
+    color: #ffffff;
+    background: var(--vui-emerald-950);
+    box-shadow: var(--vui-shadow-md);
+    transform: translateY(calc(-100% - 1rem));
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+img {
+    max-width: 100%;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+    touch-action: manipulation;
+}
+
+a,
+button {
+    transition:
+        color 180ms var(--vui-ease),
+        background-color 180ms var(--vui-ease),
+        border-color 180ms var(--vui-ease),
+        box-shadow 180ms var(--vui-ease),
+        opacity 180ms var(--vui-ease),
+        transform 180ms var(--vui-ease);
+}
+
+:where(a, button, input, select, textarea):focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--vui-focus) 78%, white);
+    outline-offset: 3px;
+}
+
+main {
+    overflow: clip;
+}
+
+/* Shared navigation */
+.site-header {
+    min-height: 82px;
+    padding-inline: clamp(1.25rem, 3.4vw, 3rem);
+    border-bottom-color: rgba(255, 255, 255, 0.16) !important;
+    box-shadow: 0 8px 28px rgba(0, 30, 23, 0.1);
+}
+
+.logo-link,
+.header-cta,
+.mobile-nav-toggle,
+.header-nav a {
+    min-height: 44px;
+}
+
+.header-nav a {
+    display: inline-flex;
+    align-items: center;
+    padding-inline: 0.2rem;
+}
+
+.header-nav a[aria-current="page"]::after {
+    transform: scaleX(1);
+    opacity: 1;
+}
+
+.header-cta {
+    padding-inline: 1.25rem;
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.header-cta:hover {
+    background: #ffffff !important;
+    color: var(--vui-emerald-950) !important;
+}
+
+.mobile-nav a {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+}
+
+/* Shared page framing */
+.page-shell,
+.page-main {
+    width: min(var(--vui-container), calc(100% - clamp(2rem, 8vw, 7rem)));
+    margin: 0 auto !important;
+    padding-top: calc(82px + clamp(1rem, 2.4vw, 2rem));
+    padding-bottom: clamp(4.5rem, 9vw, 8rem);
+}
+
+.page-hero {
+    position: relative;
+    isolation: isolate;
+    margin-top: 0 !important;
+    padding: clamp(2.5rem, 5vw, 4.75rem) clamp(1.5rem, 4vw, 3rem);
+    border-radius: var(--vui-radius-lg) !important;
+    overflow: hidden;
+    box-shadow: var(--vui-shadow-md);
+}
+
+.page-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 88% 18%, rgba(255, 255, 255, 0.09), transparent 34%),
+        linear-gradient(135deg, rgba(0, 0, 0, 0.05), transparent 56%);
+}
+
+.page-title {
+    max-width: 16ch;
+    font-size: clamp(2.25rem, 5.2vw, 4.9rem) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.045em !important;
+    text-wrap: balance;
+}
+
+.page-subtitle {
+    max-width: 68ch !important;
+    font-size: clamp(1rem, 1.25vw, 1.18rem) !important;
+    line-height: 1.7 !important;
+}
+
+.page-kicker,
+.section-label,
+.hero-label,
+.tier-kicker,
+.service-id,
+.package-id,
+.case-eyebrow {
+    letter-spacing: 0.2em !important;
+}
+
+.grid-two,
+.page-grid,
+.tier-grid,
+.article-grid,
+.case-grid,
+.testimonials-grid,
+.engagement-grid,
+.faq-grid,
+.luxury-grid,
+.service-grid,
+.package-grid {
+    gap: clamp(1rem, 2.2vw, 1.75rem) !important;
+}
+
+:where(
+    .panel,
+    .tier-card,
+    .article-card,
+    .case-card,
+    .testimonial-card,
+    .engagement-card,
+    .faq-item,
+    .info-panel,
+    .form-panel,
+    .table-panel,
+    .cta-panel,
+    .service-card,
+    .package-card,
+    .luxury-card,
+    .process-step
+) {
+    border-radius: var(--vui-radius-md) !important;
+    box-shadow: var(--vui-shadow-sm);
+    animation: none !important;
+}
+
+:where(.panel-title, .tier-title, .article-title) {
+    line-height: 1.08 !important;
+    letter-spacing: -0.035em !important;
+    text-wrap: balance;
+}
+
+:where(.panel-copy, .article-copy, .tier-list, .summary-list, .info-list) {
+    line-height: 1.7;
+}
+
+.feature-image,
+.article-image,
+.service-media img,
+.package-media img,
+.luxury-card img {
+    border-radius: calc(var(--vui-radius-md) - 3px);
+}
+
+/* Buttons and conversion actions */
+:where(
+    .strategic-cta,
+    .hero-action,
+    .cta-link,
+    .quick-link,
+    .article-link,
+    .package-cta,
+    .cta-primary,
+    .cta-secondary,
+    .submit-button,
+    .filter-button
+) {
+    min-height: 48px !important;
+    padding: 0.82rem 1.25rem !important;
+    border-radius: var(--vui-radius-sm) !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+:where(
+    .strategic-cta--solid,
+    .hero-action.primary,
+    .cta-link.primary,
+    .cta-primary,
+    .submit-button,
+    .package-cta
+) {
+    background: linear-gradient(145deg, var(--vui-emerald-900), var(--vui-emerald-950)) !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 24px rgba(0, 56, 43, 0.2) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    :where(
+        .strategic-cta,
+        .hero-action,
+        .cta-link,
+        .quick-link,
+        .article-link,
+        .package-cta,
+        .cta-primary,
+        .cta-secondary,
+        .submit-button
+    ):hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 30px rgba(0, 56, 43, 0.18);
+    }
+
+    :where(.panel, .tier-card, .article-card, .case-card, .testimonial-card, .service-card, .package-card):hover {
+        border-color: var(--vui-line-strong) !important;
+        box-shadow: var(--vui-shadow-md);
+    }
+}
+
+/* Forms: clearer affordance and feedback */
+.lead-form,
+.inquiry-form {
+    gap: 0.72rem !important;
+}
+
+:where(.lead-form, .inquiry-form) label:not(.consent-row) {
+    margin-top: 0.35rem;
+    color: var(--vui-emerald-900) !important;
+    font-size: 0.76rem !important;
+    font-weight: 600;
+    letter-spacing: 0.14em !important;
+}
+
+:where(.lead-form, .inquiry-form) :where(input:not([type="checkbox"]), select, textarea) {
+    width: 100%;
+    min-height: 52px;
+    padding: 0.85rem 0.95rem !important;
+    border: 1px solid var(--vui-line) !important;
+    border-radius: var(--vui-radius-sm) !important;
+    background: var(--vui-surface-soft) !important;
+    color: var(--vui-ink) !important;
+    font-size: 1rem !important;
+    line-height: 1.45;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+:where(.lead-form, .inquiry-form) textarea {
+    min-height: 132px;
+    resize: vertical;
+}
+
+:where(.lead-form, .inquiry-form) :where(input:not([type="checkbox"]), select, textarea):focus {
+    border-color: var(--vui-focus) !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 4px rgba(12, 118, 90, 0.12) !important;
+}
+
+.consent-row {
+    min-height: 44px;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+    padding-block: 0.4rem;
+}
+
+.consent-row input[type="checkbox"] {
+    width: 20px !important;
+    height: 20px !important;
+    flex: 0 0 20px;
+    margin-top: 0.1rem;
+    accent-color: var(--vui-emerald-900);
+}
+
+.form-note,
+.form-status {
+    line-height: 1.55;
+}
+
+.form-status:not(:empty) {
+    padding: 0.75rem 0.9rem;
+    border-radius: var(--vui-radius-sm);
+    background: rgba(12, 118, 90, 0.1);
+}
+
+/* Homepage hero: reliable content hierarchy with or without motion libraries */
+body[data-page="home"] .hero {
+    min-height: clamp(760px, calc(100svh - 10px), 940px);
+    padding: clamp(7.5rem, 12vw, 10rem) clamp(1.25rem, 5vw, 4.5rem) clamp(4rem, 8vw, 6rem);
+}
+
+body[data-page="home"] .hero-content {
+    width: min(1080px, 100%) !important;
+    min-height: 0 !important;
+    padding: clamp(2rem, 5vw, 4.5rem) !important;
+    overflow: visible !important;
+    text-align: left !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+body[data-page="home"] .hero-content::after {
+    animation: none !important;
+    opacity: 0.22;
+}
+
+body[data-page="home"] .hero-title {
+    max-width: 19ch;
+    margin: 1.1rem 0 0 !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    font-size: clamp(2.25rem, 4.25vw, 4.55rem) !important;
+    line-height: 1.04 !important;
+    letter-spacing: -0.045em !important;
+    text-wrap: balance;
+}
+
+body[data-page="home"] .hero-line {
+    width: auto !important;
+    max-width: 100%;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-wrap: balance;
+}
+
+body[data-page="home"] .split-char {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+body[data-page="home"] .split-word {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+body[data-page="home"] .hero-sub {
+    max-width: 62ch !important;
+    margin: 1.35rem 0 0 !important;
+    opacity: 1 !important;
+    filter: none !important;
+    font-size: clamp(1rem, 1.25vw, 1.18rem) !important;
+    line-height: 1.7 !important;
+}
+
+body[data-page="home"] .hero-actions {
+    justify-content: flex-start !important;
+    margin: 1.8rem 0 0 !important;
+}
+
+body[data-page="home"] .hero-actions .strategic-cta {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+body[data-page="home"] :where(.case-studies, .testimonials, .faq, .sector-intel, .inquiry) {
+    padding-block: clamp(4.5rem, 9vw, 8rem) !important;
+}
+
+body[data-page="home"] :where(.case-title, .testimonials-title, .faq-title, .intel-copy h2, .inquiry-copy h2) {
+    max-width: 19ch;
+    font-size: clamp(2rem, 4vw, 3.9rem) !important;
+    line-height: 1.06 !important;
+    letter-spacing: -0.04em !important;
+    text-wrap: balance;
+}
+
+/* Service architecture pages */
+body[data-page="services"] .hero-copy h1,
+body[data-page="industries"] .hero-copy h1,
+body[data-page="process"] .hero-copy h1 {
+    font-size: clamp(3.25rem, 6.6vw, 7rem) !important;
+    line-height: 0.92 !important;
+    letter-spacing: -0.055em !important;
+    text-wrap: balance;
+}
+
+body[data-page="services"] .hero-sub,
+body[data-page="industries"] .hero-sub,
+body[data-page="process"] .hero-sub {
+    font-size: clamp(1rem, 1.15vw, 1.16rem) !important;
+    line-height: 1.75 !important;
+}
+
+.audience-filters {
+    gap: 0.6rem !important;
+}
+
+.filter-button[aria-pressed="true"] {
+    color: #ffffff !important;
+    background: var(--vui-emerald-900) !important;
+}
+
+/* Tables and long-form legal content */
+.table-panel {
+    overflow-x: auto;
+}
+
+table {
+    min-width: 680px;
+}
+
+th,
+td {
+    padding: 1rem !important;
+    line-height: 1.5;
+}
+
+body[data-page="privacy"] main,
+body[data-page="terms"] main {
+    max-width: 860px !important;
+}
+
+body[data-page="privacy"] main p,
+body[data-page="terms"] main p,
+body[data-page="privacy"] main li,
+body[data-page="terms"] main li {
+    max-width: 72ch;
+    line-height: 1.75;
+}
+
+@media (max-width: 980px) {
+    html {
+        scroll-padding-top: 78px;
+    }
+
+    .site-header {
+        min-height: 68px;
+        padding-inline: 0.85rem;
+    }
+
+    .page-shell,
+    .page-main {
+        width: min(100% - 1.5rem, var(--vui-container));
+        padding-top: calc(68px + 0.75rem);
+    }
+
+    .page-hero {
+        padding: 2.5rem 1.35rem;
+        border-radius: var(--vui-radius-md) !important;
+    }
+
+    .page-title {
+        max-width: 13ch;
+        font-size: clamp(2.15rem, 10vw, 3.8rem) !important;
+    }
+
+    body[data-page="home"] .hero {
+        min-height: 760px;
+        padding: 7rem 1rem 3rem !important;
+        align-items: center;
+    }
+
+    body[data-page="home"] .hero-content {
+        width: 100% !important;
+        padding: 0.5rem 0.15rem 1rem !important;
+        text-align: left !important;
+    }
+
+    body[data-page="home"] .hero-title {
+        max-width: 14ch !important;
+        font-size: clamp(1.85rem, 8.3vw, 2.85rem) !important;
+        line-height: 1.05 !important;
+    }
+
+    body[data-page="home"] .hero-sub {
+        max-width: 38ch !important;
+        font-size: 1.04rem !important;
+    }
+
+    body[data-page="home"] .hero-actions {
+        width: 100% !important;
+        max-width: 420px !important;
+    }
+
+    body[data-page="home"] .hero-actions > * {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+
+    body[data-page="services"] .hero-copy h1,
+    body[data-page="industries"] .hero-copy h1,
+    body[data-page="process"] .hero-copy h1 {
+        font-size: clamp(3rem, 13vw, 5.6rem) !important;
+    }
+}
+
+@media (max-width: 520px) {
+    .page-shell,
+    .page-main {
+        width: calc(100% - 1rem);
+    }
+
+    .page-hero {
+        padding: 2.1rem 1.1rem;
+    }
+
+    .page-kicker,
+    .section-label,
+    .hero-label,
+    .tier-kicker,
+    .service-id,
+    .package-id,
+    .case-eyebrow {
+        letter-spacing: 0.14em !important;
+    }
+
+    body[data-page="home"] .hero {
+        min-height: 800px;
+    }
+
+    body[data-page="home"] .hero-label {
+        max-width: 30ch;
+        line-height: 1.5;
+    }
+
+    :where(
+        .strategic-cta,
+        .hero-action,
+        .cta-link,
+        .quick-link,
+        .article-link,
+        .package-cta,
+        .cta-primary,
+        .cta-secondary,
+        .submit-button
+    ) {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
