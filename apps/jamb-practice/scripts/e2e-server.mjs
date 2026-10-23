@@ -22,7 +22,7 @@ export const E2E_ENV = {
   SUPPORT_WHATSAPP_E164: '2348000000000',
   SUPPORT_EMAIL: 'support@example.test',
   PRODUCT_NAME: 'UTME English Booster',
-  ALLOW_UNREVIEWED_CONTENT: 'true',
+  ALLOW_UNREVIEWED_CONTENT: process.env.E2E_ALLOW_UNREVIEWED ?? 'true',
   CONTENT_DIR: process.env.E2E_CONTENT_DIR ?? 'content/jamb-english/_fixtures',
 };
 

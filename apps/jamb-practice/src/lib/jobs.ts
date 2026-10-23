@@ -1,7 +1,7 @@
 import 'server-only';
 import { and, eq, gte, inArray, isNull, lt, or, sql } from 'drizzle-orm';
 import webpush from 'web-push';
-import { getDb, schema } from '@/db';
+import { backupPglite, getDb, schema } from '@/db';
 import { getAccess } from './access';
 import { env } from './env';
 import { logServer } from './events';
@@ -231,6 +231,13 @@ export async function runHousekeeping(now = new Date()) {
     .returning({ id: schema.sessions.id });
   out.prunedSessions = ss.length;
 
-  logServer('info', 'housekeeping run', out);
-  return out;
+  let backup: string | null = null;
+  try {
+    backup = await backupPglite(now);
+  } catch (e) {
+    logServer('error', 'database backup failed', { message: (e as Error).message });
+  }
+
+  logServer('info', 'housekeeping run', { ...out, backup });
+  return { ...out, backup };
 }
