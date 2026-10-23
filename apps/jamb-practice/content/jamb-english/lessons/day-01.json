@@ -1,0 +1,164 @@
+{
+  "day": 1,
+  "slug": "concord-basics",
+  "title": "Concord: subject and verb agreement",
+  "topicTag": "concord",
+  "version": 1,
+  "rule": {
+    "body": "The verb must agree with its subject in number. A singular subject takes a singular verb (is, was, has, goes); a plural subject takes a plural verb (are, were, have, go). Find the real subject first and ignore any words between it and the verb. 'Each', 'every', 'everyone' and 'one of the + plural noun' are singular. After 'there', the verb agrees with the noun that comes after it.",
+    "example": "One of the boys in our class has won the prize."
+  },
+  "passages": [],
+  "questions": [
+    {
+      "id": "d01-q01",
+      "stem": "The girls in the choir ___ beautifully every Sunday.",
+      "options": {
+        "A": "sings",
+        "B": "sing",
+        "C": "singing",
+        "D": "has sang"
+      },
+      "answer": "B",
+      "explanation": "The subject is 'The girls', which is plural, so it takes the plural verb 'sing'.",
+      "difficulty": "easy",
+      "topicTag": "concord",
+      "passageId": null
+    },
+    {
+      "id": "d01-q02",
+      "stem": "Every student ___ to wear the school badge.",
+      "options": {
+        "A": "are expected",
+        "B": "were expected",
+        "C": "have been expected",
+        "D": "is expected"
+      },
+      "answer": "D",
+      "explanation": "'Every student' means each single student, so it takes a singular verb: 'is expected'.",
+      "difficulty": "easy",
+      "topicTag": "concord",
+      "passageId": null
+    },
+    {
+      "id": "d01-q03",
+      "stem": "There ___ three oranges on the table.",
+      "options": {
+        "A": "are",
+        "B": "is",
+        "C": "was",
+        "D": "has been"
+      },
+      "answer": "A",
+      "explanation": "After 'there', the verb agrees with the noun that follows. 'Three oranges' is plural, so we use 'are'.",
+      "difficulty": "easy",
+      "topicTag": "concord",
+      "passageId": null
+    },
+    {
+      "id": "d01-q04",
+      "stem": "My brother ___ to school by bus every morning.",
+      "options": {
+        "A": "go",
+        "B": "have gone",
+        "C": "goes",
+        "D": "are going"
+      },
+      "answer": "C",
+      "explanation": "'My brother' is one person, and 'every morning' shows a habit, so we use the singular present form 'goes'.",
+      "difficulty": "easy",
+      "topicTag": "concord",
+      "passageId": null
+    },
+    {
+      "id": "d01-q05",
+      "stem": "One of the boys ___ lost his bag on the way to school.",
+      "options": {
+        "A": "have",
+        "B": "has",
+        "C": "were",
+        "D": "are"
+      },
+      "answer": "B",
+      "explanation": "The subject is 'One', not 'boys'. 'One' is singular, so the verb is 'has'.",
+      "difficulty": "medium",
+      "topicTag": "concord",
+      "passageId": null
+    },
+    {
+      "id": "d01-q06",
+      "stem": "The box of pencils ___ on the shelf.",
+      "options": {
+        "A": "are",
+        "B": "were",
+        "C": "have been",
+        "D": "is"
+      },
+      "answer": "D",
+      "explanation": "The subject is 'The box', which is singular. 'of pencils' only describes it, so the verb is 'is'.",
+      "difficulty": "medium",
+      "topicTag": "concord",
+      "passageId": null
+    },
+    {
+      "id": "d01-q07",
+      "stem": "Everyone in the hall ___ standing when the principal walked in.",
+      "options": {
+        "A": "was",
+        "B": "were",
+        "C": "are",
+        "D": "have been"
+      },
+      "answer": "A",
+      "explanation": "'Everyone' is singular, and the action is in the past ('walked in'), so the verb is 'was'.",
+      "difficulty": "medium",
+      "topicTag": "concord",
+      "passageId": null
+    },
+    {
+      "id": "d01-q08",
+      "stem": "Each of the candidates ___ given an answer sheet before the paper started.",
+      "options": {
+        "A": "were",
+        "B": "have been",
+        "C": "was",
+        "D": "are"
+      },
+      "answer": "C",
+      "explanation": "The subject is 'Each', which is singular, and the time is past, so the verb is 'was'.",
+      "difficulty": "medium",
+      "topicTag": "concord",
+      "passageId": null
+    },
+    {
+      "id": "d01-q09",
+      "stem": "The results of the examination, which was written in May, ___ been released.",
+      "options": {
+        "A": "has",
+        "B": "is",
+        "C": "was",
+        "D": "have"
+      },
+      "answer": "D",
+      "explanation": "The main subject is 'The results', which is plural. The clause about the examination does not change it, so the verb is 'have'.",
+      "difficulty": "hard",
+      "topicTag": "concord",
+      "passageId": null
+    },
+    {
+      "id": "d01-q10",
+      "stem": "There ___ been many complaints about the noise since the new shop opened.",
+      "options": {
+        "A": "has",
+        "B": "have",
+        "C": "is",
+        "D": "was"
+      },
+      "answer": "B",
+      "explanation": "The verb agrees with 'many complaints', which is plural, and 'since' calls for the present perfect, so we use 'have been'.",
+      "difficulty": "hard",
+      "topicTag": "concord",
+      "passageId": null
+    }
+  ]
+}

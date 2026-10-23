@@ -1,0 +1,164 @@
+{
+  "day": 4,
+  "slug": "tenses-reported-speech-and-conditionals",
+  "title": "Tenses: reported speech, conditionals and wishes",
+  "topicTag": "tenses",
+  "version": 1,
+  "rule": {
+    "body": "After a past reporting verb, tenses usually move back (is to was, will to would). Conditionals: If + present, will + verb; If + past, would + verb; If + had + past participle, would have + past participle. Use 'were' for all persons in unreal situations and after 'wish'. After 'It is high time', use the past tense. In future time clauses after 'when', 'until' or 'as soon as', use the present tense, not 'will'.",
+    "example": "If I were you, I would apologise before he leaves."
+  },
+  "passages": [],
+  "questions": [
+    {
+      "id": "d04-q01",
+      "stem": "If it rains tomorrow, we ___ the match.",
+      "options": {
+        "A": "would cancel",
+        "B": "would have cancelled",
+        "C": "cancelled",
+        "D": "will cancel"
+      },
+      "answer": "D",
+      "explanation": "This is a real future possibility, so it is a first conditional: If + present, will + verb.",
+      "difficulty": "easy",
+      "topicTag": "tenses",
+      "passageId": null
+    },
+    {
+      "id": "d04-q02",
+      "stem": "If I ___ you, I would accept the offer.",
+      "options": {
+        "A": "am",
+        "B": "will be",
+        "C": "were",
+        "D": "had been"
+      },
+      "answer": "C",
+      "explanation": "I am not you, so this is unreal. With 'would' in the result, the if-clause takes 'were'.",
+      "difficulty": "easy",
+      "topicTag": "tenses",
+      "passageId": null
+    },
+    {
+      "id": "d04-q03",
+      "stem": "I will call you when I ___ home.",
+      "options": {
+        "A": "get",
+        "B": "will get",
+        "C": "got",
+        "D": "would get"
+      },
+      "answer": "A",
+      "explanation": "In a future time clause after 'when', we use the present tense, not 'will'.",
+      "difficulty": "easy",
+      "topicTag": "tenses",
+      "passageId": null
+    },
+    {
+      "id": "d04-q04",
+      "stem": "I wish I ___ taller.",
+      "options": {
+        "A": "were",
+        "B": "am",
+        "C": "will be",
+        "D": "have been"
+      },
+      "answer": "A",
+      "explanation": "A wish about the present uses a past form, and 'were' is used for all persons after 'wish'.",
+      "difficulty": "easy",
+      "topicTag": "tenses",
+      "passageId": null
+    },
+    {
+      "id": "d04-q05",
+      "stem": "When I met Bola last week, he said that he ___ to Abuja the next day.",
+      "options": {
+        "A": "is travelling",
+        "B": "travels",
+        "C": "will travel",
+        "D": "was travelling"
+      },
+      "answer": "D",
+      "explanation": "The reporting verb 'said' is past and 'the next day' is already past, so the tense moves back to 'was travelling'.",
+      "difficulty": "medium",
+      "topicTag": "tenses",
+      "passageId": null
+    },
+    {
+      "id": "d04-q06",
+      "stem": "If he had studied harder, he ___ the examination.",
+      "options": {
+        "A": "has passed",
+        "B": "would have passed",
+        "C": "will pass",
+        "D": "will have passed"
+      },
+      "answer": "B",
+      "explanation": "'Had studied' shows a third conditional about the past, so the result is 'would have passed'.",
+      "difficulty": "medium",
+      "topicTag": "tenses",
+      "passageId": null
+    },
+    {
+      "id": "d04-q07",
+      "stem": "It is high time you ___ to bed.",
+      "options": {
+        "A": "go",
+        "B": "went",
+        "C": "will go",
+        "D": "are going"
+      },
+      "answer": "B",
+      "explanation": "After 'It is high time', we use the past tense even though we mean now, so 'went' is correct.",
+      "difficulty": "medium",
+      "topicTag": "tenses",
+      "passageId": null
+    },
+    {
+      "id": "d04-q08",
+      "stem": "The teacher asked us whether we ___ our homework the night before.",
+      "options": {
+        "A": "have done",
+        "B": "do",
+        "C": "had done",
+        "D": "will do"
+      },
+      "answer": "C",
+      "explanation": "In reported speech after 'asked', a past action ('the night before') moves back to the past perfect: 'had done'.",
+      "difficulty": "medium",
+      "topicTag": "tenses",
+      "passageId": null
+    },
+    {
+      "id": "d04-q09",
+      "stem": "I wish I ___ the answer yesterday.",
+      "options": {
+        "A": "know",
+        "B": "knew",
+        "C": "had known",
+        "D": "have known"
+      },
+      "answer": "C",
+      "explanation": "A wish about the past ('yesterday') uses the past perfect: 'had known'.",
+      "difficulty": "hard",
+      "topicTag": "tenses",
+      "passageId": null
+    },
+    {
+      "id": "d04-q10",
+      "stem": "We will not start the meeting until the chairman ___.",
+      "options": {
+        "A": "arrives",
+        "B": "will arrive",
+        "C": "arrived",
+        "D": "would arrive"
+      },
+      "answer": "A",
+      "explanation": "'Until' begins a future time clause here, so it takes the present tense 'arrives', not 'will arrive'.",
+      "difficulty": "hard",
+      "topicTag": "tenses",
+      "passageId": null
+    }
+  ]
+}

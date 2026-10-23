@@ -1,0 +1,114 @@
+{
+  "day": 9,
+  "slug": "antonyms",
+  "title": "Antonyms",
+  "topicTag": "vocabulary",
+  "version": 1,
+  "rule": {
+    "body": "For \"opposite in meaning\", first decide what the underlined word means in the sentence. Then look for the option that means the reverse. Be careful: examiners often include a synonym of the word as a trap, so cross it out first.",
+    "example": "\"Water is [[scarce]] in the dry season\": scarce means in short supply, so the opposite is \"plentiful\"."
+  },
+  "passages": [],
+  "questions": [
+    {
+      "id": "d09-q01",
+      "stem": "Choose the option opposite in meaning to the underlined word: Only [[affluent]] families in the estate can afford three cars.",
+      "options": { "A": "wealthy", "B": "poor", "C": "large", "D": "proud" },
+      "answer": "B",
+      "explanation": "\"Affluent\" means rich, so the opposite is \"poor\". \"Wealthy\" is a synonym, not an opposite.",
+      "difficulty": "easy",
+      "topicTag": "vocabulary",
+      "passageId": null
+    },
+    {
+      "id": "d09-q02",
+      "stem": "Choose the option opposite in meaning to the underlined word: The crowd grew [[hostile]] when the referee cancelled the goal.",
+      "options": { "A": "friendly", "B": "angry", "C": "noisy", "D": "tired" },
+      "answer": "A",
+      "explanation": "\"Hostile\" means unfriendly and aggressive, so the opposite is \"friendly\".",
+      "difficulty": "easy",
+      "topicTag": "vocabulary",
+      "passageId": null
+    },
+    {
+      "id": "d09-q03",
+      "stem": "Choose the option opposite in meaning to the underlined word: Water is [[scarce]] in the village during the dry season.",
+      "options": { "A": "dirty", "B": "rare", "C": "plentiful", "D": "cold" },
+      "answer": "C",
+      "explanation": "\"Scarce\" means in short supply, so the opposite is \"plentiful\". \"Rare\" is close to a synonym.",
+      "difficulty": "easy",
+      "topicTag": "vocabulary",
+      "passageId": null
+    },
+    {
+      "id": "d09-q04",
+      "stem": "Choose the option opposite in meaning to the underlined word: Emeka is a [[diligent]] student who never misses an assignment.",
+      "options": { "A": "hardworking", "B": "brilliant", "C": "quiet", "D": "lazy" },
+      "answer": "D",
+      "explanation": "\"Diligent\" means hardworking and careful, so the opposite is \"lazy\".",
+      "difficulty": "easy",
+      "topicTag": "vocabulary",
+      "passageId": null
+    },
+    {
+      "id": "d09-q05",
+      "stem": "Choose the option opposite in meaning to the underlined word: Her explanation was so [[lucid]] that everyone understood the topic at once.",
+      "options": { "A": "clear", "B": "confusing", "C": "brief", "D": "interesting" },
+      "answer": "B",
+      "explanation": "\"Lucid\" means clear and easy to understand, so the opposite is \"confusing\".",
+      "difficulty": "medium",
+      "topicTag": "vocabulary",
+      "passageId": null
+    },
+    {
+      "id": "d09-q06",
+      "stem": "Choose the option opposite in meaning to the underlined word: It was [[prudent]] of Tolu to save part of her salary every month.",
+      "options": { "A": "wise", "B": "kind", "C": "lucky", "D": "reckless" },
+      "answer": "D",
+      "explanation": "\"Prudent\" means sensible and careful about the future, so the opposite is \"reckless\".",
+      "difficulty": "medium",
+      "topicTag": "vocabulary",
+      "passageId": null
+    },
+    {
+      "id": "d09-q07",
+      "stem": "Choose the option opposite in meaning to the underlined word: Fame can be [[transient]]; many stars are forgotten within a few years.",
+      "options": { "A": "brief", "B": "dangerous", "C": "permanent", "D": "exciting" },
+      "answer": "C",
+      "explanation": "\"Transient\" means lasting only a short time, so the opposite is \"permanent\".",
+      "difficulty": "medium",
+      "topicTag": "vocabulary",
+      "passageId": null
+    },
+    {
+      "id": "d09-q08",
+      "stem": "Choose the option opposite in meaning to the underlined word: The speaker was so [[verbose]] that a ten-minute talk took an hour.",
+      "options": { "A": "concise", "B": "wordy", "C": "loud", "D": "boring" },
+      "answer": "A",
+      "explanation": "\"Verbose\" means using too many words, so the opposite is \"concise\" (brief and to the point).",
+      "difficulty": "medium",
+      "topicTag": "vocabulary",
+      "passageId": null
+    },
+    {
+      "id": "d09-q09",
+      "stem": "Choose the option opposite in meaning to the underlined word: The champion was [[magnanimous]] in victory, praising the team he had just defeated.",
+      "options": { "A": "generous", "B": "famous", "C": "petty", "D": "skilful" },
+      "answer": "C",
+      "explanation": "\"Magnanimous\" means generous and big-hearted towards others, so the opposite is \"petty\" (small-minded).",
+      "difficulty": "hard",
+      "topicTag": "vocabulary",
+      "passageId": null
+    },
+    {
+      "id": "d09-q10",
+      "stem": "Choose the option opposite in meaning to the underlined word: The government plans to [[augment]] the number of teachers in rural schools.",
+      "options": { "A": "increase", "B": "train", "C": "pay", "D": "reduce" },
+      "answer": "D",
+      "explanation": "To \"augment\" means to increase, so the opposite is \"reduce\".",
+      "difficulty": "hard",
+      "topicTag": "vocabulary",
+      "passageId": null
+    }
+  ]
+}

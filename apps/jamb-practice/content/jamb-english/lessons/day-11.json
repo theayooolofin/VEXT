@@ -1,0 +1,164 @@
+{
+  "day": 11,
+  "slug": "vowel-sounds",
+  "title": "Oral forms: vowel sounds",
+  "topicTag": "oral_forms",
+  "version": 1,
+  "rule": {
+    "body": "Spelling is a poor guide to vowel sounds, so listen to the sound, not the letters: seat and field share /iː/, but sit has short /ɪ/. Pairs to watch: /iː/ and /ɪ/ (seat, sit); /æ/, /ɑː/ and /ʌ/ (cat, cart, cut); /ɒ/ and /ɔː/ (cot, caught); /ʊ/ and /uː/ (full, fool); /ɜː/ (bird); and the weak /ə/ (about). Diphthongs glide from one sound to another: /eɪ/ day, /aɪ/ buy, /əʊ/ go, /aʊ/ now, /ɪə/ here, /eə/ hair.",
+    "example": "bird, word and heard all have /ɜː/, although they are spelt with i, o and ea."
+  },
+  "passages": [],
+  "questions": [
+    {
+      "id": "d11-q01",
+      "stem": "Choose the word that has the same vowel sound as the one in [[seat]].",
+      "options": {
+        "A": "ship",
+        "B": "field",
+        "C": "bed",
+        "D": "fit"
+      },
+      "answer": "B",
+      "explanation": "seat and field have long /iː/; ship and fit have short /ɪ/, and bed has /e/.",
+      "difficulty": "easy",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d11-q02",
+      "stem": "Choose the word that has the same vowel sound as the one in [[cat]].",
+      "options": {
+        "A": "calm",
+        "B": "cup",
+        "C": "lamp",
+        "D": "cot"
+      },
+      "answer": "C",
+      "explanation": "cat and lamp have /æ/; calm has /ɑː/, cup has /ʌ/ and cot has /ɒ/.",
+      "difficulty": "easy",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d11-q03",
+      "stem": "Choose the word that contains the sound /ɔː/.",
+      "options": {
+        "A": "hot",
+        "B": "shop",
+        "C": "cup",
+        "D": "caught"
+      },
+      "answer": "D",
+      "explanation": "caught has /ɔː/; hot and shop have short /ɒ/, and cup has /ʌ/.",
+      "difficulty": "easy",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d11-q04",
+      "stem": "Choose the word that has the same vowel sound as the one in [[bird]].",
+      "options": {
+        "A": "card",
+        "B": "word",
+        "C": "bead",
+        "D": "bored"
+      },
+      "answer": "B",
+      "explanation": "bird and word have /ɜː/; card has /ɑː/, bead has /iː/ and bored has /ɔː/.",
+      "difficulty": "easy",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d11-q05",
+      "stem": "Which word has a different vowel sound from the others?",
+      "options": {
+        "A": "pull",
+        "B": "cut",
+        "C": "blood",
+        "D": "son"
+      },
+      "answer": "A",
+      "explanation": "pull has /ʊ/; cut, blood and son all have /ʌ/.",
+      "difficulty": "medium",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d11-q06",
+      "stem": "Choose the word that has the same vowel sound as the one in [[pool]].",
+      "options": {
+        "A": "full",
+        "B": "book",
+        "C": "wood",
+        "D": "rule"
+      },
+      "answer": "D",
+      "explanation": "pool and rule have long /uː/; full, book and wood have short /ʊ/.",
+      "difficulty": "medium",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d11-q07",
+      "stem": "Choose the word that contains the sound /əʊ/.",
+      "options": {
+        "A": "now",
+        "B": "soul",
+        "C": "buy",
+        "D": "saw"
+      },
+      "answer": "B",
+      "explanation": "soul has /əʊ/; now has /aʊ/, buy has /aɪ/ and saw has /ɔː/.",
+      "difficulty": "medium",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d11-q08",
+      "stem": "Which of these words has a different vowel sound from the others?",
+      "options": {
+        "A": "great",
+        "B": "weigh",
+        "C": "said",
+        "D": "rain"
+      },
+      "answer": "C",
+      "explanation": "said has /e/; great, weigh and rain all have the diphthong /eɪ/.",
+      "difficulty": "medium",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d11-q09",
+      "stem": "Choose the word that has the same vowel sound as the one in [[hair]].",
+      "options": {
+        "A": "here",
+        "B": "bear",
+        "C": "her",
+        "D": "hay"
+      },
+      "answer": "B",
+      "explanation": "hair and bear have /eə/; here has /ɪə/, her has /ɜː/ and hay has /eɪ/.",
+      "difficulty": "hard",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d11-q10",
+      "stem": "Which word has the weak vowel /ə/ in its first syllable?",
+      "options": {
+        "A": "about",
+        "B": "apple",
+        "C": "under",
+        "D": "open"
+      },
+      "answer": "A",
+      "explanation": "about begins with weak /ə/; apple begins with /æ/, under with /ʌ/ and open with /əʊ/.",
+      "difficulty": "hard",
+      "topicTag": "oral_forms",
+      "passageId": null
+    }
+  ]
+}

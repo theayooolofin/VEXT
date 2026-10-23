@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "topicPriority": [
+    "concord",
+    "tenses",
+    "prepositions_articles",
+    "vocabulary",
+    "oral_forms",
+    "error_spotting"
+  ],
+  "questions": [
+    {
+      "id": "dg-q01",
+      "stem": "Neither the teacher nor the students ___ present.",
+      "options": {
+        "A": "was",
+        "B": "were",
+        "C": "is",
+        "D": "has been"
+      },
+      "answer": "B",
+      "explanation": "With neither...nor, the verb agrees with the nearer subject, and 'students' is plural.",
+      "topicTag": "concord",
+      "heroEligible": true
+    },
+    {
+      "id": "dg-q02",
+      "stem": "Each of the boys ___ a textbook.",
+      "options": {
+        "A": "have",
+        "B": "has",
+        "C": "are",
+        "D": "were"
+      },
+      "answer": "B",
+      "explanation": "'Each' is singular, so it takes 'has'.",
+      "topicTag": "concord"
+    },
+    {
+      "id": "dg-q03",
+      "stem": "She is afraid ___ snakes.",
+      "options": {
+        "A": "at",
+        "B": "of",
+        "C": "from",
+        "D": "with"
+      },
+      "answer": "B",
+      "explanation": "'Afraid' is followed by 'of'.",
+      "topicTag": "prepositions_articles"
+    },
+    {
+      "id": "dg-q04",
+      "stem": "My father ___ in Lagos since 2015.",
+      "options": {
+        "A": "lives",
+        "B": "has lived",
+        "C": "is living",
+        "D": "lived"
+      },
+      "answer": "B",
+      "explanation": "'Since 2015' marks an action that began in the past and continues now, so the present perfect 'has lived' is needed.",
+      "topicTag": "tenses"
+    },
+    {
+      "id": "dg-q05",
+      "stem": "Yesterday, we ___ a film at the cinema.",
+      "options": {
+        "A": "watch",
+        "B": "have watched",
+        "C": "watched",
+        "D": "are watching"
+      },
+      "answer": "C",
+      "explanation": "'Yesterday' is a finished past time, so the simple past 'watched' is needed.",
+      "topicTag": "tenses"
+    },
+    {
+      "id": "dg-q06",
+      "stem": "He is ___ honest man.",
+      "options": {
+        "A": "a",
+        "B": "some",
+        "C": "any",
+        "D": "an"
+      },
+      "answer": "D",
+      "explanation": "The h in 'honest' is silent, so the word begins with a vowel sound and takes 'an'.",
+      "topicTag": "prepositions_articles"
+    },
+    {
+      "id": "dg-q07",
+      "stem": "The manager was [[furious]] when he saw the damage. Choose the option nearest in meaning to the underlined word.",
+      "options": {
+        "A": "very angry",
+        "B": "surprised",
+        "C": "tired",
+        "D": "happy"
+      },
+      "answer": "A",
+      "explanation": "'Furious' means extremely angry.",
+      "topicTag": "vocabulary"
+    },
+    {
+      "id": "dg-q08",
+      "stem": "The road to the village is very [[narrow]]. Choose the option opposite in meaning to the underlined word.",
+      "options": {
+        "A": "short",
+        "B": "long",
+        "C": "wide",
+        "D": "straight"
+      },
+      "answer": "C",
+      "explanation": "'Narrow' means small from side to side; its opposite is 'wide'.",
+      "topicTag": "vocabulary"
+    },
+    {
+      "id": "dg-q09",
+      "stem": "Choose the word that has the same vowel sound as the one in [[food]].",
+      "options": {
+        "A": "good",
+        "B": "foot",
+        "C": "flood",
+        "D": "blue"
+      },
+      "answer": "D",
+      "explanation": "food and blue have /uː/; good and foot have /ʊ/, and flood has /ʌ/.",
+      "topicTag": "oral_forms"
+    },
+    {
+      "id": "dg-q10",
+      "stem": "I am [[looking forward to see]] you. Choose the option that best replaces the underlined part.",
+      "options": {
+        "A": "looking forward to seeing",
+        "B": "looking forward for seeing",
+        "C": "look forward to see",
+        "D": "looking forward seeing"
+      },
+      "answer": "A",
+      "explanation": "In 'look forward to', 'to' is a preposition, so it is followed by the -ing form: looking forward to seeing.",
+      "topicTag": "error_spotting"
+    }
+  ]
+}

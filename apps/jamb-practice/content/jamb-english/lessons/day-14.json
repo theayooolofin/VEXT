@@ -1,0 +1,164 @@
+{
+  "day": 14,
+  "slug": "error-spotting",
+  "title": "Mixed review: spotting errors",
+  "topicTag": "error_spotting",
+  "version": 1,
+  "rule": {
+    "body": "To spot an error, find the subject and its verb first, then check the tense, preposition, pronoun and question tag. Watch common slips: say 'switch off the light', not 'off the light'; 'lend me', not 'borrow me'; 'discuss the matter', not 'discuss about'; 'cope with', not 'cope up with'. After a preposition such as 'between', use 'me', not 'I'. A negative word such as 'hardly' takes a positive tag.",
+    "example": "Could you lend me your pen? (not 'borrow me your pen')"
+  },
+  "passages": [],
+  "questions": [
+    {
+      "id": "d14-q01",
+      "stem": "Please [[off the light]] before you go to bed. Choose the option that best replaces the underlined part.",
+      "options": {
+        "A": "close the light",
+        "B": "off the light",
+        "C": "switch off the light",
+        "D": "cut the light"
+      },
+      "answer": "C",
+      "explanation": "'Off' is not a verb here; we switch off (or turn off) a light.",
+      "difficulty": "easy",
+      "topicTag": "error_spotting",
+      "passageId": null
+    },
+    {
+      "id": "d14-q02",
+      "stem": "Could you [[borrow me]] your pen for a minute? Choose the option that best replaces the underlined part.",
+      "options": {
+        "A": "lend me",
+        "B": "borrow to me",
+        "C": "borrowed me",
+        "D": "lending me"
+      },
+      "answer": "A",
+      "explanation": "You lend something to someone and borrow something from someone, so the owner says 'lend me'.",
+      "difficulty": "easy",
+      "topicTag": "error_spotting",
+      "passageId": null
+    },
+    {
+      "id": "d14-q03",
+      "stem": "We will [[discuss about]] the matter tomorrow. Choose the option that best replaces the underlined part.",
+      "options": {
+        "A": "discuss on",
+        "B": "discuss",
+        "C": "discussing about",
+        "D": "discussed about"
+      },
+      "answer": "B",
+      "explanation": "'Discuss' takes a direct object with no preposition: discuss the matter.",
+      "difficulty": "easy",
+      "topicTag": "error_spotting",
+      "passageId": null
+    },
+    {
+      "id": "d14-q04",
+      "stem": "Students must learn to [[cope up with]] pressure. Choose the option that best replaces the underlined part.",
+      "options": {
+        "A": "cope up",
+        "B": "coping up with",
+        "C": "cope on with",
+        "D": "cope with"
+      },
+      "answer": "D",
+      "explanation": "The correct phrase is 'cope with'; 'up' is not used with it.",
+      "difficulty": "easy",
+      "topicTag": "error_spotting",
+      "passageId": null
+    },
+    {
+      "id": "d14-q05",
+      "stem": "The list of names [[are]] on the notice board. Choose the option that best replaces the underlined part.",
+      "options": {
+        "A": "were",
+        "B": "are being",
+        "C": "is",
+        "D": "have been"
+      },
+      "answer": "C",
+      "explanation": "The subject is 'list', which is singular, so the verb is 'is'. 'Of names' does not change the subject.",
+      "difficulty": "medium",
+      "topicTag": "error_spotting",
+      "passageId": null
+    },
+    {
+      "id": "d14-q06",
+      "stem": "He hardly visits his parents, [[doesn't he]]? Choose the option that best replaces the underlined part.",
+      "options": {
+        "A": "isn't he",
+        "B": "does he",
+        "C": "did he",
+        "D": "hasn't he"
+      },
+      "answer": "B",
+      "explanation": "'Hardly' makes the sentence negative, so the tag is positive; 'visits' is present simple, so 'does he'.",
+      "difficulty": "medium",
+      "topicTag": "error_spotting",
+      "passageId": null
+    },
+    {
+      "id": "d14-q07",
+      "stem": "By the time we arrived, the train [[has left]]. Choose the option that best replaces the underlined part.",
+      "options": {
+        "A": "had left",
+        "B": "has leaving",
+        "C": "leaves",
+        "D": "is leaving"
+      },
+      "answer": "A",
+      "explanation": "The train left before another past action (we arrived), so the past perfect 'had left' is needed.",
+      "difficulty": "medium",
+      "topicTag": "error_spotting",
+      "passageId": null
+    },
+    {
+      "id": "d14-q08",
+      "stem": "Please speak louder; I [[am not hearing]] you. Choose the option that best replaces the underlined part.",
+      "options": {
+        "A": "am not heard",
+        "B": "not hearing",
+        "C": "does not hear",
+        "D": "cannot hear"
+      },
+      "answer": "D",
+      "explanation": "'Hear' is a verb of perception and is normally used with 'can', not in the -ing form: I cannot hear you.",
+      "difficulty": "medium",
+      "topicTag": "error_spotting",
+      "passageId": null
+    },
+    {
+      "id": "d14-q09",
+      "stem": "Between you and [[I]], the plan will not work. Choose the option that best replaces the underlined part.",
+      "options": {
+        "A": "I myself",
+        "B": "me",
+        "C": "mine",
+        "D": "myself"
+      },
+      "answer": "B",
+      "explanation": "'Between' is a preposition, so it takes the object pronoun 'me'.",
+      "difficulty": "hard",
+      "topicTag": "error_spotting",
+      "passageId": null
+    },
+    {
+      "id": "d14-q10",
+      "stem": "No sooner had we sat down [[when]] the rain started. Choose the option that best replaces the underlined part.",
+      "options": {
+        "A": "then",
+        "B": "before",
+        "C": "as",
+        "D": "than"
+      },
+      "answer": "D",
+      "explanation": "'No sooner' is always followed by 'than': No sooner had we sat down than the rain started.",
+      "difficulty": "hard",
+      "topicTag": "error_spotting",
+      "passageId": null
+    }
+  ]
+}

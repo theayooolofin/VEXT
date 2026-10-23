@@ -1,0 +1,164 @@
+{
+  "day": 7,
+  "slug": "pronouns-question-tags",
+  "title": "Pronouns and question tags",
+  "topicTag": "pronouns_tags",
+  "version": 1,
+  "rule": {
+    "body": "Use the object form (me, him, us, them, whom) after a preposition: between you and me, to whom. Use the subject form when a verb follows: taller than I am. A question tag repeats the helping verb and flips positive to negative: \"I am right, aren't I?\", \"Let's go, shall we?\". Words like nobody, hardly and never are already negative, so their tag is positive. After everybody or nobody, the tag uses \"they\".",
+    "example": "Everybody came, didn't they? He hardly ever calls, does he?"
+  },
+  "passages": [],
+  "questions": [
+    {
+      "id": "d07-q01",
+      "stem": "Please keep this secret between you and ___.",
+      "options": {
+        "A": "I",
+        "B": "myself",
+        "C": "me",
+        "D": "mine"
+      },
+      "answer": "C",
+      "explanation": "\"Between\" is a preposition, so it takes the object form \"me\" for both words: between you and me.",
+      "difficulty": "easy",
+      "topicTag": "pronouns_tags",
+      "passageId": null
+    },
+    {
+      "id": "d07-q02",
+      "stem": "Let's go to the stadium early, ___?",
+      "options": {
+        "A": "will you",
+        "B": "shall we",
+        "C": "don't we",
+        "D": "won't we"
+      },
+      "answer": "B",
+      "explanation": "A suggestion starting with \"Let's\" (let us) always takes the tag \"shall we?\".",
+      "difficulty": "easy",
+      "topicTag": "pronouns_tags",
+      "passageId": null
+    },
+    {
+      "id": "d07-q03",
+      "stem": "Everybody came to the meeting, ___?",
+      "options": {
+        "A": "don't they",
+        "B": "did they",
+        "C": "wasn't it",
+        "D": "didn't they"
+      },
+      "answer": "D",
+      "explanation": "Tags after \"everybody\" use \"they\". The statement is positive, so the tag is negative: didn't they?",
+      "difficulty": "easy",
+      "topicTag": "pronouns_tags",
+      "passageId": null
+    },
+    {
+      "id": "d07-q04",
+      "stem": "My brother is taller than ___ am.",
+      "options": {
+        "A": "I",
+        "B": "me",
+        "C": "myself",
+        "D": "mine"
+      },
+      "answer": "A",
+      "explanation": "The pronoun is the subject of the verb \"am\", so it must be the subject form \"I\".",
+      "difficulty": "easy",
+      "topicTag": "pronouns_tags",
+      "passageId": null
+    },
+    {
+      "id": "d07-q05",
+      "stem": "I am your best friend, ___?",
+      "options": {
+        "A": "amn't I",
+        "B": "isn't I",
+        "C": "aren't I",
+        "D": "isn't it"
+      },
+      "answer": "C",
+      "explanation": "Standard English uses \"aren't I?\" as the negative tag for \"I am\". \"Amn't I\" and \"isn't I\" are not standard.",
+      "difficulty": "medium",
+      "topicTag": "pronouns_tags",
+      "passageId": null
+    },
+    {
+      "id": "d07-q06",
+      "stem": "Nobody called while I was out, ___?",
+      "options": {
+        "A": "didn't they",
+        "B": "did they",
+        "C": "does he",
+        "D": "wasn't it"
+      },
+      "answer": "B",
+      "explanation": "\"Nobody\" is already negative, so the tag is positive, and it uses \"they\": did they?",
+      "difficulty": "medium",
+      "topicTag": "pronouns_tags",
+      "passageId": null
+    },
+    {
+      "id": "d07-q07",
+      "stem": "Mr Bello, the principal, ___ came to congratulate the winners.",
+      "options": {
+        "A": "hisself",
+        "B": "themselves",
+        "C": "itself",
+        "D": "himself"
+      },
+      "answer": "D",
+      "explanation": "\"Himself\" is used for emphasis here: the principal in person came. \"Hisself\" is not standard English.",
+      "difficulty": "medium",
+      "topicTag": "pronouns_tags",
+      "passageId": null
+    },
+    {
+      "id": "d07-q08",
+      "stem": "To ___ should I address this letter?",
+      "options": {
+        "A": "whom",
+        "B": "who",
+        "C": "whose",
+        "D": "which"
+      },
+      "answer": "A",
+      "explanation": "After a preposition such as \"to\", formal English uses the object form \"whom\".",
+      "difficulty": "medium",
+      "topicTag": "pronouns_tags",
+      "passageId": null
+    },
+    {
+      "id": "d07-q09",
+      "stem": "One should always keep ___ promises.",
+      "options": {
+        "A": "their",
+        "B": "your",
+        "C": "one's",
+        "D": "our"
+      },
+      "answer": "C",
+      "explanation": "When a sentence begins with \"one\", keep using \"one\" forms: one's.",
+      "difficulty": "hard",
+      "topicTag": "pronouns_tags",
+      "passageId": null
+    },
+    {
+      "id": "d07-q10",
+      "stem": "He hardly ever visits his parents, ___?",
+      "options": {
+        "A": "doesn't he",
+        "B": "does he",
+        "C": "isn't it",
+        "D": "hasn't he"
+      },
+      "answer": "B",
+      "explanation": "\"Hardly\" makes the statement negative, so the tag must be positive: does he?",
+      "difficulty": "hard",
+      "topicTag": "pronouns_tags",
+      "passageId": null
+    }
+  ]
+}

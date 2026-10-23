@@ -1,0 +1,149 @@
+{
+  "day": 10,
+  "slug": "idioms-phrasal-verbs",
+  "title": "Idioms and phrasal verbs",
+  "topicTag": "idioms",
+  "version": 1,
+  "rule": {
+    "body": "An idiom means something different from its separate words, so never pick the literal meaning: \"bury the hatchet\" is about making peace, not digging. For phrasal verbs, the small particle (off, up, out, on) changes the meaning completely, so learn each one as a whole: call off means cancel, put up with means tolerate. Test your choice by putting it back into the sentence.",
+    "example": "The match was **called off** (cancelled) because of the rain."
+  },
+  "passages": [],
+  "questions": [
+    {
+      "id": "d10-q01",
+      "stem": "Choose the option that best explains the underlined expression: With the exam a week away, Halima has been [[burning the midnight oil]].",
+      "options": {
+        "A": "wasting fuel at night",
+        "B": "studying late into the night",
+        "C": "going to bed very early",
+        "D": "cooking late at night"
+      },
+      "answer": "B",
+      "explanation": "To \"burn the midnight oil\" means to work or study until late at night.",
+      "difficulty": "easy",
+      "topicTag": "idioms",
+      "passageId": null
+    },
+    {
+      "id": "d10-q02",
+      "stem": "The football match was ___ because of the heavy rain.",
+      "options": { "A": "called on", "B": "called up", "C": "called off", "D": "called in" },
+      "answer": "C",
+      "explanation": "To \"call off\" an event means to cancel it.",
+      "difficulty": "easy",
+      "topicTag": "idioms",
+      "passageId": null
+    },
+    {
+      "id": "d10-q03",
+      "stem": "We have ___ sugar, so I must go to the shop.",
+      "options": { "A": "run into", "B": "run over", "C": "run down", "D": "run out of" },
+      "answer": "D",
+      "explanation": "To \"run out of\" something means to use it all up so that none is left.",
+      "difficulty": "easy",
+      "topicTag": "idioms",
+      "passageId": null
+    },
+    {
+      "id": "d10-q04",
+      "stem": "Choose the option that best explains the underlined expression: The new stadium has become [[a white elephant]]; it cost billions but is hardly ever used.",
+      "options": {
+        "A": "a costly thing that is of little use",
+        "B": "a rare and beautiful building",
+        "C": "a place for keeping animals",
+        "D": "a symbol of peace"
+      },
+      "answer": "A",
+      "explanation": "A \"white elephant\" is something that costs a lot to build or keep but brings little benefit.",
+      "difficulty": "easy",
+      "topicTag": "idioms",
+      "passageId": null
+    },
+    {
+      "id": "d10-q05",
+      "stem": "Choose the option that best explains the underlined expression: After years of quarrelling, the two families decided to [[bury the hatchet]].",
+      "options": {
+        "A": "hide their weapons",
+        "B": "make peace",
+        "C": "go to court",
+        "D": "share their land"
+      },
+      "answer": "B",
+      "explanation": "To \"bury the hatchet\" means to end a quarrel and make peace.",
+      "difficulty": "medium",
+      "topicTag": "idioms",
+      "passageId": null
+    },
+    {
+      "id": "d10-q06",
+      "stem": "Choose the option that best explains the underlined expression: Nobody was supposed to know about the surprise party, but Dayo [[let the cat out of the bag]].",
+      "options": {
+        "A": "spoilt the food",
+        "B": "arrived too late",
+        "C": "revealed the secret",
+        "D": "released the pet"
+      },
+      "answer": "C",
+      "explanation": "To \"let the cat out of the bag\" means to reveal a secret, often by mistake.",
+      "difficulty": "medium",
+      "topicTag": "idioms",
+      "passageId": null
+    },
+    {
+      "id": "d10-q07",
+      "stem": "I cannot ___ his rudeness any longer.",
+      "options": { "A": "put off", "B": "put up with", "C": "put out", "D": "put across" },
+      "answer": "B",
+      "explanation": "To \"put up with\" something means to tolerate or bear it.",
+      "difficulty": "medium",
+      "topicTag": "idioms",
+      "passageId": null
+    },
+    {
+      "id": "d10-q08",
+      "stem": "Obi is so arrogant that he ___ classmates who cannot afford expensive phones.",
+      "options": {
+        "A": "looks up to",
+        "B": "looks after",
+        "C": "looks forward to",
+        "D": "looks down on"
+      },
+      "answer": "D",
+      "explanation": "To \"look down on\" people means to treat them as less important than you, which is what an arrogant person does.",
+      "difficulty": "medium",
+      "topicTag": "idioms",
+      "passageId": null
+    },
+    {
+      "id": "d10-q09",
+      "stem": "Choose the option that best explains the underlined expression: The government [[turned a deaf ear]] to the workers' demands, so the strike continued.",
+      "options": {
+        "A": "listened carefully",
+        "B": "could not hear",
+        "C": "agreed",
+        "D": "refused to pay attention"
+      },
+      "answer": "D",
+      "explanation": "To \"turn a deaf ear\" means to deliberately ignore a request. It is not about being unable to hear.",
+      "difficulty": "hard",
+      "topicTag": "idioms",
+      "passageId": null
+    },
+    {
+      "id": "d10-q10",
+      "stem": "Tunde worked extra hours on Saturday to ___ the time he had lost during the week.",
+      "options": {
+        "A": "make up for",
+        "B": "make out",
+        "C": "make off with",
+        "D": "make over"
+      },
+      "answer": "A",
+      "explanation": "To \"make up for\" something means to do something good to balance a loss or mistake.",
+      "difficulty": "hard",
+      "topicTag": "idioms",
+      "passageId": null
+    }
+  ]
+}

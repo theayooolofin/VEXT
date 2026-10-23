@@ -1,0 +1,164 @@
+{
+  "day": 2,
+  "slug": "concord-tricky-subjects",
+  "title": "Concord: tricky subjects",
+  "topicTag": "concord",
+  "version": 1,
+  "rule": {
+    "body": "With 'either...or' and 'neither...nor', the verb agrees with the nearer subject. 'As well as', 'together with' and 'along with' do not change the subject. 'The number of' is singular; 'a number of' is plural. Words like 'news' and 'mathematics' are singular. An amount of time or money seen as one whole takes a singular verb. A group noun acting as one unit, shown by words like 'its', takes a singular verb.",
+    "example": "Neither the principal nor the teachers were at the gate."
+  },
+  "passages": [],
+  "questions": [
+    {
+      "id": "d02-q01",
+      "stem": "The news from the hospital ___ very encouraging today.",
+      "options": {
+        "A": "is",
+        "B": "are",
+        "C": "were",
+        "D": "have been"
+      },
+      "answer": "A",
+      "explanation": "'News' ends in -s but it is singular, so it takes the singular verb 'is'.",
+      "difficulty": "easy",
+      "topicTag": "concord",
+      "passageId": null
+    },
+    {
+      "id": "d02-q02",
+      "stem": "Mathematics ___ the subject Tunde enjoys most.",
+      "options": {
+        "A": "are",
+        "B": "were",
+        "C": "have been",
+        "D": "is"
+      },
+      "answer": "D",
+      "explanation": "'Mathematics' is the name of one subject, so it is singular and takes 'is'.",
+      "difficulty": "easy",
+      "topicTag": "concord",
+      "passageId": null
+    },
+    {
+      "id": "d02-q03",
+      "stem": "Either Tunde or his sisters ___ going to cook tonight.",
+      "options": {
+        "A": "is",
+        "B": "are",
+        "C": "has",
+        "D": "was"
+      },
+      "answer": "B",
+      "explanation": "With 'either...or', the verb agrees with the nearer subject. 'His sisters' is plural, so we use 'are'.",
+      "difficulty": "easy",
+      "topicTag": "concord",
+      "passageId": null
+    },
+    {
+      "id": "d02-q04",
+      "stem": "A number of students ___ absent from the lecture yesterday.",
+      "options": {
+        "A": "was",
+        "B": "is",
+        "C": "were",
+        "D": "has"
+      },
+      "answer": "C",
+      "explanation": "'A number of' means 'many', so the subject is plural. The time is past, so the verb is 'were'.",
+      "difficulty": "easy",
+      "topicTag": "concord",
+      "passageId": null
+    },
+    {
+      "id": "d02-q05",
+      "stem": "The number of cars on Lagos roads ___ increasing every year.",
+      "options": {
+        "A": "is",
+        "B": "are",
+        "C": "were",
+        "D": "have"
+      },
+      "answer": "A",
+      "explanation": "'The number of' refers to one figure, so it is singular and takes 'is'.",
+      "difficulty": "medium",
+      "topicTag": "concord",
+      "passageId": null
+    },
+    {
+      "id": "d02-q06",
+      "stem": "The principal, as well as the teachers, ___ attending the meeting.",
+      "options": {
+        "A": "are",
+        "B": "were",
+        "C": "have",
+        "D": "is"
+      },
+      "answer": "D",
+      "explanation": "'As well as the teachers' is extra information. The subject is 'The principal', which is singular, so the verb is 'is'.",
+      "difficulty": "medium",
+      "topicTag": "concord",
+      "passageId": null
+    },
+    {
+      "id": "d02-q07",
+      "stem": "Ten years ___ a long time to wait for a promotion.",
+      "options": {
+        "A": "are",
+        "B": "is",
+        "C": "were",
+        "D": "have been"
+      },
+      "answer": "B",
+      "explanation": "'Ten years' here is one period of time seen as a whole, so it takes the singular verb 'is'.",
+      "difficulty": "medium",
+      "topicTag": "concord",
+      "passageId": null
+    },
+    {
+      "id": "d02-q08",
+      "stem": "Neither the boys nor their father ___ at home when the visitors arrived.",
+      "options": {
+        "A": "were",
+        "B": "are",
+        "C": "was",
+        "D": "have been"
+      },
+      "answer": "C",
+      "explanation": "With 'neither...nor', the verb agrees with the nearer subject. 'Their father' is singular and the time is past, so 'was'.",
+      "difficulty": "medium",
+      "topicTag": "concord",
+      "passageId": null
+    },
+    {
+      "id": "d02-q09",
+      "stem": "The committee ___ its decision after a long meeting.",
+      "options": {
+        "A": "has announced",
+        "B": "have announced",
+        "C": "are announcing",
+        "D": "were announcing"
+      },
+      "answer": "A",
+      "explanation": "The word 'its' shows the committee is acting as one unit, so it takes a singular verb: 'has announced'.",
+      "difficulty": "hard",
+      "topicTag": "concord",
+      "passageId": null
+    },
+    {
+      "id": "d02-q10",
+      "stem": "Ngozi, along with her two cousins, ___ expected at the wedding tomorrow.",
+      "options": {
+        "A": "are",
+        "B": "were",
+        "C": "have been",
+        "D": "is"
+      },
+      "answer": "D",
+      "explanation": "'Along with her two cousins' does not change the subject. 'Ngozi' is singular, so the verb is 'is'.",
+      "difficulty": "hard",
+      "topicTag": "concord",
+      "passageId": null
+    }
+  ]
+}

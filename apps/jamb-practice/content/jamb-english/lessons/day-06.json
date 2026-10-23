@@ -1,0 +1,164 @@
+{
+  "day": 6,
+  "slug": "articles-determiners",
+  "title": "Articles and determiners",
+  "topicTag": "prepositions_articles",
+  "version": 1,
+  "rule": {
+    "body": "Choose \"a\" or \"an\" by the first SOUND, not the first letter: an hour, a university, an MBA. Use \"the\" for unique things, superlatives, rivers and oceans, and groups such as \"the rich\". Use no article with meals and with \"go to school/church\" when you go for the usual purpose. \"A few\" and \"a little\" mean some; \"few\" and \"little\" mean hardly any. Use few/many/fewer with countable nouns and little/much/less with uncountable ones.",
+    "example": "An honest man had a little time, so he went to the school to see the principal."
+  },
+  "passages": [],
+  "questions": [
+    {
+      "id": "d06-q01",
+      "stem": "In a fair society, ___ pay more tax than the poor.",
+      "options": {
+        "A": "rich",
+        "B": "the rich",
+        "C": "a rich",
+        "D": "the riches"
+      },
+      "answer": "B",
+      "explanation": "\"The\" + adjective names a whole group of people: the rich, the poor. \"Riches\" means wealth, not people.",
+      "difficulty": "easy",
+      "topicTag": "prepositions_articles",
+      "passageId": null
+    },
+    {
+      "id": "d06-q02",
+      "stem": "Amaka hopes to win a scholarship to ___ European university.",
+      "options": {
+        "A": "an",
+        "B": "much",
+        "C": "a",
+        "D": "few"
+      },
+      "answer": "C",
+      "explanation": "\"European\" begins with a \"yoo\" sound, which is a consonant sound, so we use \"a\", not \"an\".",
+      "difficulty": "easy",
+      "topicTag": "prepositions_articles",
+      "passageId": null
+    },
+    {
+      "id": "d06-q03",
+      "stem": "___ Niger is one of the longest rivers in Africa.",
+      "options": {
+        "A": "A",
+        "B": "An",
+        "C": "Some",
+        "D": "The"
+      },
+      "answer": "D",
+      "explanation": "Names of rivers take \"the\": the Niger, the Benue, the Nile.",
+      "difficulty": "easy",
+      "topicTag": "prepositions_articles",
+      "passageId": null
+    },
+    {
+      "id": "d06-q04",
+      "stem": "Choose the correctly written sentence.",
+      "options": {
+        "A": "We have breakfast at seven every morning.",
+        "B": "We have the breakfast at seven every morning.",
+        "C": "We have a breakfast at seven every morning.",
+        "D": "We have an breakfast at seven every morning."
+      },
+      "answer": "A",
+      "explanation": "Names of meals (breakfast, lunch, dinner) normally take no article when we talk about daily routine.",
+      "difficulty": "easy",
+      "topicTag": "prepositions_articles",
+      "passageId": null
+    },
+    {
+      "id": "d06-q05",
+      "stem": "I still have ___ friends in Kano, so I will not feel lonely when I visit.",
+      "options": {
+        "A": "a few",
+        "B": "few",
+        "C": "a little",
+        "D": "little"
+      },
+      "answer": "A",
+      "explanation": "\"A few\" means some, which fits \"will not feel lonely\". \"Friends\" is countable, so \"little\" and \"a little\" are wrong.",
+      "difficulty": "medium",
+      "topicTag": "prepositions_articles",
+      "passageId": null
+    },
+    {
+      "id": "d06-q06",
+      "stem": "Kunle is so rude that he has ___ friends, if any.",
+      "options": {
+        "A": "a little",
+        "B": "a few",
+        "C": "few",
+        "D": "little"
+      },
+      "answer": "C",
+      "explanation": "\"Few\" without \"a\" means hardly any, which matches \"if any\". \"Friends\" is countable, so not \"little\".",
+      "difficulty": "medium",
+      "topicTag": "prepositions_articles",
+      "passageId": null
+    },
+    {
+      "id": "d06-q07",
+      "stem": "Don't worry; we still have ___ time, so let us eat before we leave.",
+      "options": {
+        "A": "little",
+        "B": "few",
+        "C": "a few",
+        "D": "a little"
+      },
+      "answer": "D",
+      "explanation": "\"Time\" is uncountable, and \"a little\" means some, which fits \"don't worry\". \"Little\" alone would mean hardly any.",
+      "difficulty": "medium",
+      "topicTag": "prepositions_articles",
+      "passageId": null
+    },
+    {
+      "id": "d06-q08",
+      "stem": "There are ___ cars on this road today than there were yesterday.",
+      "options": {
+        "A": "less",
+        "B": "fewer",
+        "C": "little",
+        "D": "much"
+      },
+      "answer": "B",
+      "explanation": "\"Cars\" is a countable plural noun, so standard English uses \"fewer\". \"Less\" goes with uncountable nouns.",
+      "difficulty": "medium",
+      "topicTag": "prepositions_articles",
+      "passageId": null
+    },
+    {
+      "id": "d06-q09",
+      "stem": "Which of the following is correctly written?",
+      "options": {
+        "A": "a hour-long meeting",
+        "B": "an one-day workshop",
+        "C": "an MBA student",
+        "D": "an useful book"
+      },
+      "answer": "C",
+      "explanation": "\"MBA\" is said \"em-bee-ay\", a vowel sound, so \"an\". The others should be \"an hour-long\", \"a one-day\" and \"a useful\".",
+      "difficulty": "hard",
+      "topicTag": "prepositions_articles",
+      "passageId": null
+    },
+    {
+      "id": "d06-q10",
+      "stem": "Mr Okafor, a parent, ___ to discuss his son's poor results with the principal.",
+      "options": {
+        "A": "went to school",
+        "B": "went to the school",
+        "C": "went to schools",
+        "D": "went to the schools"
+      },
+      "answer": "B",
+      "explanation": "\"Go to school\" means going as a student. A parent visiting the building goes to \"the school\".",
+      "difficulty": "hard",
+      "topicTag": "prepositions_articles",
+      "passageId": null
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "day": 8,
+  "slug": "synonyms",
+  "title": "Synonyms",
+  "topicTag": "vocabulary",
+  "version": 1,
+  "rule": {
+    "body": "For \"nearest in meaning\", read the whole sentence first and work out what the underlined word must mean there. Then put each option in its place: the right one keeps the meaning of the sentence the same. Watch out for opposites and for words that merely sound related.",
+    "example": "\"The [[obsolete]] machine was thrown away\": try \"outdated\" in its place, and the meaning stays the same."
+  },
+  "passages": [],
+  "questions": [
+    {
+      "id": "d08-q01",
+      "stem": "Choose the option nearest in meaning to the underlined word: The instructions were so [[ambiguous]] that half the class answered the wrong question.",
+      "options": { "A": "lengthy", "B": "unclear", "C": "careless", "D": "simple" },
+      "answer": "B",
+      "explanation": "\"Ambiguous\" means open to more than one meaning, that is, unclear. That is why students misread the question.",
+      "difficulty": "easy",
+      "topicTag": "vocabulary",
+      "passageId": null
+    },
+    {
+      "id": "d08-q02",
+      "stem": "Choose the option nearest in meaning to the underlined word: After the long journey, Musa felt so [[lethargic]] that he slept through the afternoon.",
+      "options": { "A": "angry", "B": "nervous", "C": "sluggish", "D": "hungry" },
+      "answer": "C",
+      "explanation": "\"Lethargic\" means tired and lacking energy, which is what \"sluggish\" means.",
+      "difficulty": "easy",
+      "topicTag": "vocabulary",
+      "passageId": null
+    },
+    {
+      "id": "d08-q03",
+      "stem": "Choose the option nearest in meaning to the underlined word: Typewriters have become [[obsolete]] in most offices since computers arrived.",
+      "options": { "A": "outdated", "B": "costly", "C": "broken", "D": "popular" },
+      "answer": "A",
+      "explanation": "\"Obsolete\" means no longer in use because something newer has replaced it, that is, outdated.",
+      "difficulty": "easy",
+      "topicTag": "vocabulary",
+      "passageId": null
+    },
+    {
+      "id": "d08-q04",
+      "stem": "Choose the option nearest in meaning to the underlined word: Mrs Eze is a [[meticulous]] accountant who checks every figure twice.",
+      "options": { "A": "wealthy", "B": "impatient", "C": "famous", "D": "careful" },
+      "answer": "D",
+      "explanation": "\"Meticulous\" means paying close attention to every detail, that is, very careful.",
+      "difficulty": "easy",
+      "topicTag": "vocabulary",
+      "passageId": null
+    },
+    {
+      "id": "d08-q05",
+      "stem": "Choose the option nearest in meaning to the underlined word: Bisi is [[frugal]]; she buys only what she needs and saves the rest of her allowance.",
+      "options": { "A": "generous", "B": "greedy", "C": "lazy", "D": "thrifty" },
+      "answer": "D",
+      "explanation": "\"Frugal\" means careful not to waste money, which is what \"thrifty\" means.",
+      "difficulty": "medium",
+      "topicTag": "vocabulary",
+      "passageId": null
+    },
+    {
+      "id": "d08-q06",
+      "stem": "Choose the option nearest in meaning to the underlined word: Although Chidi was usually [[reticent]], he spoke at length during the debate.",
+      "options": { "A": "reserved", "B": "rude", "C": "confident", "D": "cheerful" },
+      "answer": "A",
+      "explanation": "\"Reticent\" means quiet and slow to share one's thoughts, that is, reserved. \"Although\" shows it contrasts with speaking at length.",
+      "difficulty": "medium",
+      "topicTag": "vocabulary",
+      "passageId": null
+    },
+    {
+      "id": "d08-q07",
+      "stem": "Choose the option nearest in meaning to the underlined word: The chief's [[ostentatious]] party, with gold-plated cups and three live bands, was the talk of the town.",
+      "options": { "A": "secret", "B": "showy", "C": "modest", "D": "peaceful" },
+      "answer": "B",
+      "explanation": "\"Ostentatious\" describes a display meant to impress people with wealth, that is, showy.",
+      "difficulty": "medium",
+      "topicTag": "vocabulary",
+      "passageId": null
+    },
+    {
+      "id": "d08-q08",
+      "stem": "Choose the option nearest in meaning to the underlined word: Despite failing twice, Ngozi remained [[tenacious]] and passed the exam on her third attempt.",
+      "options": { "A": "careless", "B": "fortunate", "C": "persistent", "D": "timid" },
+      "answer": "C",
+      "explanation": "\"Tenacious\" means refusing to give up, which is what \"persistent\" means.",
+      "difficulty": "medium",
+      "topicTag": "vocabulary",
+      "passageId": null
+    },
+    {
+      "id": "d08-q09",
+      "stem": "Choose the option nearest in meaning to the underlined word: The journalist was [[candid]] about her mistakes, admitting every one of them in public.",
+      "options": { "A": "secretive", "B": "bitter", "C": "nervous", "D": "frank" },
+      "answer": "D",
+      "explanation": "\"Candid\" means honest and open, even about uncomfortable things, that is, frank.",
+      "difficulty": "hard",
+      "topicTag": "vocabulary",
+      "passageId": null
+    },
+    {
+      "id": "d08-q10",
+      "stem": "Choose the option nearest in meaning to the underlined word: The court's ruling [[vindicated]] the teacher, who had been wrongly accused of theft.",
+      "options": { "A": "punished", "B": "accused", "C": "cleared", "D": "ignored" },
+      "answer": "C",
+      "explanation": "To \"vindicate\" someone is to show they were right or innocent, that is, to clear them of blame.",
+      "difficulty": "hard",
+      "topicTag": "vocabulary",
+      "passageId": null
+    }
+  ]
+}

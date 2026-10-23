@@ -2,7 +2,9 @@
   "concord": "concord",
   "tenses": "tenses",
   "prepositions_articles": "prepositions and articles",
+  "pronouns_tags": "pronouns and question tags",
   "vocabulary": "vocabulary",
+  "idioms": "idioms and phrasal verbs",
   "oral_forms": "oral forms",
   "error_spotting": "error spotting"
 }

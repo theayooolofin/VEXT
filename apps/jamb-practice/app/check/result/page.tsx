@@ -19,7 +19,10 @@ export default async function ResultPage() {
   const attempt = conds.length
     ? await db.query.diagnosticAttempts.findFirst({ where: or(...conds), orderBy: desc(schema.diagnosticAttempts.createdAt) })
     : undefined;
-  const topics = getContent().topics;
+  const content = getContent();
+  const topics = content.topics;
+  // The first day that teaches the weakest topic.
+  const dayFor = (t: string | null) => [...content.lessons].find(([, l]) => l.data?.topicTag === t)?.[0] ?? null;
   const name = (t: string | null) => (t ? (topics[t] ?? t) : '');
 
   if (!attempt) {
@@ -61,10 +64,15 @@ export default async function ResultPage() {
           {attempt.weakestTopic && (
             <p>
               {attempt.score === 10 ? (
-                <>Every answer was right. Day 1 starts with {name(attempt.weakestTopic)}.</>
+                <>Every answer was right. The 14 days will keep you sharp.</>
               ) : (
                 <>
-                  Your weakest topic was <span className="hl">{name(attempt.weakestTopic)}</span>. Day 1 starts there.
+                  Your weakest topic was <span className="hl">{name(attempt.weakestTopic)}</span>.{' '}
+                  {dayFor(attempt.weakestTopic) === 1
+                    ? 'Day 1 starts there.'
+                    : dayFor(attempt.weakestTopic)
+                      ? `Day ${dayFor(attempt.weakestTopic)} covers it, and Days 1 to 3 are free.`
+                      : ''}
                 </>
               )}
             </p>

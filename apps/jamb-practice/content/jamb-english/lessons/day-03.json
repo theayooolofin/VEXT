@@ -1,0 +1,164 @@
+{
+  "day": 3,
+  "slug": "tenses-forms-and-uses",
+  "title": "Tenses: forms and uses",
+  "topicTag": "tenses",
+  "version": 1,
+  "rule": {
+    "body": "Use the present simple for habits and facts, and the present continuous for actions happening now. Use the past simple for finished actions at a stated past time (yesterday, ago, in 2020). Use the present perfect (has/have + past participle) for actions linked to now, often with 'since', 'for', 'already' and 'yet'. Use the past perfect (had + past participle) for an action completed before another past action.",
+    "example": "I have lived in Ibadan since 2019, but I moved to my present house two years ago."
+  },
+  "passages": [],
+  "questions": [
+    {
+      "id": "d03-q01",
+      "stem": "Water ___ at 100 degrees Celsius.",
+      "options": {
+        "A": "boil",
+        "B": "boils",
+        "C": "are boiling",
+        "D": "have boiled"
+      },
+      "answer": "B",
+      "explanation": "This is a general fact, so we use the present simple. 'Water' is singular, so the verb is 'boils'.",
+      "difficulty": "easy",
+      "topicTag": "tenses",
+      "passageId": null
+    },
+    {
+      "id": "d03-q02",
+      "stem": "Look. The children ___ in the rain.",
+      "options": {
+        "A": "play",
+        "B": "plays",
+        "C": "are playing",
+        "D": "have played"
+      },
+      "answer": "C",
+      "explanation": "'Look' shows the action is happening right now, so we use the present continuous: 'are playing'.",
+      "difficulty": "easy",
+      "topicTag": "tenses",
+      "passageId": null
+    },
+    {
+      "id": "d03-q03",
+      "stem": "We ___ the match on television yesterday.",
+      "options": {
+        "A": "watched",
+        "B": "have watched",
+        "C": "watch",
+        "D": "are watching"
+      },
+      "answer": "A",
+      "explanation": "'Yesterday' is a finished past time, so we use the past simple 'watched', not the present perfect.",
+      "difficulty": "easy",
+      "topicTag": "tenses",
+      "passageId": null
+    },
+    {
+      "id": "d03-q04",
+      "stem": "Ada ___ in this school since 2021.",
+      "options": {
+        "A": "teaches",
+        "B": "taught",
+        "C": "is teaching",
+        "D": "has taught"
+      },
+      "answer": "D",
+      "explanation": "'Since 2021' links the past to now, so we need the present perfect: 'has taught'.",
+      "difficulty": "easy",
+      "topicTag": "tenses",
+      "passageId": null
+    },
+    {
+      "id": "d03-q05",
+      "stem": "My father bought this car five years ___.",
+      "options": {
+        "A": "yet",
+        "B": "for",
+        "C": "ago",
+        "D": "already"
+      },
+      "answer": "C",
+      "explanation": "'Ago' counts back from now to a finished past time and goes with the past simple 'bought'.",
+      "difficulty": "medium",
+      "topicTag": "tenses",
+      "passageId": null
+    },
+    {
+      "id": "d03-q06",
+      "stem": "I have not finished my assignment ___.",
+      "options": {
+        "A": "already",
+        "B": "for",
+        "C": "ago",
+        "D": "yet"
+      },
+      "answer": "D",
+      "explanation": "'Yet' is used at the end of negative sentences in the present perfect. 'Already' is not used this way in negatives.",
+      "difficulty": "medium",
+      "topicTag": "tenses",
+      "passageId": null
+    },
+    {
+      "id": "d03-q07",
+      "stem": "When I got to the bus stop, the bus ___.",
+      "options": {
+        "A": "had left",
+        "B": "has left",
+        "C": "leaves",
+        "D": "is leaving"
+      },
+      "answer": "A",
+      "explanation": "The bus left before I got there, so the earlier past action takes the past perfect: 'had left'.",
+      "difficulty": "medium",
+      "topicTag": "tenses",
+      "passageId": null
+    },
+    {
+      "id": "d03-q08",
+      "stem": "While Musa ___ his homework, the light went off.",
+      "options": {
+        "A": "is doing",
+        "B": "was doing",
+        "C": "has done",
+        "D": "does"
+      },
+      "answer": "B",
+      "explanation": "An action in progress in the past that is interrupted by another takes the past continuous: 'was doing'.",
+      "difficulty": "medium",
+      "topicTag": "tenses",
+      "passageId": null
+    },
+    {
+      "id": "d03-q09",
+      "stem": "I ___ him since we left secondary school.",
+      "options": {
+        "A": "did not see",
+        "B": "do not see",
+        "C": "have not seen",
+        "D": "am not seeing"
+      },
+      "answer": "C",
+      "explanation": "'Since' marks a period from the past up to now, so the main verb takes the present perfect: 'have not seen'.",
+      "difficulty": "hard",
+      "topicTag": "tenses",
+      "passageId": null
+    },
+    {
+      "id": "d03-q10",
+      "stem": "Kemi ___ for two hours when her friend finally arrived.",
+      "options": {
+        "A": "had been waiting",
+        "B": "has been waiting",
+        "C": "waits",
+        "D": "is waiting"
+      },
+      "answer": "A",
+      "explanation": "The waiting went on for two hours before another past event, so we use the past perfect continuous: 'had been waiting'.",
+      "difficulty": "hard",
+      "topicTag": "tenses",
+      "passageId": null
+    }
+  ]
+}

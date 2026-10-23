@@ -1,0 +1,164 @@
+{
+  "day": 13,
+  "slug": "stress",
+  "title": "Oral forms: word and emphatic stress",
+  "topicTag": "oral_forms",
+  "version": 1,
+  "rule": {
+    "body": "Word stress: one syllable in a word is said louder and longer. Most two-syllable nouns and adjectives are stressed on the first syllable (TAble, HAPpy); many two-syllable verbs on the second (beGIN, aGREE). Some words change stress with their job: REcord, PREsent and OBject are nouns; reCORD, preSENT and obJECT are verbs. Emphatic stress: the word said most strongly in a sentence carries the new or contrasting information, so it shows which question the sentence answers.",
+    "example": "TUNDE bought the car. answers 'Who bought the car?', but Tunde bought the CAR. answers 'What did Tunde buy?'"
+  },
+  "passages": [],
+  "questions": [
+    {
+      "id": "d13-q01",
+      "stem": "Which word is stressed on the FIRST syllable?",
+      "options": {
+        "A": "begin",
+        "B": "table",
+        "C": "hotel",
+        "D": "agree"
+      },
+      "answer": "B",
+      "explanation": "table is stressed TA-ble; begin, hotel and agree are stressed on the second syllable.",
+      "difficulty": "easy",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d13-q02",
+      "stem": "Which word is stressed on the SECOND syllable?",
+      "options": {
+        "A": "father",
+        "B": "garden",
+        "C": "water",
+        "D": "police"
+      },
+      "answer": "D",
+      "explanation": "police is stressed po-LICE; father, garden and water are stressed on the first syllable.",
+      "difficulty": "easy",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d13-q03",
+      "stem": "AMAKA cooked the rice. Which question does the sentence answer?",
+      "options": {
+        "A": "Who cooked the rice?",
+        "B": "What did Amaka cook?",
+        "C": "Did Amaka eat the rice?",
+        "D": "Did Amaka cook the beans?"
+      },
+      "answer": "A",
+      "explanation": "The stress on AMAKA picks out the person, so it answers 'Who cooked the rice?'",
+      "difficulty": "easy",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d13-q04",
+      "stem": "My brother lives in KANO. Which question does the sentence answer?",
+      "options": {
+        "A": "Who lives in Kano?",
+        "B": "Does your brother work in Kano?",
+        "C": "Where does your brother live?",
+        "D": "Does your sister live in Kano?"
+      },
+      "answer": "C",
+      "explanation": "The stress on KANO gives the place, so it answers 'Where does your brother live?'",
+      "difficulty": "easy",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d13-q05",
+      "stem": "In which sentence is the underlined word stressed on the SECOND syllable?",
+      "options": {
+        "A": "She broke the world [[record]].",
+        "B": "They will [[record]] the song tomorrow.",
+        "C": "I keep a [[record]] of my spending.",
+        "D": "The old [[record]] was played twice."
+      },
+      "answer": "B",
+      "explanation": "As a verb it is re-CORD, as in B; as a noun it is RE-cord, as in A, C and D.",
+      "difficulty": "medium",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d13-q06",
+      "stem": "Which of these words is stressed on the SECOND syllable?",
+      "options": {
+        "A": "beautiful",
+        "B": "yesterday",
+        "C": "family",
+        "D": "important"
+      },
+      "answer": "D",
+      "explanation": "important is stressed im-POR-tant; beautiful, yesterday and family are stressed on the first syllable.",
+      "difficulty": "medium",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d13-q07",
+      "stem": "In which sentence is the underlined word stressed on the FIRST syllable?",
+      "options": {
+        "A": "I [[object]] to that plan.",
+        "B": "We will [[present]] the prizes.",
+        "C": "She gave me a lovely [[present]].",
+        "D": "Nigeria [[exports]] cocoa."
+      },
+      "answer": "C",
+      "explanation": "The noun present is PRE-sent, as in C; the verbs in A, B and D are stressed ob-JECT, pre-SENT and ex-PORTS.",
+      "difficulty": "medium",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d13-q08",
+      "stem": "Bola ate TWO oranges yesterday. Which question does the sentence answer?",
+      "options": {
+        "A": "How many oranges did Bola eat yesterday?",
+        "B": "When did Bola eat two oranges?",
+        "C": "Who ate two oranges yesterday?",
+        "D": "What did Bola eat yesterday?"
+      },
+      "answer": "A",
+      "explanation": "The stress on TWO gives the number, so it answers 'How many oranges did Bola eat yesterday?'",
+      "difficulty": "medium",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d13-q09",
+      "stem": "Which word is stressed on the THIRD syllable?",
+      "options": {
+        "A": "photography",
+        "B": "examination",
+        "C": "understand",
+        "D": "comfortable"
+      },
+      "answer": "C",
+      "explanation": "understand is stressed un-der-STAND; pho-TOG-ra-phy is 2nd, ex-am-i-NA-tion 4th, COM-for-ta-ble 1st.",
+      "difficulty": "hard",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d13-q10",
+      "stem": "Ngozi gave the book to her TEACHER. Which question does the sentence answer?",
+      "options": {
+        "A": "Did Ngozi give the pen to her teacher?",
+        "B": "Did Ngozi give the book to her friend?",
+        "C": "Did Ada give the book to her teacher?",
+        "D": "Did Ngozi lend the book to her teacher?"
+      },
+      "answer": "B",
+      "explanation": "The stress on TEACHER corrects the person who got the book, so it answers 'Did Ngozi give the book to her friend?'",
+      "difficulty": "hard",
+      "topicTag": "oral_forms",
+      "passageId": null
+    }
+  ]
+}

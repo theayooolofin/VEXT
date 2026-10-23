@@ -1,0 +1,164 @@
+{
+  "day": 5,
+  "slug": "prepositions-fixed-pairs",
+  "title": "Prepositions: fixed pairs",
+  "topicTag": "prepositions_articles",
+  "version": 1,
+  "rule": {
+    "body": "Many verbs, adjectives and nouns are followed by a fixed preposition, so learn them as pairs: congratulate on, accuse of, interested in, different from, married to, prefer X to Y, comply with, abide by, depend on, angry with a person and angry about a thing. Using a different preposition makes the sentence wrong.",
+    "example": "We congratulated Ngozi on her excellent WAEC result."
+  },
+  "passages": [],
+  "questions": [
+    {
+      "id": "d05-q01",
+      "stem": "Chidi is interested ___ computer programming.",
+      "options": {
+        "A": "in",
+        "B": "on",
+        "C": "at",
+        "D": "for"
+      },
+      "answer": "A",
+      "explanation": "The fixed pair is 'interested in'.",
+      "difficulty": "easy",
+      "topicTag": "prepositions_articles",
+      "passageId": null
+    },
+    {
+      "id": "d05-q02",
+      "stem": "We congratulated Amaka ___ her success in the examination.",
+      "options": {
+        "A": "at",
+        "B": "on",
+        "C": "to",
+        "D": "with"
+      },
+      "answer": "B",
+      "explanation": "We congratulate someone 'on' something, so the fixed pair is 'congratulate on'.",
+      "difficulty": "easy",
+      "topicTag": "prepositions_articles",
+      "passageId": null
+    },
+    {
+      "id": "d05-q03",
+      "stem": "Your success will depend ___ how hard you work.",
+      "options": {
+        "A": "of",
+        "B": "in",
+        "C": "at",
+        "D": "on"
+      },
+      "answer": "D",
+      "explanation": "The verb 'depend' is always followed by 'on' (or 'upon').",
+      "difficulty": "easy",
+      "topicTag": "prepositions_articles",
+      "passageId": null
+    },
+    {
+      "id": "d05-q04",
+      "stem": "Ada is married ___ a doctor.",
+      "options": {
+        "A": "with",
+        "B": "by",
+        "C": "to",
+        "D": "for"
+      },
+      "answer": "C",
+      "explanation": "In standard English you are 'married to' a person, not 'married with' them.",
+      "difficulty": "easy",
+      "topicTag": "prepositions_articles",
+      "passageId": null
+    },
+    {
+      "id": "d05-q05",
+      "stem": "The man was accused ___ stealing a goat from the market.",
+      "options": {
+        "A": "of",
+        "B": "for",
+        "C": "with",
+        "D": "on"
+      },
+      "answer": "A",
+      "explanation": "We accuse someone 'of' doing something. ('Charged with' is a different phrase.)",
+      "difficulty": "medium",
+      "topicTag": "prepositions_articles",
+      "passageId": null
+    },
+    {
+      "id": "d05-q06",
+      "stem": "My answer is different ___ yours.",
+      "options": {
+        "A": "with",
+        "B": "against",
+        "C": "of",
+        "D": "from"
+      },
+      "answer": "D",
+      "explanation": "The standard pair is 'different from'.",
+      "difficulty": "medium",
+      "topicTag": "prepositions_articles",
+      "passageId": null
+    },
+    {
+      "id": "d05-q07",
+      "stem": "All students must comply ___ the school rules.",
+      "options": {
+        "A": "to",
+        "B": "with",
+        "C": "by",
+        "D": "on"
+      },
+      "answer": "B",
+      "explanation": "The verb 'comply' is followed by 'with': you comply with rules or orders.",
+      "difficulty": "medium",
+      "topicTag": "prepositions_articles",
+      "passageId": null
+    },
+    {
+      "id": "d05-q08",
+      "stem": "I prefer rice ___ beans.",
+      "options": {
+        "A": "than",
+        "B": "with",
+        "C": "to",
+        "D": "from"
+      },
+      "answer": "C",
+      "explanation": "The pattern is 'prefer X to Y'. 'Prefer' is never followed by 'than' in this pattern.",
+      "difficulty": "medium",
+      "topicTag": "prepositions_articles",
+      "passageId": null
+    },
+    {
+      "id": "d05-q09",
+      "stem": "Mrs Okafor was angry ___ her son for coming home late.",
+      "options": {
+        "A": "against",
+        "B": "for",
+        "C": "on",
+        "D": "with"
+      },
+      "answer": "D",
+      "explanation": "We are angry 'with' a person and angry 'about' a thing. Her son is a person, so 'with' is correct.",
+      "difficulty": "hard",
+      "topicTag": "prepositions_articles",
+      "passageId": null
+    },
+    {
+      "id": "d05-q10",
+      "stem": "Every member must abide ___ the decision of the committee.",
+      "options": {
+        "A": "by",
+        "B": "with",
+        "C": "to",
+        "D": "on"
+      },
+      "answer": "A",
+      "explanation": "To accept and obey a rule or decision is to 'abide by' it.",
+      "difficulty": "hard",
+      "topicTag": "prepositions_articles",
+      "passageId": null
+    }
+  ]
+}

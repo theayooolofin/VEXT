@@ -23,7 +23,7 @@ export const E2E_ENV = {
   SUPPORT_EMAIL: 'support@example.test',
   PRODUCT_NAME: 'UTME English Booster',
   ALLOW_UNREVIEWED_CONTENT: 'true',
-  CONTENT_DIR: 'content/jamb-english/_fixtures',
+  CONTENT_DIR: process.env.E2E_CONTENT_DIR ?? 'content/jamb-english/_fixtures',
 };
 
 const child = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'start', '-p', '3100'], {

@@ -1,0 +1,164 @@
+{
+  "day": 12,
+  "slug": "consonant-sounds",
+  "title": "Oral forms: consonant sounds",
+  "topicTag": "oral_forms",
+  "version": 1,
+  "rule": {
+    "body": "Spelling does not always show the consonant sound. 'th' is /θ/ in thin but /ð/ in this. /ʃ/ is in ship, /tʃ/ in chip and /ʒ/ in measure. Some letters are silent: k in knee, b in debt, p in psalm, h in honest, s in island. 'ch' is /k/ in chemist and choir. The ending -ed is /ɪd/ after t or d (wanted), /t/ after other voiceless sounds (walked) and /d/ after other voiced sounds (played). The letter s is often /z/, as in rose and lose.",
+    "example": "wanted ends in /ɪd/, walked ends in /t/ and played ends in /d/."
+  },
+  "passages": [],
+  "questions": [
+    {
+      "id": "d12-q01",
+      "stem": "Choose the word that begins with the sound /ð/, as in 'this'.",
+      "options": {
+        "A": "thin",
+        "B": "thank",
+        "C": "those",
+        "D": "thumb"
+      },
+      "answer": "C",
+      "explanation": "those begins with voiced /ð/; thin, thank and thumb begin with voiceless /θ/.",
+      "difficulty": "easy",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d12-q02",
+      "stem": "In which word is the letter 'h' silent?",
+      "options": {
+        "A": "house",
+        "B": "honest",
+        "C": "hand",
+        "D": "hill"
+      },
+      "answer": "B",
+      "explanation": "honest is said /ˈɒnɪst/ with a silent h; house, hand and hill begin with /h/.",
+      "difficulty": "easy",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d12-q03",
+      "stem": "Choose the word that begins with the sound /ʃ/.",
+      "options": {
+        "A": "chip",
+        "B": "cheap",
+        "C": "jump",
+        "D": "shoe"
+      },
+      "answer": "D",
+      "explanation": "shoe begins with /ʃ/; chip and cheap begin with /tʃ/, and jump with /dʒ/.",
+      "difficulty": "easy",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d12-q04",
+      "stem": "In which word is 'ch' pronounced /k/?",
+      "options": {
+        "A": "chemist",
+        "B": "church",
+        "C": "chair",
+        "D": "cheese"
+      },
+      "answer": "A",
+      "explanation": "chemist begins with /k/; church, chair and cheese begin with /tʃ/.",
+      "difficulty": "easy",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d12-q05",
+      "stem": "Choose the word that contains the sound /ʒ/.",
+      "options": {
+        "A": "pressure",
+        "B": "mission",
+        "C": "measure",
+        "D": "question"
+      },
+      "answer": "C",
+      "explanation": "measure has /ʒ/; pressure and mission have /ʃ/, and question has /tʃ/.",
+      "difficulty": "medium",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d12-q06",
+      "stem": "In which word is the '-ed' ending pronounced /ɪd/?",
+      "options": {
+        "A": "walked",
+        "B": "played",
+        "C": "washed",
+        "D": "wanted"
+      },
+      "answer": "D",
+      "explanation": "wanted ends in /ɪd/ because the verb ends in t; walked and washed end in /t/, played in /d/.",
+      "difficulty": "medium",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d12-q07",
+      "stem": "In which word is the '-ed' ending pronounced /t/?",
+      "options": {
+        "A": "laughed",
+        "B": "begged",
+        "C": "needed",
+        "D": "rained"
+      },
+      "answer": "A",
+      "explanation": "laughed ends in /t/ after voiceless /f/; begged and rained end in /d/, needed in /ɪd/.",
+      "difficulty": "medium",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d12-q08",
+      "stem": "In which word is the letter 'p' silent?",
+      "options": {
+        "A": "pump",
+        "B": "psalm",
+        "C": "paper",
+        "D": "open"
+      },
+      "answer": "B",
+      "explanation": "psalm is said /sɑːm/, so its p is silent; the p is sounded in pump, paper and open.",
+      "difficulty": "medium",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d12-q09",
+      "stem": "In which word is the letter 's' pronounced /z/?",
+      "options": {
+        "A": "loose",
+        "B": "case",
+        "C": "lose",
+        "D": "dose"
+      },
+      "answer": "C",
+      "explanation": "lose ends in /z/ (/luːz/); loose, case and dose end in /s/.",
+      "difficulty": "hard",
+      "topicTag": "oral_forms",
+      "passageId": null
+    },
+    {
+      "id": "d12-q10",
+      "stem": "In which word is 'ch' pronounced the same way as in [[choir]]?",
+      "options": {
+        "A": "character",
+        "B": "chain",
+        "C": "machine",
+        "D": "child"
+      },
+      "answer": "A",
+      "explanation": "choir and character begin with /k/; chain and child have /tʃ/, and machine has /ʃ/.",
+      "difficulty": "hard",
+      "topicTag": "oral_forms",
+      "passageId": null
+    }
+  ]
+}
