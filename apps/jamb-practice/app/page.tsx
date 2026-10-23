@@ -134,7 +134,10 @@ export default async function Landing() {
         </details>
         <details className="collapsible">
           <summary>Who writes the questions?</summary>
-          <p>The questions are original and are checked by an English teacher before they go live. If you spot a mistake, tap “Report a problem” on the question.</p>
+          <p>
+            The questions are original, written for the UTME, and every answer is checked by a named reviewer before a lesson goes live. If you spot a
+            mistake, tap “Report a problem” on the question and a reviewer will look at it.
+          </p>
         </details>
         <details className="collapsible">
           <summary>Is this from JAMB?</summary>

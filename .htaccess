@@ -16,6 +16,9 @@ RewriteRule ^case-study(?:\.html)?/?$ /case-studies [R=301,L,NC]
 RewriteCond %{THE_REQUEST} \s/+[^?\s]+\.html(?:[?\s]|$) [NC]
 RewriteRule ^(.+)\.html$ /$1 [R=301,L,NE]
 
+# UTME English practice runs as a separate Node.js app on the practice subdomain.
+RewriteRule ^jamb-practice(/.*)?$ https://practice.vextglobal.com/jamb-practice$1 [R=302,L,NE]
+
 # Remove trailing slash on non-directories
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} .+/$

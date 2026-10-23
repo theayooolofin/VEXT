@@ -2,6 +2,28 @@
 
 Short steps for everyday jobs. The admin page is at `https://vextglobal.com/jamb-practice/admin` (or the address chosen at launch). Every admin action is written to the audit log.
 
+## 0. First launch on Hostinger (one time)
+
+1. **Database:** create a free Postgres database at neon.tech (region: Europe, nearest to Nigeria). Copy its connection string (`postgres://...`). Turn on backups (RUNBOOK 13).
+2. **Paystack:** in the Paystack dashboard, add a new business for UTME English (top-left business menu → Add new business) and complete its compliance form as an education business. When it is approved, copy its live keys.
+3. **Subdomain:** hPanel → Domains → create `practice.vextglobal.com`.
+4. **Node.js app:** hPanel → Websites → Add website → Node.js app, on `practice.vextglobal.com`. Connect the GitHub repository, branch `main`. If it asks for a root or app folder, enter `apps/jamb-practice`; if it has no such option, upload a zip of the `apps/jamb-practice` folder instead (without `node_modules`, `.next`, `.data` and `.env.local`). Node 22 or newer. Build command `npm run build`, start command `npm start`.
+5. **Environment variables** (in the Node.js app settings), using the names in `.env.example`:
+   - `APP_BASE_URL=https://practice.vextglobal.com`, `BASE_PATH=/jamb-practice`, `NODE_ENV=production`
+   - `DATABASE_URL` = the Neon string
+   - `SESSION_SECRET`, `IP_HASH_SALT`, `CRON_SECRET`: three separate outputs of `npm run make:secret`
+   - `ADMIN_PASSWORD_HASH` = output of `npm run make:admin-hash -- "your long password"`
+   - `PAYMENT_PROVIDER=paystack`, `PAYSTACK_SECRET_KEY`, `PAYSTACK_PUBLIC_KEY` from the new Paystack business
+   - `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY` from `npm run make:vapid`; `VAPID_SUBJECT=mailto:<support email>`
+   - `SUPPORT_WHATSAPP_E164`, `SUPPORT_EMAIL`, `PRODUCT_NAME`, `LEGAL_BUSINESS_NAME`, `PRIVACY_CONTACT_EMAIL`
+   - `ALLOW_UNREVIEWED_CONTENT=false`, `CONTENT_DIR=content/jamb-english`
+6. **Paystack webhook** (new business only): Settings → API Keys & Webhooks → Live Webhook URL `https://practice.vextglobal.com/jamb-practice/api/webhooks/paystack`.
+7. **Scheduled jobs:** GitHub → repository Settings → Secrets and variables → Actions: variable `JAMB_PRACTICE_URL=https://practice.vextglobal.com/jamb-practice`, secret `JAMB_PRACTICE_CRON_SECRET` = the same `CRON_SECRET`.
+8. Deploy, then open `https://practice.vextglobal.com/jamb-practice/api/health` (must say `"database":"ok"`), then `/jamb-practice/admin`.
+9. Content approval (CONTENT_GUIDE), then one real ₦300 payment and a refund (RUNBOOK 4) before telling anyone the link.
+
+Merging to `main` also deploys the main site, which now redirects `vextglobal.com/jamb-practice` to the subdomain.
+
 ## 1. Deploy and roll back
 
 - **Deploy:** merge the change into `main` on GitHub. CI must be green first (all tests, content checks, size budget). Hosting is not chosen yet; this section will name the host's "redeploy" button once it is (see ARCHITECTURE "Open decisions").

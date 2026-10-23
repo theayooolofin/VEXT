@@ -1,6 +1,6 @@
 # Architecture: vextglobal.com/jamb-practice
 
-Status: built to BUILD_SPEC.md v1.0 milestones M1 to M5 plus the M7 tooling. M6 (referrals) is deliberately not built (spec 1.5). **Hosting is not yet decided** (see "Open decisions").
+Status: built to BUILD_SPEC.md v1.0 milestones M1 to M5 plus the M7 tooling. M6 (referrals) is deliberately not built (spec 1.5). Hosting: Hostinger Node.js app on `practice.vextglobal.com` with Neon Postgres (owner decision, 23 Oct 2026); payments through a separate Paystack business so its webhook is not shared with other products.
 
 ## What exists today (Phase 0 findings)
 
@@ -22,7 +22,7 @@ Consequence: the main site's host cannot run this app's server. The app is built
 | Layer | Choice | Why |
 | --- | --- | --- |
 | Framework | Next.js 16.4 (App Router, Turbopack), React 19.3, TypeScript strict | Server-rendered pages and API route handlers in one app. Note: Next 16 renamed middleware to `proxy.ts` and made request APIs async-only. |
-| Mount | `basePath: /jamb-practice`, `output: 'standalone'` | Runs on any Node host; every URL, cookie and the service worker live under `/jamb-practice/`. |
+| Mount | `basePath: /jamb-practice`, `npm start` = migrate then `next start` | Hosted as a Hostinger Node.js app on `practice.vextglobal.com`; the main site redirects `/jamb-practice` there. Every URL, cookie and the service worker live under `/jamb-practice/`. |
 | Database | PostgreSQL via Drizzle ORM (`postgres` driver). Local dev and tests use **PGlite** (Postgres compiled to WASM) | No Docker or local Postgres needed; same SQL and migrations everywhere. |
 | Validation | zod 4 on env, request bodies, settings and content files | |
 | Payments | Paystack behind `PaymentProvider` (`src/lib/payments/`) plus a `fake` provider for tests | |

@@ -4,7 +4,6 @@ const basePath = process.env.BASE_PATH ?? '/jamb-practice';
 
 const nextConfig: NextConfig = {
   basePath,
-  output: 'standalone',
   poweredByHeader: false,
   reactStrictMode: true,
   // The PWA start_url and scope are "/jamb-practice/" (spec 9.9), so the
