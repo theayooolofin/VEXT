@@ -12,6 +12,8 @@ const nextConfig: NextConfig = {
   // Shared hosting limits threads per account; one build worker avoids
   // "OS can't spawn worker thread" crashes during the build.
   experimental: { cpus: 1, workerThreads: false },
+  // The build checks app code only; tests and scripts are type-checked in CI.
+  typescript: { tsconfigPath: 'tsconfig.build.json' },
   serverExternalPackages: ['@electric-sql/pglite', 'web-push'],
   // Lesson files are read from disk at runtime by the server only. They must
   // ship with the server build, never in public/ or the client bundle.
