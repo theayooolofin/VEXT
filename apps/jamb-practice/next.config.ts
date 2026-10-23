@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   output: 'standalone',
   poweredByHeader: false,
   reactStrictMode: true,
+  // The PWA start_url and scope are "/jamb-practice/" (spec 9.9), so the
+  // trailing-slash form must be served, not redirected out of scope.
+  skipTrailingSlashRedirect: true,
   serverExternalPackages: ['@electric-sql/pglite', 'web-push'],
   // Lesson files are read from disk at runtime by the server only. They must
   // ship with the server build, never in public/ or the client bundle.

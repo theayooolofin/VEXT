@@ -4,5 +4,10 @@ import nextTs from 'eslint-config-next/typescript';
 export default [
   ...next,
   ...nextTs,
-  { ignores: ['.next/**', 'node_modules/**', 'public/sw.js', 'src/db/migrations/**'] },
+  {
+    rules: {
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_', destructuredArrayIgnorePattern: '^_' }],
+    },
+  },
+  { ignores: ['.next/**', 'node_modules/**', 'public/sw.js', 'src/db/migrations/**', '.data/**', 'test-results/**', 'playwright-report/**', 'content/**'] },
 ];

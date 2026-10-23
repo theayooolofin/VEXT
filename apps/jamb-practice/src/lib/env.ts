@@ -33,18 +33,22 @@ const schema = z
     SUPPORT_WHATSAPP_E164: z.string().regex(/^\d{8,15}$/, 'Digits only, with country code'),
     SUPPORT_EMAIL: z.email(),
     PRODUCT_NAME: z.string().min(2).default('UTME English Booster'),
+    // Shown on the legal pages. Leave empty until the owner confirms them.
+    LEGAL_BUSINESS_NAME: z.string().optional(),
+    PRIVACY_CONTACT_EMAIL: z.string().optional(),
     ALLOW_UNREVIEWED_CONTENT: bool,
     CONTENT_DIR: z.string().default('content/jamb-english'),
   })
   .superRefine((env, ctx) => {
-    if (env.NODE_ENV !== 'production') return;
+    // E2E=1 marks a local production build used only by the end-to-end tests.
+    if (env.NODE_ENV !== 'production' || process.env.E2E === '1') return;
     if (env.ALLOW_UNREVIEWED_CONTENT)
       ctx.addIssue({ code: 'custom', path: ['ALLOW_UNREVIEWED_CONTENT'], message: 'Must be false in production' });
-    if (env.PAYMENT_PROVIDER === 'fake' && process.env.E2E !== '1')
+    if (env.PAYMENT_PROVIDER === 'fake')
       ctx.addIssue({ code: 'custom', path: ['PAYMENT_PROVIDER'], message: 'The fake provider is for tests only' });
     if (env.PAYMENT_PROVIDER === 'paystack' && !env.PAYSTACK_SECRET_KEY)
       ctx.addIssue({ code: 'custom', path: ['PAYSTACK_SECRET_KEY'], message: 'Required for Paystack' });
-    if (env.CONTENT_DIR.includes('_fixtures') && process.env.E2E !== '1')
+    if (env.CONTENT_DIR.includes('_fixtures'))
       ctx.addIssue({ code: 'custom', path: ['CONTENT_DIR'], message: 'Fixtures never ship to production' });
   });
 

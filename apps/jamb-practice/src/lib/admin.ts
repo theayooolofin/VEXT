@@ -9,10 +9,18 @@ export const ADMIN_TTL_MS = 2 * 60 * 60 * 1000;
 
 type AdminClaims = { exp: number; nonce: string };
 
+/**
+ * The bcrypt hash, given either as is or base64url-encoded. The encoded form
+ * has no "$", which .env loaders would otherwise try to expand.
+ */
+export function adminHash(raw = env().ADMIN_PASSWORD_HASH): string {
+  return raw.startsWith('$2') ? raw : Buffer.from(raw, 'base64url').toString('utf8');
+}
+
 export async function checkAdminPassword(password: string): Promise<boolean> {
   if (!password || password.length > 200) return false;
   try {
-    return await bcrypt.compare(password, env().ADMIN_PASSWORD_HASH);
+    return await bcrypt.compare(password, adminHash());
   } catch {
     return false;
   }

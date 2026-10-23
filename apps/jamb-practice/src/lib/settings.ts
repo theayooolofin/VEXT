@@ -56,9 +56,9 @@ export const DEFAULT_SETTINGS: Settings = {
 export const SETTING_LABELS: Record<SettingKey, string> = {
   unlock_time_local: 'Lesson unlock time (Lagos, HH:MM)',
   founding_cap: 'Founding places',
-  founding_deadline: 'Founding price ends (ISO time, UTC)',
-  founding_price_kobo: 'Founding price (kobo)',
-  standard_price_kobo: 'Standard price (kobo)',
+  founding_deadline: 'Founding price ends (Lagos time)',
+  founding_price_kobo: 'Founding price (naira)',
+  standard_price_kobo: 'Standard price (naira)',
   show_founding_counter: 'Show founding places taken',
   refund_window_hours: 'Refund window (hours after first paid lesson)',
   gate2_target: 'Gate 2 target (paid orders)',
@@ -66,7 +66,7 @@ export const SETTING_LABELS: Record<SettingKey, string> = {
   gate3_day14_finish_pct: 'Gate 3: finished Day 14 (%)',
   gate3_refund_max_pct: 'Gate 3: maximum refunds (%)',
   gate4_extra_pct: 'Gate 4: add-on or referral (%)',
-  gate4_cac_max_kobo: 'Gate 4: maximum cost per paying customer (kobo)',
+  gate4_cac_max_kobo: 'Gate 4: maximum cost per paying customer (naira)',
   gate4_min_orders: 'Gate 4: minimum paid orders in a channel',
   gate1_interviews_done: 'Gate 1: interviews done',
   gate1_confirmed: 'Gate 1: interviews confirming the problem',
@@ -87,3 +87,27 @@ export function mergeSettings(rows: { key: string; value: unknown }[]): Settings
   }
   return out as Settings;
 }
+
+/** How each setting is edited on the admin settings page. */
+export const SETTING_KINDS: Record<SettingKey, 'number' | 'naira' | 'boolean' | 'string' | 'datetime'> = {
+  unlock_time_local: 'string',
+  founding_cap: 'number',
+  founding_deadline: 'datetime',
+  founding_price_kobo: 'naira',
+  standard_price_kobo: 'naira',
+  show_founding_counter: 'boolean',
+  refund_window_hours: 'number',
+  gate2_target: 'number',
+  gate3_day7_active_pct: 'number',
+  gate3_day14_finish_pct: 'number',
+  gate3_refund_max_pct: 'number',
+  gate4_extra_pct: 'number',
+  gate4_cac_max_kobo: 'naira',
+  gate4_min_orders: 'number',
+  gate1_interviews_done: 'number',
+  gate1_confirmed: 'number',
+  support_whatsapp: 'string',
+  support_email: 'string',
+  nudge_template: 'string',
+  gate_result_behind_signup: 'boolean',
+};

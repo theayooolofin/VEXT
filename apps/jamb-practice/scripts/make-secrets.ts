@@ -15,7 +15,8 @@ if (cmd === 'vapid') {
     console.error('Give a password of at least 12 characters: npm run make:admin-hash -- "your password"');
     process.exit(1);
   }
-  console.log(bcrypt.hashSync(arg, 12));
+  // base64url so the value has no "$" for .env files to mangle.
+  console.log(Buffer.from(bcrypt.hashSync(arg, 12)).toString('base64url'));
 } else if (cmd === 'secret') {
   console.log(randomBytes(48).toString('base64url'));
 } else {

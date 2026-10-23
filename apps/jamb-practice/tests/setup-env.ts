@@ -9,8 +9,8 @@ Object.assign(process.env, {
   PAYMENT_PROVIDER: 'fake',
   PAYMENT_PLACEHOLDER_EMAIL_DOMAIN: 'students.example.test',
   CRON_SECRET: 'test-cron-secret-123456',
-  // bcrypt of "correct horse battery staple"
-  ADMIN_PASSWORD_HASH: '$2b$04$5CcWFfsjBDdFxXiR2V0VGe0UG0QP0CrCrwxdte3DkFWSl0H9uUmzm',
+  // base64url bcrypt of "correct horse battery staple"
+  ADMIN_PASSWORD_HASH: 'JDJiJDA0JHJkMFpjV3dKUm92dnpUQzZ5blpyY3VWdHd6L3NFNGJyYWRGSGFYVFBUVURSYS4uVk56LkIu',
   SUPPORT_WHATSAPP_E164: '2348000000000',
   SUPPORT_EMAIL: 'support@example.test',
   PRODUCT_NAME: 'UTME English Booster',

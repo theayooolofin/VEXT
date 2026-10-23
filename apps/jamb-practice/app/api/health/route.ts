@@ -1,5 +1,6 @@
 import { sql } from 'drizzle-orm';
 import { getDb, schema } from '@/db';
+import { logServer } from '@/lib/events';
 
 export const dynamic = 'force-dynamic';
 
@@ -8,8 +9,9 @@ export async function GET() {
   try {
     const db = await getDb();
     await db.select({ one: sql<number>`1` }).from(schema.settings).limit(1);
-  } catch {
+  } catch (e) {
     database = 'unreachable';
+    logServer('error', 'health: database unreachable', { message: (e as Error).message });
   }
   const version = process.env.APP_VERSION ?? process.env.npm_package_version ?? 'dev';
   return Response.json(

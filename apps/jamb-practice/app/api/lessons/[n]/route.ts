@@ -31,7 +31,11 @@ export async function GET(req: NextRequest, ctx: { params: Promise<{ n: string }
     where: and(eq(schema.lessonProgress.studentId, studentId), eq(schema.lessonProgress.day, r.day)),
   });
   const maxAttempt: Record<string, number> = {};
-  for (const a of attempts) maxAttempt[a.questionId] = Math.max(maxAttempt[a.questionId] ?? 0, a.attemptNo);
+  const firstAnswers: Record<string, string> = {};
+  for (const a of attempts) {
+    maxAttempt[a.questionId] = Math.max(maxAttempt[a.questionId] ?? 0, a.attemptNo);
+    if (a.attemptNo === 1) firstAnswers[a.questionId] = a.selectedOption;
+  }
 
   const res = json(
     {
@@ -42,6 +46,7 @@ export async function GET(req: NextRequest, ctx: { params: Promise<{ n: string }
         completed: Boolean(progress?.completedAt),
         score: progress?.score ?? null,
         maxAttempt,
+        firstAnswers,
       },
     },
     { headers: { 'Cache-Control': 'private, no-store' } },

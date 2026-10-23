@@ -20,11 +20,17 @@ async function connect(): Promise<Db> {
     const { drizzle } = await import('drizzle-orm/pglite');
     const { migrate } = await import('drizzle-orm/pglite/migrator');
     const dir = url.slice('pglite:'.length);
+    if (dir !== 'memory') (await import('node:fs')).mkdirSync(path.dirname(path.resolve(dir)), { recursive: true });
     const client = dir === 'memory' ? new PGlite() : new PGlite(dir);
     const db = drizzle(client, { schema });
     await migrate(db, { migrationsFolder: MIGRATIONS_DIR });
     // The two drivers share the pg-core query builder; the cast keeps one Db type.
-    return db as unknown as Db;
+    const typed = db as unknown as Db;
+    if (dir !== 'memory') {
+      const { seed } = await import('./seedData');
+      await seed(typed);
+    }
+    return typed;
   }
   const postgres = (await import('postgres')).default;
   const client = postgres(url, { max: 5, prepare: false });

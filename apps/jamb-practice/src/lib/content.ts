@@ -9,7 +9,8 @@ const g = globalThis as unknown as { __jpContent?: { at: number; set: ContentSet
 const TTL_MS = process.env.NODE_ENV === 'production' ? 5 * 60_000 : 2_000;
 
 export function contentDir(): string {
-  return path.resolve(process.cwd(), env().CONTENT_DIR);
+  // Content files are shipped via outputFileTracingIncludes in next.config.ts.
+  return path.resolve(/*turbopackIgnore: true*/ process.cwd(), env().CONTENT_DIR);
 }
 
 export function getContent(): ContentSet {
