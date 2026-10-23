@@ -8,7 +8,7 @@ import { orderReference } from './crypto';
 import { env } from './env';
 import { logServer, recordEvent } from './events';
 import { absoluteUrl } from './http';
-import { getPaymentProvider } from './payments';
+import { getPaymentProvider, paymentsReady } from './payments';
 import { ProviderError } from './payments/provider';
 import { openCohort, resolvePriceKobo } from './rules';
 import type { Settings } from './settings';
@@ -29,7 +29,8 @@ export async function currentOffer(settings: Settings, now = new Date()) {
     paidCoreOrderCount(),
     db.query.products.findFirst({ where: eq(schema.products.sku, CORE_SKU) }),
   ]);
-  const cohort = openCohort(cohorts, now);
+  // No payment key yet means no open enrolment, so nobody reaches a broken checkout.
+  const cohort = paymentsReady() ? openCohort(cohorts, now) : null;
   const price = resolvePriceKobo(settings, paid, now);
   return { cohort, paid, product, ...price };
 }

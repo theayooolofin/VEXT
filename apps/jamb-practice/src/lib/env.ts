@@ -46,8 +46,6 @@ const schema = z
       ctx.addIssue({ code: 'custom', path: ['ALLOW_UNREVIEWED_CONTENT'], message: 'Must be false in production' });
     if (env.PAYMENT_PROVIDER === 'fake')
       ctx.addIssue({ code: 'custom', path: ['PAYMENT_PROVIDER'], message: 'The fake provider is for tests only' });
-    if (env.PAYMENT_PROVIDER === 'paystack' && !env.PAYSTACK_SECRET_KEY)
-      ctx.addIssue({ code: 'custom', path: ['PAYSTACK_SECRET_KEY'], message: 'Required for Paystack' });
     if (env.CONTENT_DIR.includes('_fixtures'))
       ctx.addIssue({ code: 'custom', path: ['CONTENT_DIR'], message: 'Fixtures never ship to production' });
   });
