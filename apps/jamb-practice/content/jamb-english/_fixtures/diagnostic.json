@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "fixture": true,
+  "topicPriority": [
+    "concord",
+    "tenses",
+    "prepositions_articles",
+    "vocabulary",
+    "oral_forms",
+    "error_spotting"
+  ],
+  "questions": [
+    {
+      "id": "dg-q01",
+      "stem": "Neither the teacher nor the students ___ present.",
+      "options": {
+        "A": "was",
+        "B": "were",
+        "C": "is",
+        "D": "has been"
+      },
+      "answer": "B",
+      "explanation": "With neither...nor, the verb agrees with the nearer subject, and 'students' is plural.",
+      "topicTag": "concord",
+      "heroEligible": true,
+      "fixture": true
+    },
+    {
+      "id": "dg-q02",
+      "stem": "Each of the boys ___ a textbook.",
+      "options": {
+        "A": "have",
+        "B": "has",
+        "C": "are",
+        "D": "were"
+      },
+      "answer": "B",
+      "explanation": "'Each' is singular, so it takes 'has'.",
+      "topicTag": "concord",
+      "fixture": true
+    },
+    {
+      "id": "dg-q03",
+      "stem": "She is afraid ___ snakes.",
+      "options": {
+        "A": "at",
+        "B": "of",
+        "C": "from",
+        "D": "with"
+      },
+      "answer": "B",
+      "explanation": "'Afraid' is followed by 'of'.",
+      "topicTag": "prepositions_articles",
+      "fixture": true
+    },
+    {
+      "id": "dg-q04",
+      "stem": "Test item dg-4. Pick the option marked as correct for testing (A).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "A",
+      "explanation": "Fixture only: option A is the answer used by the tests.",
+      "topicTag": "tenses",
+      "fixture": true
+    },
+    {
+      "id": "dg-q05",
+      "stem": "Test item dg-5. Pick the option marked as correct for testing (B).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "B",
+      "explanation": "Fixture only: option B is the answer used by the tests.",
+      "topicTag": "prepositions_articles",
+      "fixture": true
+    },
+    {
+      "id": "dg-q06",
+      "stem": "Test item dg-6. Pick the option marked as correct for testing (C).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "C",
+      "explanation": "Fixture only: option C is the answer used by the tests.",
+      "topicTag": "vocabulary",
+      "fixture": true
+    },
+    {
+      "id": "dg-q07",
+      "stem": "Test item dg-7. Pick the option marked as correct for testing (D).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "D",
+      "explanation": "Fixture only: option D is the answer used by the tests.",
+      "topicTag": "oral_forms",
+      "fixture": true
+    },
+    {
+      "id": "dg-q08",
+      "stem": "Test item dg-8. Pick the option marked as correct for testing (A).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "A",
+      "explanation": "Fixture only: option A is the answer used by the tests.",
+      "topicTag": "error_spotting",
+      "fixture": true
+    },
+    {
+      "id": "dg-q09",
+      "stem": "Test item dg-9. Pick the option marked as correct for testing (B).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "B",
+      "explanation": "Fixture only: option B is the answer used by the tests.",
+      "topicTag": "concord",
+      "fixture": true
+    },
+    {
+      "id": "dg-q10",
+      "stem": "Test item dg-10. Pick the option marked as correct for testing (C).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "C",
+      "explanation": "Fixture only: option C is the answer used by the tests.",
+      "topicTag": "tenses",
+      "fixture": true
+    }
+  ]
+}

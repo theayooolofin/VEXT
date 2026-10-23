@@ -1,0 +1,59 @@
+{
+  "name": "jamb-practice",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20.9"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "content:validate": "tsx scripts/content.ts validate",
+    "content:approve": "tsx scripts/content.ts approve",
+    "content:import": "tsx scripts/content.ts import",
+    "content:fixtures": "tsx scripts/make-fixtures.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx --conditions=react-server scripts/db.ts migrate",
+    "db:seed": "tsx --conditions=react-server scripts/db.ts seed",
+    "make:vapid": "tsx scripts/make-secrets.ts vapid",
+    "make:admin-hash": "tsx scripts/make-secrets.ts admin-hash",
+    "make:secret": "tsx scripts/make-secrets.ts secret",
+    "make:images": "python scripts/make_images.py",
+    "perf": "node scripts/perf.mjs",
+    "check:bundle": "node scripts/check-bundle.mjs"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.5.11",
+    "bcryptjs": "^3.0.3",
+    "drizzle-orm": "^0.45.4",
+    "next": "^16.4.2",
+    "postgres": "^3.4.9",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "server-only": "^0.0.1",
+    "web-push": "^3.6.7",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/web-push": "^3.6.4",
+    "drizzle-kit": "^0.31.11",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.4.2",
+    "prettier": "^3.9.10",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.5"
+  }
+}

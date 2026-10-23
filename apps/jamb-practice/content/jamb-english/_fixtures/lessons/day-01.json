@@ -1,0 +1,175 @@
+{
+  "day": 1,
+  "slug": "fixture-day-01",
+  "title": "Concord: subject and verb agreement",
+  "topicTag": "concord",
+  "version": 1,
+  "fixture": true,
+  "rule": {
+    "body": "A singular subject takes a singular verb. A plural subject takes a plural verb.",
+    "example": "Each of the boys has a book."
+  },
+  "passages": [],
+  "questions": [
+    {
+      "id": "d01-q01",
+      "stem": "Neither the teacher nor the students ___ present.",
+      "options": {
+        "A": "was",
+        "B": "were",
+        "C": "is",
+        "D": "has been"
+      },
+      "answer": "B",
+      "explanation": "With neither...nor, the verb agrees with the nearer subject, and 'students' is plural.",
+      "topicTag": "concord",
+      "fixture": true,
+      "difficulty": "easy",
+      "passageId": null
+    },
+    {
+      "id": "d01-q02",
+      "stem": "Test item with **bold**, *italic* and [[underlined words]]. Pick the marked option.",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "C",
+      "explanation": "Fixture only: option C is the answer used by the tests.",
+      "topicTag": "concord",
+      "fixture": true,
+      "difficulty": "easy",
+      "passageId": null
+    },
+    {
+      "id": "d01-q03",
+      "stem": "Test item Day 1, question 3. Pick the option marked as correct for testing (D).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "D",
+      "explanation": "Fixture only: option D is the answer used by the tests.",
+      "topicTag": "concord",
+      "fixture": true,
+      "difficulty": "easy",
+      "passageId": null
+    },
+    {
+      "id": "d01-q04",
+      "stem": "Test item Day 1, question 4. Pick the option marked as correct for testing (A).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "A",
+      "explanation": "Fixture only: option A is the answer used by the tests.",
+      "topicTag": "concord",
+      "fixture": true,
+      "difficulty": "easy",
+      "passageId": null
+    },
+    {
+      "id": "d01-q05",
+      "stem": "Test item Day 1, question 5. Pick the option marked as correct for testing (B).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "B",
+      "explanation": "Fixture only: option B is the answer used by the tests.",
+      "topicTag": "concord",
+      "fixture": true,
+      "difficulty": "medium",
+      "passageId": null
+    },
+    {
+      "id": "d01-q06",
+      "stem": "Test item Day 1, question 6. Pick the option marked as correct for testing (C).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "C",
+      "explanation": "Fixture only: option C is the answer used by the tests.",
+      "topicTag": "concord",
+      "fixture": true,
+      "difficulty": "medium",
+      "passageId": null
+    },
+    {
+      "id": "d01-q07",
+      "stem": "Test item Day 1, question 7. Pick the option marked as correct for testing (D).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "D",
+      "explanation": "Fixture only: option D is the answer used by the tests.",
+      "topicTag": "concord",
+      "fixture": true,
+      "difficulty": "medium",
+      "passageId": null
+    },
+    {
+      "id": "d01-q08",
+      "stem": "Test item Day 1, question 8. Pick the option marked as correct for testing (A).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "A",
+      "explanation": "Fixture only: option A is the answer used by the tests.",
+      "topicTag": "concord",
+      "fixture": true,
+      "difficulty": "medium",
+      "passageId": null
+    },
+    {
+      "id": "d01-q09",
+      "stem": "Test item Day 1, question 9. Pick the option marked as correct for testing (B).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "B",
+      "explanation": "Fixture only: option B is the answer used by the tests.",
+      "topicTag": "concord",
+      "fixture": true,
+      "difficulty": "hard",
+      "passageId": null
+    },
+    {
+      "id": "d01-q10",
+      "stem": "Test item Day 1, question 10. Pick the option marked as correct for testing (C).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "C",
+      "explanation": "Fixture only: option C is the answer used by the tests.",
+      "topicTag": "concord",
+      "fixture": true,
+      "difficulty": "hard",
+      "passageId": null
+    }
+  ]
+}

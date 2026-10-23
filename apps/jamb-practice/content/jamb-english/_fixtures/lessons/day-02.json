@@ -1,0 +1,181 @@
+{
+  "day": 2,
+  "slug": "fixture-day-02",
+  "title": "Fixture lesson for Day 2",
+  "topicTag": "tenses",
+  "version": 1,
+  "fixture": true,
+  "rule": {
+    "body": "Fixture rule text for Day 2.",
+    "example": "Fixture example sentence."
+  },
+  "passages": [
+    {
+      "id": "p1",
+      "title": "Fixture passage",
+      "body": "This short passage exists only to test the passage card.\n\nIt has two paragraphs."
+    }
+  ],
+  "questions": [
+    {
+      "id": "d02-q01",
+      "stem": "Test item Day 2, question 1. Pick the option marked as correct for testing (C).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "C",
+      "explanation": "Fixture only: option C is the answer used by the tests.",
+      "topicTag": "tenses",
+      "fixture": true,
+      "difficulty": "easy",
+      "passageId": "p1"
+    },
+    {
+      "id": "d02-q02",
+      "stem": "Test item Day 2, question 2. Pick the option marked as correct for testing (D).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "D",
+      "explanation": "Fixture only: option D is the answer used by the tests.",
+      "topicTag": "tenses",
+      "fixture": true,
+      "difficulty": "easy",
+      "passageId": null
+    },
+    {
+      "id": "d02-q03",
+      "stem": "Test item Day 2, question 3. Pick the option marked as correct for testing (A).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "A",
+      "explanation": "Fixture only: option A is the answer used by the tests.",
+      "topicTag": "tenses",
+      "fixture": true,
+      "difficulty": "easy",
+      "passageId": null
+    },
+    {
+      "id": "d02-q04",
+      "stem": "Test item Day 2, question 4. Pick the option marked as correct for testing (B).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "B",
+      "explanation": "Fixture only: option B is the answer used by the tests.",
+      "topicTag": "tenses",
+      "fixture": true,
+      "difficulty": "easy",
+      "passageId": null
+    },
+    {
+      "id": "d02-q05",
+      "stem": "Test item Day 2, question 5. Pick the option marked as correct for testing (C).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "C",
+      "explanation": "Fixture only: option C is the answer used by the tests.",
+      "topicTag": "tenses",
+      "fixture": true,
+      "difficulty": "medium",
+      "passageId": null
+    },
+    {
+      "id": "d02-q06",
+      "stem": "Test item Day 2, question 6. Pick the option marked as correct for testing (D).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "D",
+      "explanation": "Fixture only: option D is the answer used by the tests.",
+      "topicTag": "tenses",
+      "fixture": true,
+      "difficulty": "medium",
+      "passageId": null
+    },
+    {
+      "id": "d02-q07",
+      "stem": "Test item Day 2, question 7. Pick the option marked as correct for testing (A).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "A",
+      "explanation": "Fixture only: option A is the answer used by the tests.",
+      "topicTag": "tenses",
+      "fixture": true,
+      "difficulty": "medium",
+      "passageId": null
+    },
+    {
+      "id": "d02-q08",
+      "stem": "Test item Day 2, question 8. Pick the option marked as correct for testing (B).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "B",
+      "explanation": "Fixture only: option B is the answer used by the tests.",
+      "topicTag": "tenses",
+      "fixture": true,
+      "difficulty": "medium",
+      "passageId": null
+    },
+    {
+      "id": "d02-q09",
+      "stem": "Test item Day 2, question 9. Pick the option marked as correct for testing (C).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "C",
+      "explanation": "Fixture only: option C is the answer used by the tests.",
+      "topicTag": "tenses",
+      "fixture": true,
+      "difficulty": "hard",
+      "passageId": null
+    },
+    {
+      "id": "d02-q10",
+      "stem": "Test item Day 2, question 10. Pick the option marked as correct for testing (D).",
+      "options": {
+        "A": "first choice",
+        "B": "second choice",
+        "C": "third choice",
+        "D": "fourth choice"
+      },
+      "answer": "D",
+      "explanation": "Fixture only: option D is the answer used by the tests.",
+      "topicTag": "tenses",
+      "fixture": true,
+      "difficulty": "hard",
+      "passageId": null
+    }
+  ]
+}

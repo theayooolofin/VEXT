@@ -47,7 +47,7 @@ jobs:
         run: |
           tar \
             --exclude='./.git' \
-            --exclude='./.github' \
+            --exclude='./.github'             --exclude='./apps' \
             --exclude='./link-audit-report.txt' \
             -czf "$RUNNER_TEMP/vext-site.tar.gz" .
 
