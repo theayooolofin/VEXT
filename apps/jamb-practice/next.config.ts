@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
   // The PWA start_url and scope are "/jamb-practice/" (spec 9.9), so the
   // trailing-slash form must be served, not redirected out of scope.
   skipTrailingSlashRedirect: true,
+  // Shared hosting limits threads per account; one build worker avoids
+  // "OS can't spawn worker thread" crashes during the build.
+  experimental: { cpus: 1, workerThreads: false },
   serverExternalPackages: ['@electric-sql/pglite', 'web-push'],
   // Lesson files are read from disk at runtime by the server only. They must
   // ship with the server build, never in public/ or the client bundle.
