@@ -28,7 +28,8 @@
     "make:secret": "tsx scripts/make-secrets.ts secret",
     "make:images": "python scripts/make_images.py",
     "perf": "node scripts/perf.mjs",
-    "check:bundle": "node scripts/check-bundle.mjs"
+    "check:bundle": "node scripts/check-bundle.mjs",
+    "secret-scan": "node scripts/secret-scan.mjs"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.11",

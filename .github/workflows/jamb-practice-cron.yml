@@ -1,0 +1,35 @@
+name: jamb-practice scheduled jobs
+
+# Calls the app's secured cron endpoints. Does nothing until the repository
+# variable JAMB_PRACTICE_URL (for example https://vextglobal.com/jamb-practice)
+# and the secret JAMB_PRACTICE_CRON_SECRET are set. GitHub may run scheduled
+# jobs a few minutes late; reminders are idempotent and tolerate that.
+
+on:
+  schedule:
+    - cron: '0 17 * * *' # 18:00 Lagos (UTC+1): lesson unlock reminders
+    - cron: '7 * * * *' # hourly housekeeping
+  workflow_dispatch:
+    inputs:
+      job:
+        description: reminders or housekeeping
+        required: true
+        default: housekeeping
+
+permissions: {}
+
+jobs:
+  call:
+    if: ${{ vars.JAMB_PRACTICE_URL != '' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Call endpoint
+        env:
+          URL: ${{ vars.JAMB_PRACTICE_URL }}
+          SECRET: ${{ secrets.JAMB_PRACTICE_CRON_SECRET }}
+          JOB: ${{ github.event_name == 'workflow_dispatch' && inputs.job || (github.event.schedule == '0 17 * * *' && 'reminders' || 'housekeeping') }}
+        run: |
+          set -euo pipefail
+          curl --fail-with-body --silent --show-error --max-time 300 \
+            -X POST -H "Authorization: Bearer $SECRET" "$URL/api/cron/$JOB"

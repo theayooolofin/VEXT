@@ -1,0 +1,58 @@
+name: jamb-practice CI
+
+on:
+  pull_request:
+    paths: ['apps/jamb-practice/**', '.github/workflows/jamb-practice-*.yml']
+  push:
+    branches: [main, jamb-practice]
+    paths: ['apps/jamb-practice/**', '.github/workflows/jamb-practice-*.yml']
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: apps/jamb-practice
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: apps/jamb-practice/package-lock.json
+      - run: npm ci
+      - name: Secret scan
+        run: npm run secret-scan
+      - name: Type check
+        run: npm run typecheck
+      - name: Lint
+        run: npx eslint app src tests proxy.ts scripts
+      - name: Content validation (real content, strict)
+        run: npm run content:validate -- --strict
+      - name: Content validation (fixtures)
+        run: npm run content:validate -- --dir content/jamb-english/_fixtures
+      - name: Unit and integration tests
+        run: npm test
+      - name: Production build for the end-to-end tests
+        run: npm run build
+        env:
+          E2E: '1'
+      - name: No paid lesson content in public output
+        run: npm run check:bundle
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: End-to-end tests (360x740)
+        run: npm run test:e2e
+      - name: Performance budgets (Slow 4G, 4x CPU)
+        run: npm run perf
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-traces
+          path: apps/jamb-practice/test-results
+          retention-days: 7

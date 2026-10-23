@@ -9,6 +9,13 @@ const PHONE = '0803 555 0101';
 let page: Page;
 let recoveryCode = '';
 
+// The cohort starts a week from today, so the test never goes stale.
+const start = new Date(Date.now() + 7 * 86_400_000);
+const START_DATE = new Intl.DateTimeFormat('en-CA', { timeZone: 'Africa/Lagos' }).format(start);
+const fmt = (o: Intl.DateTimeFormatOptions) => new Intl.DateTimeFormat('en-GB', { timeZone: 'Africa/Lagos', ...o }).format(start).replace(',', '');
+const START_LONG = fmt({ weekday: 'long', day: 'numeric', month: 'long' });
+const START_SHORT = fmt({ weekday: 'short', day: 'numeric', month: 'short' });
+
 async function pick(p: Page, letter: string) {
   // Tap the answer bubble, as a student would.
   const radio = p.getByRole('radio', { name: new RegExp(`^Option ${letter}:`) });
@@ -34,6 +41,8 @@ test.beforeAll(async ({ browser }) => {
   await admin.goto('admin/cohorts');
   const card = admin.locator('.card').filter({ hasText: 'Founding cohort' });
   await card.locator('input[name="opens"]').fill('2026-01-01T00:00');
+  await card.locator('input[name="startDate"]').fill(START_DATE);
+  await card.locator('input[name="closes"]').fill(`${START_DATE}T00:00`);
   await card.getByRole('button', { name: 'Save' }).click();
   await expect(admin.getByText('Cohort saved.')).toBeVisible();
   await admin.context().close();
@@ -115,9 +124,9 @@ test('6. checkout in test mode, return, paid, Day 4 scheduled for the cohort', a
   await expect(page.getByRole('heading', { name: 'Test payment' })).toBeVisible();
   await page.getByRole('button', { name: 'Pay successfully' }).click();
   await expect(page.getByText('Your payment is confirmed. Opening your lessons...')).toBeVisible({ timeout: 20_000 });
-  await expect(page.getByText('Your lessons start on Monday 16 November at 6:00 pm.')).toBeVisible();
+  await expect(page.getByText(`Your lessons start on ${START_LONG} at 6:00 pm.`)).toBeVisible();
   await page.getByRole('link', { name: 'Open my 14 days' }).click();
-  await expect(page.getByText('Opens Mon 16 Nov, 6:00 pm')).toBeVisible();
+  await expect(page.getByText(`Opens ${START_SHORT}, 6:00 pm`)).toBeVisible();
 });
 
 test('7. offline answers queue and sync on reconnect', async () => {
