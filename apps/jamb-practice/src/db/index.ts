@@ -69,7 +69,12 @@ async function connect(): Promise<Db> {
 }
 
 export function getDb(): Promise<Db> {
-  g.__jpDb ??= connect();
+  // A failed connection is not kept: on a host that briefly runs two copies,
+  // the copy that finds the PGlite lock taken tries again on its next request.
+  g.__jpDb ??= connect().catch((e: unknown) => {
+    g.__jpDb = undefined;
+    throw e;
+  });
   return g.__jpDb;
 }
 

@@ -18,6 +18,8 @@ export async function register() {
       logServer('error', 'scheduled job failed', { message: (e as Error).message });
     }
   };
-  setTimeout(tick, 60_000);
+  // Soon after start: shared hosts stop idle copies of the app, and a copy that
+  // never reaches its first tick never makes the daily backup.
+  setTimeout(tick, 15_000);
   setInterval(tick, 10 * 60_000).unref();
 }

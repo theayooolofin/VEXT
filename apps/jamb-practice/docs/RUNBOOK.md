@@ -34,7 +34,14 @@ The app runs on Hostinger as a Node.js web app (practice.vextglobal.com) from an
 3. **Upload:** hPanel → Websites → practice.vextglobal.com → **Deployments** → **Redeploy** → Source files: **Upload new files** → choose the zip. Leave the build settings and environment variables as they are → **Save and redeploy**. (Plain "Redeploy" with "Use previous files" only rebuilds the last zip.)
 4. **Check:** the new row in Deployments says **Completed** and **Current**; `https://practice.vextglobal.com/jamb-practice/api/health` says `"database":"ok"`; the landing page and `/jamb-practice/check` load. The site can drop a few requests for a minute while it restarts.
 
-Data is safe across deploys. Each deploy goes into its own folder under `hbuilds/versions/` (`hbuilds/current` points to the live one), while the database, its lock and the generated secrets live in `hbuilds/jamb-practice-data/`, outside every version (`DATABASE_URL=pglite:../jamb-practice-data/db`, `DATA_DIR=../jamb-practice-data`). Never upload into or delete that folder. Housekeeping is meant to keep 7 daily database copies in `jamb-practice-data/db-backups/`, but on 29 Oct 2026 that folder did not exist yet; check it is there before relying on it (section 13).
+Data is safe across deploys only because of two settings. Each deploy runs from its own folder, `hbuilds/versions/<id>/nodejs`, and Hostinger deletes the previous version's folder. The database, its lock and the generated secrets therefore live in `hbuilds/jamb-practice-data/`, named by **full paths** in the environment variables:
+
+- `DATABASE_URL=pglite:/home/u955266616/domains/practice.vextglobal.com/hbuilds/jamb-practice-data/db`
+- `DATA_DIR=/home/u955266616/domains/practice.vextglobal.com/hbuilds/jamb-practice-data`
+
+Never use relative paths (`../jamb-practice-data`) here: they resolve inside the version folder, so a deploy starts on an empty database and the next deploy deletes it. This happened on 29 Oct 2026 for about ten minutes and was fixed by switching to full paths. Never upload into or delete `jamb-practice-data`. Housekeeping keeps 7 daily database copies in `jamb-practice-data/db-backups/` (the first one was written on 29 Oct 2026).
+
+Hostinger starts and stops copies of the app often and can briefly run two. Only one can open the database; the other logs "already open in process ..." and retries on its next request, so one such line around a deploy is expected.
 
 - **Database changes:** on-disk PGlite applies migrations when the app first connects; with `postgres://`, `npm start` applies them. Never edit an old migration file.
 - **Roll back:** build the zip from the last good commit (`git archive --format=zip -o jamb-practice-app.zip <commit>:apps/jamb-practice`) and upload it the same way. Database changes are additive, so the older version keeps working.
