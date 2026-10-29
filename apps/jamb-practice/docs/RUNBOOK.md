@@ -26,9 +26,19 @@ Merging to `main` also deploys the main site, which now redirects `vextglobal.co
 
 ## 1. Deploy and roll back
 
-- **Deploy:** merge the change into `main` on GitHub. CI must be green first (all tests, content checks, size budget). Hosting is not chosen yet; this section will name the host's "redeploy" button once it is (see ARCHITECTURE "Open decisions").
-- Database changes run with `npm run db:migrate` during deploy. Never edit an old migration file.
-- **Roll back:** redeploy the previous version from the host's dashboard. Database changes are additive, so the older version keeps working.
+The app runs on Hostinger as a Node.js web app (practice.vextglobal.com) from an **uploaded zip**. It is not connected to GitHub, so pushing to `main` only redeploys the main site; the app needs the upload below.
+
+1. **Push to `main`** and wait for the `jamb-practice CI` run to go green (all tests, content checks, size budget).
+2. **Build the zip** from the repository root. `git archive` takes only committed files, so `node_modules`, `.next`, `.data` and `.env.local` stay out:
+   `git archive --format=zip -o jamb-practice-app.zip HEAD:apps/jamb-practice`
+3. **Upload:** hPanel → Websites → practice.vextglobal.com → **Deployments** → **Redeploy** → Source files: **Upload new files** → choose the zip. Leave the build settings and environment variables as they are → **Save and redeploy**. (Plain "Redeploy" with "Use previous files" only rebuilds the last zip.)
+4. **Check:** the new row in Deployments says **Completed** and **Current**; `https://practice.vextglobal.com/jamb-practice/api/health` says `"database":"ok"`; the landing page and `/jamb-practice/check` load. The site can drop a few requests for a minute while it restarts.
+
+Data is safe across deploys. Each deploy goes into its own folder under `hbuilds/versions/` (`hbuilds/current` points to the live one), while the database, its lock and the generated secrets live in `hbuilds/jamb-practice-data/`, outside every version (`DATABASE_URL=pglite:../jamb-practice-data/db`, `DATA_DIR=../jamb-practice-data`). Never upload into or delete that folder. Housekeeping is meant to keep 7 daily database copies in `jamb-practice-data/db-backups/`, but on 29 Oct 2026 that folder did not exist yet; check it is there before relying on it (section 13).
+
+- **Database changes:** on-disk PGlite applies migrations when the app first connects; with `postgres://`, `npm start` applies them. Never edit an old migration file.
+- **Roll back:** build the zip from the last good commit (`git archive --format=zip -o jamb-practice-app.zip <commit>:apps/jamb-practice`) and upload it the same way. Database changes are additive, so the older version keeps working.
+- **Content edits** withdraw approval, and production hides unapproved days. Approve edited days (section 2) before deploying them, or hold them back.
 
 ## 2. Add or fix a lesson
 
