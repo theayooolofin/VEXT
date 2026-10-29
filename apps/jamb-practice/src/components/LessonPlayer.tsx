@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { api, newClientId, track } from '@/client/api';
 import { enqueue } from '@/client/offlineQueue';
 import type { PublicLesson } from '@/lib/contentSchema';
+import { isFirstPassageQuestion } from '@/lib/passages';
 import { OptionBubbles, type Letter } from './OptionBubbles';
 import { PushPrompt } from './PushPrompt';
 import { ReportSheet } from './ReportSheet';
@@ -292,7 +293,7 @@ export function LessonPlayer({ day, priceLabel, vapidPublicKey, whatsappUrl, nex
         </div>
       </details>
       {passage && (
-        <details className="collapsible passage" open>
+        <details className="collapsible passage" key={q.id} open={isFirstPassageQuestion(lesson.questions, i)}>
           <summary>{passage.title || 'Read the passage'}</summary>
           <p>{renderMarks(passage.body)}</p>
         </details>
