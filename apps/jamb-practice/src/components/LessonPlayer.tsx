@@ -180,14 +180,23 @@ export function LessonPlayer({ day, priceLabel, vapidPublicKey, whatsappUrl, nex
     const resumed = Object.keys(runAnswers).length > 0 && !data!.progress.completed;
     return (
       <div>
-        <p className="card-label">Day {day} of 14</p>
-        <h1>{lesson.title}</h1>
-        <p className="muted">Topic: {lesson.topicName}</p>
+        <div className="day-head">
+          <span className="day-big" aria-hidden="true">
+            {day}
+          </span>
+          <div>
+            <p className="card-label">Day {day} of 14</p>
+            <h1>{lesson.title}</h1>
+            <p className="muted">
+              Topic: {lesson.topicName}. {total} questions.
+            </p>
+          </div>
+        </div>
         <div className="rule-card">
           <p>{renderMarks(lesson.rule.body)}</p>
           {lesson.rule.example && (
-            <p>
-              <em>Example:</em> {renderMarks(lesson.rule.example)}
+            <p className="rule-example">
+              <strong>Example:</strong> {renderMarks(lesson.rule.example)}
             </p>
           )}
         </div>
@@ -221,7 +230,8 @@ export function LessonPlayer({ day, priceLabel, vapidPublicKey, whatsappUrl, nex
         <h1 ref={heading} tabIndex={-1}>
           Day {day} done
         </h1>
-        <p className="score-big">
+        {/* The teacher's mark, circled in red pen. */}
+        <p className="score-big score-mark">
           {score} of {total}
         </p>
         <p className="muted">Your score counts your first answer to each question.</p>
@@ -278,16 +288,20 @@ export function LessonPlayer({ day, priceLabel, vapidPublicKey, whatsappUrl, nex
           Question {i + 1} of {total}
         </span>
       </div>
-      <div className="progress" role="progressbar" aria-label="Lesson progress" aria-valuemin={0} aria-valuemax={total} aria-valuenow={i + 1}>
-        <span style={{ width: `${((i + 1) / total) * 100}%` }} />
+      {/* One segment per question, marked as this run's answers come in. */}
+      <div className="progress segs" role="progressbar" aria-label="Lesson progress" aria-valuemin={0} aria-valuemax={total} aria-valuenow={i + 1}>
+        {lesson.questions.map((x, n) => {
+          const a = runAnswers[x.id];
+          return <span key={x.id} className={`seg${a ? (a === x.answer ? ' is-right' : ' is-wrong') : ''}${n === i ? ' is-here' : ''}`} />;
+        })}
       </div>
       <details className="collapsible">
         <summary>Today&apos;s rule</summary>
         <div className="rule-card">
           <p>{renderMarks(lesson.rule.body)}</p>
           {lesson.rule.example && (
-            <p>
-              <em>Example:</em> {renderMarks(lesson.rule.example)}
+            <p className="rule-example">
+              <strong>Example:</strong> {renderMarks(lesson.rule.example)}
             </p>
           )}
         </div>

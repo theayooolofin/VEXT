@@ -1,0 +1,80 @@
+/* Student lesson pages only (Your 14 days and the lesson player), so the
+   landing page stays within its 150 KB budget. */
+
+/* Rule card: a ruled exercise-book page. Each paragraph skips one ruled line. */
+.rule-card {
+  --ruled: 1.5em;
+  line-height: var(--ruled);
+  background-image: repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(--ruled) - 1px), #dfe7f5 calc(var(--ruled) - 1px), #dfe7f5 var(--ruled));
+  background-origin: content-box;
+  background-clip: content-box;
+}
+.rule-card p { margin: 0 0 var(--ruled); }
+.rule-card p:last-child { margin: 0; }
+.rule-example strong { color: var(--biro); }
+
+/* Day intro: the day number large, as on the exercise-book cover */
+.day-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0 14px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+.day-head h1 { margin-bottom: 0.25em; }
+.day-head .muted { margin: 0; }
+.day-big {
+  font-size: 4.5rem;
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  color: var(--biro);
+}
+
+/* Segmented progress: one mark per question or day */
+.segs {
+  display: flex;
+  gap: 4px;
+  height: 8px;
+  background: none;
+  border-radius: 0;
+  overflow: visible;
+}
+.segs > .seg {
+  flex: 1;
+  border-radius: 2px;
+  background: var(--line);
+  transition: background-color 160ms ease;
+}
+.segs > .seg.is-here { background: var(--biro); }
+.segs > .seg.is-open { background: var(--biro); opacity: 0.45; }
+.segs > .seg.is-right { background: var(--mark-green); opacity: 1; }
+.segs > .seg.is-wrong { background: var(--mark-red); opacity: 1; }
+.segs > .seg.is-here.is-right,
+.segs > .seg.is-here.is-wrong { box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--biro); }
+
+.stem { font-size: 1.1875rem; font-weight: 600; line-height: 1.45; }
+
+/* The score as a teacher writes it: red pen, ringed by hand */
+.score-mark {
+  position: relative;
+  display: inline-block;
+  margin: 8px 0 14px 6px;
+  padding: 6px 18px;
+  color: var(--mark-red);
+}
+.score-mark::before {
+  content: '';
+  position: absolute;
+  inset: -2px -6px;
+  border: 3px solid var(--mark-red);
+  border-radius: 50% 46% 52% 44% / 58% 50% 54% 46%;
+  transform: rotate(-4deg);
+  animation: circle-in 320ms ease-out 120ms both;
+}
+
+/* Your 14 days */
+.day-row.done .day-num { background: var(--mark-green); border-color: var(--mark-green); }
+.days-progress { margin-bottom: 18px; }
+.days-progress p { margin: 0 0 6px; }
+.days-progress .segs { height: 10px; }

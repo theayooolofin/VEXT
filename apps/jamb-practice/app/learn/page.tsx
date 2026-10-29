@@ -8,6 +8,7 @@ import { dashboard } from '@/lib/lessons';
 import { requirePageSession, siteInfo } from '@/lib/page';
 import { nairaFromKobo } from '@/lib/rules';
 import { nextAction } from '@/lib/unlock';
+import './learn.css';
 
 export const metadata: Metadata = { title: 'Your 14 days' };
 
@@ -21,11 +22,22 @@ export default async function LearnPage() {
   const day4 = states[3]!;
   const paidNotStarted = access.active && day4.state === 'locked';
   const needsPayment = day4.state === 'needs_payment';
+  const doneCount = states.filter((s) => s.state === 'done').length;
 
   return (
     <Page>
       <Track />
       <h1>Your 14 days</h1>
+      <div className="days-progress">
+        <p>
+          <strong>{doneCount === 0 ? 'No days done yet' : `${doneCount} of 14 days done`}</strong>
+        </p>
+        <div className="segs" aria-hidden="true">
+          {states.map((s) => (
+            <span key={s.day} className={`seg${s.state === 'done' ? ' is-right' : s.state === 'open' ? ' is-open' : ''}`} />
+          ))}
+        </div>
+      </div>
       {paidNotStarted && day4.state === 'locked' && <p className="alert alert-ok">{lessonsStartMessage(day4.unlocksAt)}</p>}
       {next?.state === 'open' ? (
         <p>

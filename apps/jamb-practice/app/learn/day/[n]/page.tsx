@@ -8,6 +8,7 @@ import { env } from '@/lib/env';
 import { dashboard } from '@/lib/lessons';
 import { requirePageSession, siteInfo } from '@/lib/page';
 import { nairaFromKobo } from '@/lib/rules';
+import '../../learn.css';
 
 export async function generateMetadata({
   params,
