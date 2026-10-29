@@ -6,6 +6,7 @@ const NAV = [
   ['/admin/students', 'Students'],
   ['/admin/orders', 'Orders'],
   ['/admin/content', 'Content'],
+  ['/admin/teach', 'Teach'],
   ['/admin/cohorts', 'Cohorts'],
   ['/admin/spend', 'Spend'],
   ['/admin/nudges', 'Nudges'],

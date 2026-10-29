@@ -184,6 +184,24 @@ test('9. report a problem; it appears on the admin content page', async ({ brows
   await admin.context().close();
 });
 
+test('teach mode: an admin steps through a day, marks the class answer and reveals it', async ({ browser }) => {
+  const admin = await adminPage(browser);
+  await admin.goto('admin/teach');
+  await admin.getByRole('link', { name: 'Teach Day 1', exact: true }).click();
+  await expect(admin.getByRole('heading', { name: 'Concord: subject and verb agreement' })).toBeVisible();
+  await admin.keyboard.press('Space');
+  await expect(admin.getByRole('heading', { name: "Today's rule" })).toBeVisible();
+  await admin.keyboard.press('ArrowRight');
+  await expect(admin.getByText('Neither the teacher nor the students ___ present.')).toBeVisible();
+  await admin.getByRole('button', { name: /^A\s*was$/ }).click();
+  await admin.getByRole('button', { name: 'Show answer' }).click();
+  await expect(admin.getByText('Question 1 of 10: the answer is B')).toBeVisible();
+  await admin.keyboard.press('End');
+  await expect(admin.getByRole('heading', { name: 'Answer key' })).toBeVisible();
+  await expect(admin.getByText('class said A')).toBeVisible();
+  await admin.context().close();
+});
+
 test('10. delete the account; the session and data are gone', async () => {
   await page.goto('account');
   await page.getByLabel('Type DELETE to remove your account and details.').fill('DELETE');
@@ -203,6 +221,9 @@ test('admin routes are unreachable without login', async ({ browser }) => {
   const p = await ctx.newPage();
   await p.goto('admin/orders');
   await expect(p).toHaveURL(/admin\/login$/);
+  await p.goto('admin/teach/4');
+  await expect(p).toHaveURL(/admin\/login$/);
+  await expect(p.getByText('d04-q')).toHaveCount(0);
   const res = await p.request.get('admin/export/orders');
   expect(res.status()).toBe(401);
   await ctx.close();

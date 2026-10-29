@@ -57,6 +57,7 @@ apps/jamb-practice/
 - Lesson gate: `src/lib/lessons.ts#decideLesson` is the only path to lesson content. `GET /api/lessons/[n]` returns 403 with `NEEDS_PAYMENT`, `NOT_YET` (+`unlocksAt`), `CONTENT_NOT_READY` or `EXPIRED`, and 401 `NOT_SIGNED_IN`.
 - Answers are re-marked on the server from its own copy; first-attempt scoring in `completeLesson`.
 - Payment: `src/lib/checkout.ts` creates the order (price from settings, cohort from the open enrolment window); `src/lib/payments/settle.ts` is the single settle routine used by the return page, the webhook, housekeeping and the admin re-verify button. It verifies with the provider first, then locks the order row (`SELECT ... FOR UPDATE`) and grants at most once. A partial unique index also allows only one live entitlement per student and product.
+- Teach mode: `/admin/teach` lists the days; `/admin/teach/[n]` (`src/components/TeachDeck.tsx`, step order in `src/lib/teachSteps.ts`) projects a day for a class: title, rule, then each question asked and revealed, then an answer key. It is admin-only because it shows every answer, paid days included, and it shows days still waiting for approval with a note. Its styles live in `app/admin/teach/[n]/teach.css`, so student pages never load them.
 - Content approval: `src/lib/contentStore.ts`. A lesson's hash is SHA-256 of its canonical JSON (sorted keys), so line endings and formatting do not matter but any content edit withdraws approval.
 
 ## Paystack: what was checked
@@ -124,3 +125,4 @@ The landing page is **just under** budget: about 116 KB of it is the React and N
 2. **Database:** managed Postgres. Neon's free tier (0.5 GB, scales to zero with a short cold start) is enough for the pilot; Supabase's free tier pauses after a week of inactivity. Daily backups and a tested restore are required before launch (RUNBOOK 13).
 3. **Cron:** `.github/workflows/jamb-practice-cron.yml` calls the endpoints once `JAMB_PRACTICE_URL` (repository variable) and `JAMB_PRACTICE_CRON_SECRET` (secret) are set. Use the host's scheduler instead if it has one.
 4. **Main-site robots and sitemap:** the app serves `/jamb-practice/sitemap.xml`. Add `Sitemap: https://vextglobal.com/jamb-practice/sitemap.xml` and `Disallow: /jamb-practice/admin` to the main site's `robots.txt` (there is none today).
+5. **Teach mode for outside teachers and schools:** Teach mode is behind the single admin password today. Letting schools or tutors use it with a class means separate teacher logins and a price for classroom use; both are the owner's call.
