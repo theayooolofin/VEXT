@@ -260,6 +260,28 @@ export const lessonProgress = pgTable(
   (t) => [uniqueIndex('lesson_progress_uq').on(t.studentId, t.day)],
 );
 
+// A timed mock: the server picks the questions, sets the deadline and marks it.
+export const mockAttempts = pgTable(
+  'mock_attempts',
+  {
+    id: id(),
+    studentId: uuid('student_id')
+      .notNull()
+      .references(() => students.id),
+    questionIds: jsonb('question_ids').$type<string[]>().notNull(),
+    startedAt: ts('started_at').notNull(),
+    deadlineAt: ts('deadline_at').notNull(),
+    submittedAt: ts('submitted_at'),
+    answers: jsonb('answers').$type<Record<string, string>>(),
+    score: integer('score'),
+    topicScores: jsonb('topic_scores').$type<Record<string, { correct: number; asked: number }>>(),
+    // Submitted after the deadline and its grace period (the timer ran out offline).
+    late: boolean('late').notNull().default(false),
+    ...stamps,
+  },
+  (t) => [index('mock_attempts_student_idx').on(t.studentId, t.startedAt)],
+);
+
 export const questionAttempts = pgTable(
   'question_attempts',
   {

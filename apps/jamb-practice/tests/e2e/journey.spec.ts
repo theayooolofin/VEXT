@@ -108,6 +108,13 @@ test('4. complete Day 1; the score persists after reload', async () => {
   await expect(page.getByText('Done, 9 of 10')).toBeVisible();
 });
 
+test('timed mock waits until Day 2 is open', async () => {
+  await expect(page.getByRole('link', { name: 'Take a timed mock' })).toHaveCount(0);
+  await page.goto('learn/mock');
+  await expect(page.getByText('The mock opens once Day 2 is open', { exact: false })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Start the mock' })).toHaveCount(0);
+});
+
 test('5. Day 4 unpaid: pay prompt, and no paid content in the response', async () => {
   const res = await page.request.get('api/lessons/4');
   const body = await res.text();

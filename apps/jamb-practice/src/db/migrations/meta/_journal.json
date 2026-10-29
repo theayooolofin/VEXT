@@ -8,6 +8,13 @@
       "when": 1792733236614,
       "tag": "0000_init",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1793299296010,
+      "tag": "0001_far_quasar",
+      "breakpoints": true
     }
   ]
 }

@@ -15,6 +15,8 @@ export const ERROR_MESSAGES = {
   NOT_YET: 'This day is not open yet.',
   CONTENT_NOT_READY: "Today's lesson is being checked by our teacher and will appear shortly.",
   EXPIRED: 'Your access to this pack has ended.',
+  MOCK_NOT_READY: 'The timed mock opens once Day 2 is open, so it has enough questions.',
+  MOCK_SUBMITTED: 'This mock has already been marked.',
   ENROLMENT_CLOSED:
     'Enrolment is closed for now. Message us on WhatsApp to be told when the next group opens.',
   ALREADY_ENROLLED: 'You already have the full pack. Open your lessons to continue.',

@@ -13,6 +13,7 @@ export const LIMITS = {
   checkout: { name: 'checkout', max: 10, windowSec: 3600 },
   answer: { name: 'answer', max: 600, windowSec: 3600 },
   report: { name: 'report', max: 20, windowSec: 3600 },
+  mock: { name: 'mock', max: 30, windowSec: 3600 },
   adminLogin: { name: 'admin-login', max: 10, windowSec: 900 },
   diagnostic: { name: 'diagnostic', max: 20, windowSec: 3600 },
   events: { name: 'events', max: 600, windowSec: 3600 },

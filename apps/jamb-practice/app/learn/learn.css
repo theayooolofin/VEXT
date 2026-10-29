@@ -78,3 +78,73 @@
 .days-progress { margin-bottom: 18px; }
 .days-progress p { margin: 0 0 6px; }
 .days-progress .segs { height: 10px; }
+
+/* ---------- Timed mock ---------- */
+.mock-card { margin: 16px 0; }
+.mock-facts { padding-left: 1.2em; margin: 0 0 12px; }
+.mock-facts li { margin-bottom: 6px; }
+.mock-bar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  margin-bottom: 12px;
+  background: var(--page);
+  border-bottom: 1px solid var(--line);
+  font-weight: 700;
+  color: var(--muted);
+}
+.mock-clock {
+  font-size: 1.375rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.mock-clock.is-low { color: var(--mark-red); }
+.mock-confirm {
+  background: var(--paper);
+  border: 2px solid var(--biro);
+  border-radius: var(--r-card);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.mock-confirm p { margin: 0 0 8px; }
+.mock-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 16px;
+}
+.mock-flag.is-on { color: var(--mark-red); font-weight: 800; }
+.mock-palette {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: 6px;
+  margin: 18px 0 8px;
+}
+.mock-cell {
+  position: relative;
+  height: 40px;
+  font: inherit;
+  font-weight: 700;
+  color: var(--muted);
+  background: var(--paper);
+  border: 2px solid var(--line);
+  border-radius: var(--r-control);
+  cursor: pointer;
+}
+.mock-cell.is-answered { color: #fff; background: var(--biro); border-color: var(--biro); }
+.mock-cell.is-here { box-shadow: 0 0 0 2px var(--page), 0 0 0 4px var(--ink); }
+/* A flag is the teacher's red corner mark. */
+.mock-cell.is-flagged::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  border-top: 9px solid var(--mark-red);
+  border-left: 9px solid transparent;
+}

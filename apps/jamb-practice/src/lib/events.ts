@@ -16,6 +16,8 @@ export const EVENT_NAMES = [
   'lesson_started',
   'question_answered',
   'lesson_completed',
+  'mock_started',
+  'mock_submitted',
   'locked_day_viewed',
   'checkout_started',
   'payment_succeeded',

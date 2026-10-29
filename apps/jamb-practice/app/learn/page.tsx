@@ -5,6 +5,7 @@ import { Track } from '@/components/Track';
 import { currentOffer } from '@/lib/checkout';
 import { dayLabel, lessonsStartMessage } from '@/lib/dayLabels';
 import { dashboard } from '@/lib/lessons';
+import { mockAvailability } from '@/lib/mockRepo';
 import { requirePageSession, siteInfo } from '@/lib/page';
 import { nairaFromKobo } from '@/lib/rules';
 import { nextAction } from '@/lib/unlock';
@@ -23,6 +24,7 @@ export default async function LearnPage() {
   const paidNotStarted = access.active && day4.state === 'locked';
   const needsPayment = day4.state === 'needs_payment';
   const doneCount = states.filter((s) => s.state === 'done').length;
+  const mock = await mockAvailability(session.student, settings);
 
   return (
     <Page>
@@ -57,6 +59,17 @@ export default async function LearnPage() {
           </p>
           <Link href="/buy" className="btn btn-secondary btn-block">
             Unlock Days 4 to 14
+          </Link>
+        </div>
+      )}
+      {mock.available && (
+        <div className="card mock-card">
+          <p>
+            <strong>Timed mock.</strong> {mock.questions} questions in {mock.minutes} minutes, set out like the UTME English paper,
+            from the days you have opened.
+          </p>
+          <Link href="/learn/mock" className="btn btn-secondary btn-block">
+            Take a timed mock
           </Link>
         </div>
       )}

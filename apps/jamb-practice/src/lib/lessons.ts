@@ -52,6 +52,14 @@ export async function dashboard(student: StudentLike, settings: Settings, now = 
   return { states, access, titles };
 }
 
+/** Days whose lesson this student may open now (open or done), for the timed mock. */
+export async function openDays(student: StudentLike, settings: Settings, now = new Date()): Promise<number[]> {
+  const access = await getAccess(student.id, now);
+  return allDayStates(stateInput(student, access, settings, now, new Map()))
+    .filter((s) => s.state === 'open' || s.state === 'done')
+    .map((s) => s.day);
+}
+
 /** The single gate for lesson content (spec 7.8). */
 export async function decideLesson(
   student: StudentLike,
